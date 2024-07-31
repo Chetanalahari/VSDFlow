@@ -1,5 +1,5 @@
 # VSDFlow
-## Day 1
+## Day 0
 
 ### Install Yosys
 
@@ -25,6 +25,22 @@ $ make
 $ sudo make install
 
 <img width="429" alt="image" src="https://github.com/user-attachments/assets/56ee140f-3948-4352-a7ec-4787843e3890">
+
+
+### iverilog
+
+$ sudo apt-get install iverilog
+
+<img width="397" alt="image" src="https://github.com/user-attachments/assets/4c3d4240-1a52-474b-8b3b-1af524da6aa6">
+
+### gtkwave
+
+sudo apt-get update
+
+sudo apt install gtkwave
+
+<img width="574" alt="image" src="https://github.com/user-attachments/assets/7edf13db-e248-4153-af7e-5e47627cb532">
+
 
 
 
