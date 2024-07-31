@@ -1,7 +1,7 @@
 # VSDFlow
 Day 1
-#Install Yosys
-#$ sudo apt-get update
+Install Yosys/
+$ sudo apt-get update/
 #$ git clone https://github.com/YosysHQ/yosys.git
 #$ cd yosys
 #$ sudo apt install make (If make is not installed ,install it)
