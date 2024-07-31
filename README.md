@@ -21,3 +21,7 @@ $ make config-gcc
 $ make
 
 $ sudo make install
+
+<img width="438" alt="image" src="https://github.com/user-attachments/assets/12b092d9-d9dd-43a9-aa27-5db3f7063626">
+
+
