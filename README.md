@@ -1,7 +1,9 @@
 # VSDFlow
 ## Day 1
 
-Install Yosys
+### Install Yosys
+
+#### Yosys is a Verilog HDL synthesis tool. This means that it takes a behavioural design description as input and generates an RTL, logical gate or physical gate level description of the design as output. Yosys’ main strengths are behavioural and RTL synthesis.
 
 $ sudo apt-get update
 
