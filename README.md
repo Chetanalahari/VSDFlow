@@ -49,6 +49,24 @@ A testbench is used to apply stimulus, or test vectors, to the design to check i
 
 ### Block diagram of Test Bench
 
+<img width="571" alt="image" src="https://github.com/user-attachments/assets/1e1b9aea-2c98-47b7-9dea-2d35718766ce">
+
+### iverilog based simulation flow
+
+![image](https://github.com/user-attachments/assets/31d49bf1-6689-48fa-8f9f-e5a159bdaaf8)
+
+### good_mux
+
+<img width="613" alt="image" src="https://github.com/user-attachments/assets/1cbc1109-4900-4262-8440-d453bb17ef69">
+
+#### Commands used
+<img width="608" alt="image" src="https://github.com/user-attachments/assets/c958b4f3-442e-4fc6-83a9-cc4454bd914c">
+
+### Waveforms in gtkwave
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/efac9690-d4ea-48fb-80e3-b7e30b7cc0e3">
+
+
 
 
 
