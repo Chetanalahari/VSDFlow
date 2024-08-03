@@ -72,9 +72,11 @@ Icarus Verilog (Iverilog) takes design files and testbench files as inputs. The 
 #### Commands used
 
 The output will be a.out file for the simulation 
+
 <img width="608" alt="image" src="https://github.com/user-attachments/assets/c958b4f3-442e-4fc6-83a9-cc4454bd914c">
 
 To view the simulation results, use a waveform viewer like GTKWave. Open the GTKWave and load the generated VCD file:
+
 ### Waveforms in gtkwave
 
 <img width="604" alt="image" src="https://github.com/user-attachments/assets/efac9690-d4ea-48fb-80e3-b7e30b7cc0e3">
