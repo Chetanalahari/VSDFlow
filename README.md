@@ -81,6 +81,22 @@ To view the simulation results, use a waveform viewer like GTKWave. Open the GTK
 
 <img width="604" alt="image" src="https://github.com/user-attachments/assets/efac9690-d4ea-48fb-80e3-b7e30b7cc0e3">
 
+## Introduction to Yosys RTL Synthesizer
+
+Yosys is an open-source framework for Verilog RTL synthesis. It is used primarily for converting high-level Verilog descriptions of digital circuits into gate-level netlists that can be implemented on FPGAs or used for ASIC design. Yosys is highly versatile and supports various front-end and back-end tools, making it a valuable tool for digital design and synthesis.
+
+Inputs for Yosys tool: Design (.v), Liberty (.lib)
+Output: Netlist file (.net.v)
+
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/574fea39-d6d6-46f2-9495-1867525ad5ed">
+
+Verifying the design:
+
+Use the Test bench using in RTL phase.Using the same stimulus used for RTL, the output expected should be the same as the one obtained in RTL phase.
+
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/db8d6336-823e-4225-a51f-3f95918fbb4b">
+
+
 
 
 
