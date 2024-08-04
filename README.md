@@ -112,16 +112,33 @@ Block diagram shows how the Synthesizer works
 
 ### Synthesis of good_mux.v
 
+1.Read the liberty source file
+
+yosys> read_liberty -lib ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+2. Read the Verilog source file
+
+yosys> read_verilog good_mux.v
+
+3. Do Synthesis
+
+yosys> synth -top good_mux
+
 <img width="608" alt="image" src="https://github.com/user-attachments/assets/f1b30a9a-6b51-41e1-8675-c01fa1f12f26">
 
 <img width="611" alt="image" src="https://github.com/user-attachments/assets/9b5b32b9-ad4c-43d5-a88f-abf5c1da890a">
 
-Technology Mapping to the Design using the abc tool which is integrated with Yosys:
+### Technology Mapping to the Design using the abc tool which is integrated with Yosys:
 
 yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
 
 <img width="605" alt="image" src="https://github.com/user-attachments/assets/e7f45182-7529-4667-a9c6-9078a8ca64fe">
 
+### Generated Gate level Netlist
+
+yosys> show
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/66b32437-262d-46a3-a918-71128b05d529">
 
 
 
