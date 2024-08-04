@@ -96,6 +96,43 @@ Use the Test bench using in RTL phase.Using the same stimulus used for RTL, the 
 
 <img width="598" alt="image" src="https://github.com/user-attachments/assets/db8d6336-823e-4225-a51f-3f95918fbb4b">
 
+### Synthesis
+
+The process of transforming the RTL description into a lower-level representation consisting of gates and their interconnections. This process is typically performed using a synthesis tool, which maps the RTL code to a specific technology library containing various gate-level components like AND, OR, NOT gates, flip-flops, and more.
+
+<img width="184" alt="image" src="https://github.com/user-attachments/assets/d255aaa7-104f-42f2-92d1-dc63f8ca1012">
+
+### What is .lib?
+
+A .lib file, or a standard cell library file, is a collection of different standard cells that vary in functionality, input configurations, and other characteristics. These cells can implement various logic functions and are available in multiple performance models, such as slow, medium, and fast. Each model caters to different design requirements, providing options for trade-offs in speed, power, and area. This library enables designers to choose the appropriate cells to meet specific design criteria and constraints.
+
+Block diagram shows how the Synthesizer works
+
+<img width="440" alt="image" src="https://github.com/user-attachments/assets/a0eda8cc-2df0-4c11-a8e8-26d19454299c">
+
+### Synthesis of good_mux.v
+
+<img width="608" alt="image" src="https://github.com/user-attachments/assets/f1b30a9a-6b51-41e1-8675-c01fa1f12f26">
+
+<img width="611" alt="image" src="https://github.com/user-attachments/assets/9b5b32b9-ad4c-43d5-a88f-abf5c1da890a">
+
+Technology Mapping to the Design using the abc tool which is integrated with Yosys:
+
+yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/e7f45182-7529-4667-a9c6-9078a8ca64fe">
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
