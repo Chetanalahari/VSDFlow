@@ -1,6 +1,6 @@
 # VSDFlow
 
-<Tool installation>
+<details>
   
 ## Day 0 - System/Tool Setup Check. GitHub ID creation
 
@@ -46,7 +46,7 @@ sudo apt install gtkwave
 
 <img width="574" alt="image" src="https://github.com/user-attachments/assets/7edf13db-e248-4153-af7e-5e47627cb532">
 
-</Tool installation>
+</details>
 
 ## <Day 1 - Introduction to Verilog RTL Design and Synthesis>
 
