@@ -1,8 +1,8 @@
 # VSDFlow
 
-<details>
-
 ## Day 0 - System/Tool Setup Check. GitHub ID creation
+
+<details>
 
 ### Install Yosys
 
