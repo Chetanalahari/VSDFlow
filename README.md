@@ -1,5 +1,5 @@
 # VSDFlow
-## Day 0
+## <Day 0 - System/Tool Setup Check. GitHub ID creation>
 
 ### Install Yosys
 
@@ -27,7 +27,7 @@ $ sudo make install
 <img width="429" alt="image" src="https://github.com/user-attachments/assets/56ee140f-3948-4352-a7ec-4787843e3890">
 
 
-### iverilog
+### install iverilog
 
 #### iverilog: Icarus Verilog, commonly known as Iverilog, is an open-source tool used for the simulation and synthesis of digital circuits described in Verilog hardware description language (HDL).Primarily, Iverilog is used to simulate Verilog designs, allowing designers to verify the functionality of their digital circuits before physical implementation.
 
@@ -35,7 +35,7 @@ $ sudo apt-get install iverilog
 
 <img width="397" alt="image" src="https://github.com/user-attachments/assets/4c3d4240-1a52-474b-8b3b-1af524da6aa6">
 
-### gtkwave
+### install gtkwave
 
 sudo apt-get update
 
@@ -43,7 +43,7 @@ sudo apt install gtkwave
 
 <img width="574" alt="image" src="https://github.com/user-attachments/assets/7edf13db-e248-4153-af7e-5e47627cb532">
 
-## Day 1 - Introduction to Verilog RTL Design and Synthesis
+## <Day 1 - Introduction to Verilog RTL Design and Synthesis>
 
 In RTL design, the adherence to specifications is verified through simulation using a tool called a simulator. For this course, the simulator used is Icarus Verilog (Iverilog). The design refers to the actual Verilog code or set of codes that implement the intended functionality to meet the required specifications.
 
@@ -112,15 +112,15 @@ Block diagram shows how the Synthesizer works
 
 ### Synthesis of good_mux.v
 
-1.Read the liberty source file
+#### 1.Read the liberty source file
 
 yosys> read_liberty -lib ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
 
-2. Read the Verilog source file
+#### 2. Read the Verilog source file
 
 yosys> read_verilog good_mux.v
 
-3. Do Synthesis
+#### 3. Do Synthesis
 
 yosys> synth -top good_mux
 
@@ -131,6 +131,8 @@ yosys> synth -top good_mux
 ### Technology Mapping to the Design using the abc tool which is integrated with Yosys:
 
 yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/d414464c-58bf-44cc-82ba-faa1c8590762">
 
 <img width="605" alt="image" src="https://github.com/user-attachments/assets/e7f45182-7529-4667-a9c6-9078a8ca64fe">
 
