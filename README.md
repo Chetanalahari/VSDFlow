@@ -1,6 +1,6 @@
 # VSDFlow
 
-## Day 0 - System/Tool Setup Check. GitHub ID creation
+## System/Tool Setup Check. 
 
 <details>
 
@@ -48,7 +48,9 @@ sudo apt install gtkwave
 
 </details>
 
-## <Day 1 - Introduction to Verilog RTL Design and Synthesis>
+## Day 1 - Introduction to Verilog RTL Design and Synthesis
+
+<details></details>
 
 In RTL design, the adherence to specifications is verified through simulation using a tool called a simulator. For this course, the simulator used is Icarus Verilog (Iverilog). The design refers to the actual Verilog code or set of codes that implement the intended functionality to meet the required specifications.
 
