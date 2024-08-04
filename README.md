@@ -50,7 +50,7 @@ sudo apt install gtkwave
 
 ## Day 1 - Introduction to Verilog RTL Design and Synthesis
 
-<details></details>
+<details>
 
 In RTL design, the adherence to specifications is verified through simulation using a tool called a simulator. For this course, the simulator used is Icarus Verilog (Iverilog). The design refers to the actual Verilog code or set of codes that implement the intended functionality to meet the required specifications.
 
