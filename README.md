@@ -135,19 +135,30 @@ yosys> synth -top good_mux
 
 <img width="611" alt="image" src="https://github.com/user-attachments/assets/9b5b32b9-ad4c-43d5-a88f-abf5c1da890a">
 
-### Technology Mapping to the Design using the abc tool which is integrated with Yosys:
+#### 4. Technology Mapping to the Design using the abc tool which is integrated with Yosys:
 
-yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+ yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
 
 <img width="605" alt="image" src="https://github.com/user-attachments/assets/d414464c-58bf-44cc-82ba-faa1c8590762">
 
 <img width="605" alt="image" src="https://github.com/user-attachments/assets/e7f45182-7529-4667-a9c6-9078a8ca64fe">
 
-### Generated Gate level Netlist
+#### 5. Generated Gate level Netlist
 
-yosys> show
+ yosys> show
 
 <img width="604" alt="image" src="https://github.com/user-attachments/assets/66b32437-262d-46a3-a918-71128b05d529">
+
+#### 6. Write the synthesized netlist to a Verilog file:
+
+write_verilog good_mux_netlist.v
+
+<img width="257" alt="image" src="https://github.com/user-attachments/assets/9bdc2f46-4455-404c-bacb-0ac57387c6fd">
+
+yosys> write_verilog -noattr good_mux.netlist.v
+
+<img width="235" alt="image" src="https://github.com/user-attachments/assets/5a7ef4fd-5ca1-452f-b32e-8a7e875ac584">
+
 
 
 
