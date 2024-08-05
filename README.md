@@ -159,6 +159,41 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <img width="235" alt="image" src="https://github.com/user-attachments/assets/5a7ef4fd-5ca1-452f-b32e-8a7e875ac584">
 
+##  Timing libs, Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles
+
+<details>
+
+A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. It provides detailed descriptions of the
+
+timing, power, and area characteristics for standard cells in a digital library.
+
+Key Elements of a .lib File:
+
+Timing Information: Details about the delay and timing constraints of the cells.
+
+Power Information: Data on power consumption, including dynamic and leakage power.
+
+Area Information: The physical area occupied by the cells.
+
+Operating Conditions: Environmental parameters like temperature and voltage for which the cells are characterized.
+
+Pin Descriptions: Information about the input and output pins of the cells, including their functions and electrical properties.
+
+In our lab, we utilize the sky130_fd_sc_hd_tt_025C_1v80.lib file. Here’s an explanation of the filename components:
+
+sky130: Denotes the 130nm technology node from SkyWater Technology Foundry.
+
+fd: Indicates a fully-depleted process technology.
+
+sc: Refers to the standard cell library.
+
+hd: Specifies that the library is optimized for high density.
+
+tt: Represents the typical-typical process corner, a standard for typical conditions.
+
+025C: Indicates that the library data is characterized at a temperature of 25°C.
+
+1v80: Specifies the operating voltage condition, which is 1.8V.
 
 
 
