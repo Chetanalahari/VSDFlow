@@ -159,6 +159,8 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <img width="235" alt="image" src="https://github.com/user-attachments/assets/5a7ef4fd-5ca1-452f-b32e-8a7e875ac584">
 
+</details>
+
 ##  Timing libs, Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles
 
 <details>
