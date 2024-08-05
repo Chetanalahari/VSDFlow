@@ -165,9 +165,7 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <details>
 
-### A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. It provides detailed descriptions of the
-
-### timing, power, and area characteristics for standard cells in a digital library.
+### A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. Library cell description contains a lot of information like timing information, power estimation, other several attributes like area, functionality, operating condition etc. Speaking more technically, liberty format is a format to represent timing and power properties of black boxes (which we cant descend into). Liberty is an ASCII format, usually represented in a text file with extension “.lib“.
 
 #### Key Elements of a .lib File:
 
@@ -185,17 +183,17 @@ In our lab, we utilize the sky130_fd_sc_hd_tt_025C_1v80.lib file. Here’s an ex
 
 #### sky130: Denotes the 130nm technology node from SkyWater Technology Foundry.
 
-fd: Indicates a fully-depleted process technology.
+##### fd: Indicates a fully-depleted process technology.
 
-sc: Refers to the standard cell library.
+##### sc: Refers to the standard cell library.
 
-hd: Specifies that the library is optimized for high density.
+##### hd: Specifies that the library is optimized for high density.
 
-tt: Represents the typical-typical process corner, a standard for typical conditions.
+##### tt: Represents the typical-typical process corner, a standard for typical conditions.
 
-025C: Indicates that the library data is characterized at a temperature of 25°C.
+##### 025C: Indicates that the library data is characterized at a temperature of 25°C.
 
-1v80: Specifies the operating voltage condition, which is 1.8V.
+##### 1v80: Specifies the operating voltage condition, which is 1.8V.
 
 
 
