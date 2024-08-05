@@ -173,7 +173,8 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 In our lab, we utilize the **sky130_fd_sc_hd_tt_025C_1v80.lib file.** Here’s an explanation of the filename components:
 
-**sky130:** Refers to the 130nm technology node provided by SkyWater Technology Foundry.  **fd:** Stands for fully-depleted, indicating the type of process technology. 
+**sky130:** Refers to the 130nm technology node provided by SkyWater Technology Foundry.  
+**fd:** Stands for fully-depleted, indicating the type of process technology. 
  **sc:** Stands for standard cell.  **hd:** Stands for high-density standard cell library.  **tt:** Typical process corner (typical-typical).  **025C:** The temperature condition at which the library data is characterized (25°C).  **1v80:** The operating voltage condition (1.8V).
 
 
