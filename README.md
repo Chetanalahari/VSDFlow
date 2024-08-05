@@ -165,11 +165,11 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <details>
 
-A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. It provides detailed descriptions of the
+### A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. It provides detailed descriptions of the
 
-timing, power, and area characteristics for standard cells in a digital library.
+### timing, power, and area characteristics for standard cells in a digital library.
 
-Key Elements of a .lib File:
+#### Key Elements of a .lib File:
 
 Timing Information: Details about the delay and timing constraints of the cells.
 
@@ -183,7 +183,7 @@ Pin Descriptions: Information about the input and output pins of the cells, incl
 
 In our lab, we utilize the sky130_fd_sc_hd_tt_025C_1v80.lib file. Here’s an explanation of the filename components:
 
-sky130: Denotes the 130nm technology node from SkyWater Technology Foundry.
+#### sky130: Denotes the 130nm technology node from SkyWater Technology Foundry.
 
 fd: Indicates a fully-depleted process technology.
 
