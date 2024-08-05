@@ -168,21 +168,13 @@ yosys> write_verilog -noattr good_mux.netlist.v
  A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. Library cell description contains a lot of information like timing information, power estimation, other several attributes like area, functionality, operating condition etc. Speaking more technically, liberty format is a format to represent timing and power properties of black boxes (which we cant descend into). Liberty is an ASCII format, usually represented in a text file with extension “.lib“.
 
 ### Key Elements of a .lib File:
-**Timing Information:** Details about the delay and timing constraints of the cells.
-**Power Information:** Data on power consumption, including dynamic and leakage power.
-**Area Information:** The physical area occupied by the cells.
-**Operating Conditions:** Environmental parameters like temperature and voltage for which the cells are characterized.
-**Pin Descriptions:** Information about the input and output pins of the cells, including their functions and electrical properties.
+**Timing Information:** Details about the delay and timing constraints of the cells.  **Power Information:** Data on power consumption, including dynamic and leakage power. 
+ **Area Information:** The physical area occupied by the cells.  **Operating Conditions:** Environmental parameters like temperature and voltage for which the cells are characterized.  **Pin Descriptions:** Information about the input and output pins of the cells, including their functions and electrical properties.
 
 In our lab, we utilize the **sky130_fd_sc_hd_tt_025C_1v80.lib file.** Here’s an explanation of the filename components:
 
-**sky130:** Refers to the 130nm technology node provided by SkyWater Technology Foundry.
-**fd:** Stands for fully-depleted, indicating the type of process technology.
-**sc:** Stands for standard cell.
-**hd:** Stands for high-density standard cell library.
-**tt:** Typical process corner (typical-typical).
-**025C:** The temperature condition at which the library data is characterized (25°C).
-**1v80:** The operating voltage condition (1.8V).
+**sky130:** Refers to the 130nm technology node provided by SkyWater Technology Foundry.  **fd:** Stands for fully-depleted, indicating the type of process technology. 
+ **sc:** Stands for standard cell.  **hd:** Stands for high-density standard cell library.  **tt:** Typical process corner (typical-typical).  **025C:** The temperature condition at which the library data is characterized (25°C).  **1v80:** The operating voltage condition (1.8V).
 
 
 
