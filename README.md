@@ -169,31 +169,32 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 #### Key Elements of a .lib File:
 
-Timing Information: Details about the delay and timing constraints of the cells.
+**Timing Information: Details about the delay and timing constraints of the cells.
 
-Power Information: Data on power consumption, including dynamic and leakage power.
+**Power Information: Data on power consumption, including dynamic and leakage power.
 
-Area Information: The physical area occupied by the cells.
+**Area Information: The physical area occupied by the cells.
 
-Operating Conditions: Environmental parameters like temperature and voltage for which the cells are characterized.
+**Operating Conditions: Environmental parameters like temperature and voltage for which the cells are characterized.
 
-Pin Descriptions: Information about the input and output pins of the cells, including their functions and electrical properties.
+**Pin Descriptions: Information about the input and output pins of the cells, including their functions and electrical properties.
 
-In our lab, we utilize the sky130_fd_sc_hd_tt_025C_1v80.lib file. Here’s an explanation of the filename components:
+In our lab, we utilize the **sky130_fd_sc_hd_tt_025C_1v80.lib file. Here’s an explanation of the filename components:
 
-#### sky130: Denotes the 130nm technology node from SkyWater Technology Foundry.
+**sky130: Refers to the 130nm technology node provided by SkyWater Technology Foundry.
 
-##### fd: Indicates a fully-depleted process technology.
+**fd: Stands for fully-depleted, indicating the type of process technology.
 
-##### sc: Refers to the standard cell library.
+**sc: Stands for standard cell.
 
-##### hd: Specifies that the library is optimized for high density.
+**hd: Stands for high-density standard cell library.
 
-##### tt: Represents the typical-typical process corner, a standard for typical conditions.
+**tt: Typical process corner (typical-typical).
 
-##### 025C: Indicates that the library data is characterized at a temperature of 25°C.
+**025C: The temperature condition at which the library data is characterized (25°C).
 
-##### 1v80: Specifies the operating voltage condition, which is 1.8V.
+1v80: The operating voltage condition (1.8V).
+
 
 
 
