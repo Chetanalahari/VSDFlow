@@ -201,6 +201,69 @@ Comparison of the area occupied by 2-input AND gates with varying drive strength
 
 <img width="584" alt="image" src="https://github.com/user-attachments/assets/12e1b1e7-8c14-425e-a9be-a4505d504945">
 
+### Hierarchial Synthesis
+
+In VLSI (Very Large Scale Integration) design, hierarchical synthesis and flat synthesis are two approaches to synthesizing a digital circuit from a high-level description to a gate-level representation. They differ in how they manage and optimize the design hierarchy during the synthesis process.
+
+**Hierarchical Synthesis**
+**Definition:** Hierarchical synthesis, also known as module-based or top-down synthesis, involves preserving the design hierarchy throughout the synthesis process. The design is divided into modules or blocks, and each module is synthesized separately, maintaining its boundaries and interfaces.
+
+Invoking yosys to synthesize example multiple_modules.v
+
+<img width="395" alt="image" src="https://github.com/user-attachments/assets/8a44fa1e-18a9-48bb-bda3-b5f059d28882">
+
+<img width="380" alt="image" src="https://github.com/user-attachments/assets/f6e50452-0abb-45c0-854c-9ba1408140ab">
+
+**1. Read the Liberty source file:**
+
+yosys> read_liberty -lib ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+__2.Read the Verilog source file:__
+
+yosys> read_verilog multiple_modules.v
+
+__3.Perform synthesis:__
+
+yosys> synth -top multiple_modules
+
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/1e6516f4-ebae-4af7-b59b-67d2d0712052">
+
+Here, Sub_module1 has one and gate, sub_module2 has one OR gate 
+
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/e7ce7c06-4561-49d3-b396-862a1b518790">
+
+Top mdoule multiple_module has sub_module1 and sub_module2 of one instance each and totally it contains 2 cells of both AND and OR gate
+
+<img width="602" alt="image" src="https://github.com/user-attachments/assets/20e8c937-d28d-48ce-b583-9d7cc39cddd2">
+
+**4.Technology Mapping to the Design using abc tool which is integrated with Yosys:**
+
+yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+<img width="611" alt="image" src="https://github.com/user-attachments/assets/e0aea456-40a4-4a7b-b4a1-2ec3fd5fe849">
+
+**5.View the generated gate level netlist:**
+
+yosys> show multiple_modules
+
+<img width="602" alt="image" src="https://github.com/user-attachments/assets/67cd5911-cc1a-4b8a-8e01-f815fa48745d">
+
+Interestingly, the design is not displaying the AND and OR gates explicitly. Instead, it shows them as u1 and u2, which are instances of sub_module1 and sub_module2, respectively. Ideally, one would expect to see the AND and OR gates directly. This approach is known as hierarchical design, where the hierarchies are preserved, and the design maintains its modular structure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
