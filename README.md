@@ -1,8 +1,8 @@
 # VSDFlow
 
-## System/Tool Setup Check. 
-
 <details>
+
+<summary>Day 0 - Tools Installation</summary>
 
 ### Install Yosys
 
@@ -48,9 +48,9 @@ sudo apt install gtkwave
 
 </details>
 
-## Introduction to Verilog RTL Design and Synthesis
-
 <details>
+
+<summary>Day 1 - Introduction to Verilog RTL Design and Synthesis</summary>
 
 In RTL design, the adherence to specifications is verified through simulation using a tool called a simulator. For this course, the simulator used is Icarus Verilog (Iverilog). The design refers to the actual Verilog code or set of codes that implement the intended functionality to meet the required specifications.
 
@@ -161,9 +161,9 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 </details>
 
-##  Timing libs, Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles
-
 <details>
+
+<summary>Day 2 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
 
  A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. Library cell description contains a lot of information like timing information, power estimation, other several attributes like area, functionality, operating condition etc. Speaking more technically, liberty format is a format to represent timing and power properties of black boxes (which we cant descend into). Liberty is an ASCII format, usually represented in a text file with extension “.lib“.
 
@@ -183,6 +183,10 @@ In our lab, we utilize the **sky130_fd_sc_hd_tt_025C_1v80.lib file.** Here’s a
 **tt:** Typical process corner (typical-typical).  
 **025C:** The temperature condition at which the library data is characterized (25°C).  
 **1v80:** The operating voltage condition (1.8V).
+
+
+<img width="584" alt="image" src="https://github.com/user-attachments/assets/12e1b1e7-8c14-425e-a9be-a4505d504945">
+
 
 
 
