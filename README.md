@@ -165,6 +165,7 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <summary>Day 2 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
 
+
  A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. Library cell description contains a lot of information like timing information, power estimation, other several attributes like area, functionality, operating condition etc. Speaking more technically, liberty format is a format to represent timing and power properties of black boxes (which we cant descend into). Liberty is an ASCII format, usually represented in a text file with extension “.lib“.
 
 ### Key Elements of a .lib File:
