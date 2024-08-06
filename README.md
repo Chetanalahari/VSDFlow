@@ -184,6 +184,19 @@ In our lab, we utilize the **sky130_fd_sc_hd_tt_025C_1v80.lib file.** Here’s a
 **025C:** The temperature condition at which the library data is characterized (25°C).  
 **1v80:** The operating voltage condition (1.8V).
 
+Snippet of .lib file
+
+<img width="556" alt="image" src="https://github.com/user-attachments/assets/944ca820-6afa-4a54-91f0-8fd779270789">
+
+Snippet showing leakage power in .lib file
+
+<img width="527" alt="image" src="https://github.com/user-attachments/assets/924bd95c-604d-487a-a305-5c35b2c4b726">
+
+Timing(Cell rise/fall delay etc.) in lookup table format:
+
+<img width="563" alt="image" src="https://github.com/user-attachments/assets/9c82cbbb-60f8-4308-9540-5becc2bbea77">
+
+Comparison of the area occupied by 2-input AND gates with varying drive strengths or widths shows that gates with higher drive strengths or greater widths occupy more area and will have less delay.
 
 <img width="584" alt="image" src="https://github.com/user-attachments/assets/12e1b1e7-8c14-425e-a9be-a4505d504945">
 
