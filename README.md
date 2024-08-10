@@ -201,7 +201,9 @@ Comparison of the area occupied by 2-input AND gates with varying drive strength
 
 <img width="584" alt="image" src="https://github.com/user-attachments/assets/12e1b1e7-8c14-425e-a9be-a4505d504945">
 
-### Hierarchial Synthesis
+### Hierarchial vs Flat Synthesis
+
+#### Hierarchial Synthesis
 
 In VLSI (Very Large Scale Integration) design, hierarchical synthesis and flat synthesis are two approaches to synthesizing a digital circuit from a high-level description to a gate-level representation. They differ in how they manage and optimize the design hierarchy during the synthesis process.
 
@@ -249,6 +251,8 @@ yosys> show multiple_modules
 <img width="602" alt="image" src="https://github.com/user-attachments/assets/67cd5911-cc1a-4b8a-8e01-f815fa48745d">
 
 Interestingly, the design is not displaying the AND and OR gates explicitly. Instead, it shows them as u1 and u2, which are instances of sub_module1 and sub_module2, respectively. Ideally, one would expect to see the AND and OR gates directly. This approach is known as hierarchical design, where the hierarchies are preserved, and the design maintains its modular structure.
+
+
 
 
 
