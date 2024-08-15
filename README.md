@@ -1,8 +1,8 @@
-# VSDFlow
+# RTL TO GDS 
 
 <details>
 
-<summary>Day 0 - Tools Installation</summary>
+<summary>module1- Tools Installation</summary>
 
 ### Install Yosys
 
@@ -50,7 +50,7 @@ sudo apt install gtkwave
 
 <details>
 
-<summary>Day 1 - Introduction to Verilog RTL Design and Synthesis</summary>
+<summary>module 2 - Introduction to Verilog RTL Design and Synthesis</summary>
 
 In RTL design, the adherence to specifications is verified through simulation using a tool called a simulator. For this course, the simulator used is Icarus Verilog (Iverilog). The design refers to the actual Verilog code or set of codes that implement the intended functionality to meet the required specifications.
 
@@ -163,7 +163,7 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <details>
 
-<summary>Day 2 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
+<summary>module 3 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
 
 
  A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. Library cell description contains a lot of information like timing information, power estimation, other several attributes like area, functionality, operating condition etc. Speaking more technically, liberty format is a format to represent timing and power properties of black boxes (which we cant descend into). Liberty is an ASCII format, usually represented in a text file with extension “.lib“.
@@ -251,6 +251,42 @@ yosys> show multiple_modules
 <img width="602" alt="image" src="https://github.com/user-attachments/assets/67cd5911-cc1a-4b8a-8e01-f815fa48745d">
 
 Interestingly, the design is not displaying the AND and OR gates explicitly. Instead, it shows them as u1 and u2, which are instances of sub_module1 and sub_module2, respectively. Ideally, one would expect to see the AND and OR gates directly. This approach is known as hierarchical design, where the hierarchies are preserved, and the design maintains its modular structure.
+
+**Flat synthesis:** Flat synthesis involves synthesizing the entire design as a single, monolithic entity without hierarchical organization.
+
+**1.To flatten the design:**
+
+yosys> flatten
+
+<img width="311" alt="image" src="https://github.com/user-attachments/assets/328012d6-6823-42b2-abda-bbbb045abc43">
+
+**2.To write a netlist to .v file:**
+
+yosys> write_verilog -noattr multiple_modules_flat.v
+
+<img width="335" alt="image" src="https://github.com/user-attachments/assets/17110aff-0dbf-4af3-9685-b76ba4b03bdc">
+
+**3.To view the netlist (.v):**
+
+yosys> !givim multiple_modules_flat.v
+
+<img width="610" alt="image" src="https://github.com/user-attachments/assets/f269f628-22e3-49fc-9c81-73618e5b3f0b">
+
+<img width="641" alt="image" src="https://github.com/user-attachments/assets/af3db9bb-dc9c-49ab-9636-8757b60f9084">
+
+In the first case, the hierarchies of submodule1 and submodule2 are preserved. In the second case, we see a single netlist where the hierarchies are flattened out, and we directly see the instantiation of the AND gate and OR gate under multiple modules.
+
+**4.To view the flattened gate level netlist:**
+
+yosys> show
+
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/85119854-0c3f-4c1c-9123-17f55ae34b42">
+
+
+
+
+
+
 
 
 
