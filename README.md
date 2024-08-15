@@ -282,6 +282,104 @@ yosys> show
 
 <img width="605" alt="image" src="https://github.com/user-attachments/assets/85119854-0c3f-4c1c-9123-17f55ae34b42">
 
+So, when we flatten the design, we can see the structure completely.
+
+### Sub module level synthesis###
+
+Given multitiple modules, lets say we want to synthesize each sub module
+
+**1.Read the Liberty source file:**
+
+yosys> read_liberty -lib ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+<img width="418" alt="image" src="https://github.com/user-attachments/assets/775dbb23-39d3-4ca3-bb98-0c86261e66cb">
+
+**2.Read the Verilog source file:**
+
+yosys> read_verilog multiple_modules.v
+
+<img width="404" alt="image" src="https://github.com/user-attachments/assets/425116f0-c082-44e9-826e-8805e0c065fe">
+
+**3.Perform synthesis:**
+
+yosys> synth -top sub_module1
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/cb367283-2004-43ae-8734-4c2949a6c56c">
+
+**4.Technology Mapping to the Design using abc tool which is integrated with Yosys:**
+
+yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/0f843ff7-ced0-4fd9-85a3-e348e95d5929">
+
+**5.To view the generated gate level netlist:**
+
+yosys> show
+
+<img width="241" alt="image" src="https://github.com/user-attachments/assets/e00d191e-5e48-48f6-a596-ed78ccefbb70">
+
+Sub-module level synthesis is preferred:
+
+1.When we have multiple instances of the same module  2. When the design is massive.
+
+### Different Methods for Flip-Flop Coding and Performance Enhancement
+
+**Why are flops necessary, and how do they mitigate glitches in the circuit?**
+
+Glitches in digital circuits often arise due to signal delays, noise, or timing mismatches. Flops are essential in preventing these glitches by:
+
+Synchronization: Flops are edge-triggered, responding only to specific transitions like clock edges, ensuring that output changes occur at precise moments, reducing the chance of glitches caused by transient signals.
+
+Timing Control: Flops are driven by a clock signal, ensuring that all circuit operations are synchronized. This coordination prevents timing mismatches, which could otherwise lead to glitches when data arrives at different times.
+
+So,Flip-Flops can be used to restrict glitch propagation as:
+
+Flip-flops are edge triggered circuits,so the output changes on edge of the clock signal,so even if input of flops are glitchy,output remains stable.
+Combinational circuits driven by the flops,will receive stable inputs,hence their glitches will eventually settle down.
+
+<img width="740" alt="image" src="https://github.com/user-attachments/assets/ef17901d-53bd-48d0-b0f1-a877524954c1">
+
+The value of the flop must be in a known state all the time,for this signals like reset or set are used to control the initial state . set and reset can be synchronous or asynchronous.
+
+#### Flops and Flop coding styles
+
+Combinational circuits can produce glitches while settling to a final value when cascaded. Flip-flops are essential to store these final values, allowing changes only when an external signal confirms that the combinational logic has stabilized. The output Q of the flip-flop is protected from changes at the input D until the appropriate timing signal is applied. Set/reset signals are used to initialize the flip-flop, ensuring that the initial output of Q is a known, stable value.
+
+**Simulation of Asynchronous Reset D-Flip Flop using iverilog followed by GTKWave**
+
+<img width="401" alt="image" src="https://github.com/user-attachments/assets/a17e38da-f2e9-4665-b784-80e0db581b41">
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/7cb1918a-44ca-479b-85b1-4c0184a0fbb4">
+
+Commands used:
+
+1.iverilog dff_asyncres.v tb_dff_asyncres.v  2../a.out  3.gtkwave tb_dff_asyncres.vcd
+
+<img width="639" alt="image" src="https://github.com/user-attachments/assets/0c5e04ae-0066-4cff-87ba-4562f5294f87">
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/51829bfc-8061-45c6-bc0f-8f76e973d10e">
+
+In the scenario described, when the reset signal goes low before the clock arrives and d is high, the output Q of the flip-flop does not immediately go to 1. Instead, it waits for the clock edge. This means that d is aligned with the clock, and the flip-flop only senses the value of d at the clock edge. The output q is therefore synchronized to the clock; d may change at any time, but q will only update when the clock edge occurs, ensuring that changes in q happen in sync with the clock when driven by d.
+
+**Simulation of Synchronous Reset D-Flip Flop using iverilog followed by GTKWave**
+
+<img width="640" alt="image" src="https://github.com/user-attachments/assets/ab809fab-1c04-483b-b7ff-8438f6c13cc3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
