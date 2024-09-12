@@ -406,6 +406,7 @@ Y = /C (output got reduced to an inverter - less area and power)
 **Boolean Optimization**
 
 ![image](https://github.com/user-attachments/assets/0bdf22f2-ea8b-45db-b430-685a9a221710)
+ <details>
 
                                           <summary><strong>PART 1: For opt_check Modules</strong></summary>
                             <ol>
