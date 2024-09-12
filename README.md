@@ -394,8 +394,7 @@ yosys> dfflibmap -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
                 <ul>
                     <li>
                         <details>
-
-                                          <summary><strong>PART 1: For opt_check Modules</strong></summary>
+                           <summary><strong>PART 1: For opt_check Modules</strong></summary>
                             <ol>
                                 <li>
                                     <strong>Step 1: Read Library</strong>
