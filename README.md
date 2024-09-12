@@ -2,7 +2,7 @@
 
 <details>
 
-<summary>module1- Tools Installation</summary>
+<summary>Tools Installation</summary>
 
 ### Install Yosys
 
@@ -50,7 +50,7 @@ sudo apt install gtkwave
 
 <details>
 
-<summary>module 2 - Introduction to Verilog RTL Design and Synthesis</summary>
+<summary>Introduction to Verilog RTL Design and Synthesis</summary>
 
 In RTL design, the adherence to specifications is verified through simulation using a tool called a simulator. For this course, the simulator used is Icarus Verilog (Iverilog). The design refers to the actual Verilog code or set of codes that implement the intended functionality to meet the required specifications.
 
@@ -163,7 +163,7 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <details>
 
-<summary>module 3 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
+<summary>Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
 
 
  A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. Library cell description contains a lot of information like timing information, power estimation, other several attributes like area, functionality, operating condition etc. Speaking more technically, liberty format is a format to represent timing and power properties of black boxes (which we cant descend into). Liberty is an ASCII format, usually represented in a text file with extension “.lib“.
@@ -386,7 +386,7 @@ yosys> dfflibmap -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
 </details>
 
 <details>
-    <summary>🛠️ Combinational and Sequential Optimization</summary>
+    <summary>Combinational and Sequential Optimization</summary>
     <ul>
         <li>
             <details>
