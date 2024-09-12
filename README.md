@@ -365,6 +365,233 @@ In the scenario described, when the reset signal goes low before the clock arriv
 
 <img width="640" alt="image" src="https://github.com/user-attachments/assets/ab809fab-1c04-483b-b7ff-8438f6c13cc3">
 
+**Synthesis of Asynchronous Reset D-Flip Flop using yosys:**
+
+Here, we have to map the Flip-Flops to the dfflib which is present in sky130_fd_sc_hd_tt_025C_1v80.lib
+
+Here's the command for mapping the flipflops to the dfflib:
+
+yosys> dfflibmap -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+![image](https://github.com/user-attachments/assets/e2617527-845e-444c-ba62-1e7b3d8d2813)
+
+**Synthesis of Asynchronous set D-Flip Flop using yosys:**
+
+![image](https://github.com/user-attachments/assets/22ca9d8b-35e0-40f3-8f1e-4aeb86b5d466)
+
+**Synthesis of Synchronous Reset D-Flip Flop using yosys:**
+
+![image](https://github.com/user-attachments/assets/02bc9128-4d3d-4863-b17e-4aa21620ec80)
+
+</details>
+
+<details>
+    <summary>🛠️ Combinational and Sequential Optimization</summary>
+    <ul>
+        <li>
+            <details>
+                <summary>Combinational Logic Optimization</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary><strong>PART 1: For opt_check Modules</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read Library</strong>
+                                    <p>In Yosys, execute the command to read the library:</p>
+                                    <img width="728" alt="Read Library" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/bf2a8b14-da19-41ff-96ac-ee1fc0572722">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Read Verilog File</strong>
+                                    <p>Load the Verilog file for the 'opt_check' module:</p>
+                                    <img width="652" alt="Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1c68e3e0-f349-4a91-9aa0-df769f531e71">
+                                </li>
+                                <li>
+                                    <strong>Step 3: Define Module for Synthesis</strong>
+                                    <p>Define the module to be synthesized and view the number of cells in the module:</p>
+                                    <img width="286" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7e9cb74a-e0d5-4779-b786-eb7d62618c60">
+                                    <img width="420" alt="Cell Count" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ea4b5d4a-122a-4881-903f-66d5a37996c0">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Execute opt_clean</strong>
+                                    <p>Run opt_clean to remove unused cells and wires:</p>
+                                    <img width="623" alt="opt_clean Execution" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b9d682ef-5229-4092-9dff-ac44c408aff0">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate Netlist</strong>
+                                    <p>Generate the netlist and observe the reduction in the number of cells:</p>
+                                    <img width="611" alt="Netlist Generation" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4d887668-b080-4942-a05d-5350f1ac6e51">
+                                    <img width="598" alt="Cell Reduction" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/78dbf1ca-d2c6-458c-9b3e-8ef595bd0c82">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View Netlist Design</strong>
+                                    <p>Execute the show command to view the netlist design:</p>
+                                    <img width="611" alt="View Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0992c28f-063b-4a43-90b0-b2abdfad762b">
+                                </li>
+                                <li>
+                                    <strong>Steps 7-12: Repeat for Additional Modules</strong>
+                                    <p>Repeat the above steps for additional modules (opt_check2, opt_check3, opt_check4), observing the changes and improvements each time:</p>
+                                    <img width="418" alt="Further Steps" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/16b97a65-65b6-4b51-ac38-3218c9d2865d">
+                                    <img width="556" alt="ABC Command" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/17c9dd9f-fd22-4312-bb51-0be49eadb040">
+                                    <img width="497" alt="Further ABC Command" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3607a834-f446-462b-ab11-25856870721a">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>PART 2: multiple_modules Optimization</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read Verilog File</strong>
+                                    <p>Load the Verilog file for 'multiple_modules_opt.v'.</p>
+                                    <img width="744" alt="Read Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4ef7a599-3701-4953-8c1a-450a923a9876">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Define the Module for Synthesis</strong>
+                                    <p>Specify which module to synthesize.</p>
+                                    <img width="398" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/73c1c313-ae77-45ad-9814-436b4d1cdebf">
+                                </li>
+                                <li>
+                                    <strong>Step 3: Flatten the Design</strong>
+                                    <p>Apply design flattening techniques to simplify the hierarchy.</p>
+                                    <img width="475" alt="Flatten Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7dd4686a-7897-4ba8-8a65-52111a04903d">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Execute opt_clean</strong>
+                                    <p>Remove unused cells and wires to optimize the design.</p>
+                                    <img width="635" alt="Execute opt_clean" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4bfecaba-c49b-4ca9-958e-f1e7486aaa62">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate the Netlist</strong>
+                                    <p>Generate the netlist and note the reduction in the number of cells.</p>
+                                    <img width="617" alt="Generate Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c7b85d9d-f18d-4992-bf0b-151f22301e3d">
+                                    <img width="571" alt="Cell Reduction" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cf863f0b-27aa-4781-8b36-0e6bd0f6275a">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View Netlist Design</strong>
+                                    <p>Display the synthesized netlist design to verify correctness and optimization.</p>
+                                    <img width="595" alt="View Netlist Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/83c65d81-da59-49a9-8735-3938a35d7c18">
+                                </li>
+                                <li>
+                                    <strong>Step 7: Repeat Optimization for Additional Module</strong>
+                                    <p>Repeat the optimization steps for 'multiple_modules_opt2.v' and observe changes.</p>
+                                </li>
+                                <li>
+                                    <strong>Step 8: View Netlist Design for Additional Module</strong>
+                                    <p>Review the final netlist design for 'multiple_modules_opt2.v'.</p>
+                                    <img width="353" alt="Final Netlist Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/18374a6c-27ec-4bb3-9094-b057cbc6a9e2">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Sequential Logic Optimization</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary><strong>PART 1: Dff_const Synthesis</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read the Library</strong>
+                                    <p>Load the required library in Yosys.</p>
+                                    <img width="735" alt="Read Library" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c4b43fb9-4a90-4695-842f-d68680ce4f0b">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Read the Verilog File</strong>
+                                    <p>Load the Verilog file for 'dff_const1.v'.</p>
+                                    <img width="669" alt="Read Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e85367f2-5aa3-4692-9684-a5726016a08e">
+                                </li>          
+                                <li>
+                                    <strong>Step 3: Define the Module for Synthesis</strong>
+                                    <p>Specify the module to be synthesized and view the design hierarchy.</p>
+                                    <img width="306" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c5e25901-ce0f-4520-9e21-ac1d5bc2666c">
+                                    <img width="422" alt="Design Hierarchy" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/80bc0503-0ade-47e4-bb10-a6773c53051f">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Run dfflibmap</strong>
+                                    <p>Map the D flip-flop cells to sequential cells using dfflibmap.</p>
+                                    <img width="870" alt="Run dfflibmap" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/76ce4935-130d-4692-a5b3-211c7211afdc">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate the Netlist</strong>
+                                    <p>Create the netlist for the design.</p>
+                                    <img width="611" alt="Generate Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4802d8a6-2763-4975-be62-805a4473ac2a">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View the Design</strong>
+                                    <p>Execute the 'show' command to view the synthesized design.</p>
+                                    <img width="594" alt="View Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8dcc75b9-0bc2-43a3-89ae-9b0a1a8b6122">
+                                </li>
+                                <li>
+                                    <strong>Steps 7-12: Repeat for Additional Files</strong>
+                                    <p>Repeat the above steps for 'dff_const2.v', 'dff_const3.v', and 'dff_const4.v', viewing the design after each synthesis.</p>
+                                    <img width="609" alt="View Design 2" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/481c7486-83c1-4fe3-8301-ba1f930bc791">
+                                    <img width="1359" alt="View Design 3" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5f8109ea-1f69-4d4f-bdb5-fb59e37cc882">
+                                    <img width="616" alt="View Design 4" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/69a155b4-d899-4597-9631-59e497c7edb5">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>PART 2: Sequential Optimizations for Unused Outputs</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read the Library</strong>
+                                    <p>Load the required library in Yosys.</p>
+                                    <img width="744" alt="Read Library" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f2b3de6b-a2c1-498b-b957-aec0487c08be">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Read the Verilog File</strong>
+                                    <p>Load the Verilog file for 'counter_opt.v'.</p>
+                                    <img width="663" alt="Read Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c603c612-d903-4e05-ab1d-bde84a52fd3c">
+                                </li>          
+                                <li>
+                                    <strong>Step 3: Define the Module for Synthesis</strong>
+                                    <p>Specify the module to be synthesized and view the design hierarchy.</p>
+                                    <img width="324" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1a4979c3-0da7-4cf9-9bb2-a698f2b4c51d">
+                                    <img width="407" alt="Design Hierarchy" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ecd2ad69-1e69-44cf-8403-d8670bf7028e">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Run dfflibmap</strong>
+                                    <p>Map the D flip-flop cells to sequential cells using dfflibmap.</p>
+                                    <img width="873" alt="Run dfflibmap" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/65e34b53-4b7a-4d55-a43f-0cf59489a386">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate the Netlist</strong>
+                                    <p>Create the netlist for the design.</p>
+                                    <img width="621" alt="Generate Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d4b49572-0224-4ca6-978d-71ace7464ce3">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View the Design</strong>
+                                    <p>Execute the 'show' command to view the synthesized design.</p>
+                                    <img width="1361" alt="View Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/26807584-5733-4728-bc9f-de30d5d18d4d">
+                                </li>
+                                <li>
+                                    <strong>Steps 7-8: Repeat for Additional Files</strong>
+                                    <p>Repeat the above steps for 'counter_opt2.v', viewing the design after synthesis.</p>
+                                    <img width="425" alt="View Design 2" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2fdaa020-ca5a-4bf7-9ca2-b4087914ac52">
+                                    <img width="1370" alt="View Design 3" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/848db3bb-35bd-4fd2-8e92-122e76d86f70">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+
+
+
+
+
+
 
 
 
