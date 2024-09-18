@@ -388,7 +388,7 @@ yosys> dfflibmap -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
 <details>
     <summary>Combinational and Sequential Optimization</summary>
 
- abc
+ 
     <ul>
         <li>
             <details>
