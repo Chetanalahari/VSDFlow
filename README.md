@@ -590,6 +590,21 @@ yosys> dfflibmap -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
 
 <details>
     <summary> Gate Level Simulation, Synthesis Simulation Mismatch, and Blocking & Non-Blocking Statements </summary>
+ Gate-level simulation is a critical process in digital design, verification, and validation, especially for complex digital systems in modern technology nodes. It involves modeling digital circuits at the gate level to understand their behavior accurately. Gate-level simulation occurs after synthesis, providing a detailed netlist representation of the circuit with functional and timing characteristics. This simulation method is essential for dynamic behavior verification, complex timing checks, power efficiency concerns, and design-for-test features integrated at the gate level,ensuring the accuracy of scan chain insertions in DFT. Gate-level simulation is crucial for gaining confidence in design and verification, offering a more comprehensive analysis than static methods. It plays a pivotal role in validating, verifying, and optimizing digital circuits, making it a cornerstone of digital design.
+
+In Gate level Simulation(GLS): Testbench used for RTL verification is used for netlist simulation,as they are logically same.
+
+Why GLS?
+
+Verify the correctness of the design after synthesis
+Ensure the timing of the design is met which is done with delay annotation (timing aware)
+GLS Flow using iverilog: image
+
+Synthesis-Simulation mismatch occurs due to following reasons:
+
+Missing sensitivity list
+Blocking vs non-blocking assignments
+Non-standard verilog coding
     <ul>
         <li>
             <details>
