@@ -702,7 +702,6 @@ Observe the GLS of ternary_operator_mux
                         </details>
                     </li>
                     <li>
-                    
                         <details>
                             <summary>PART 2: For bad_mux</summary>
                             <p>Step 1</p>
