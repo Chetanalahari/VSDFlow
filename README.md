@@ -619,7 +619,6 @@ Simulator works when change in signals (activity) occurs,and output gets updated
 For ex: As seen in the screenshot below, in the left column,always block is evaluated only when sel is changing. So output y is not reflecting changes in input i1 and i0 when sel is not changing. Rather it acts like a latch. The code on the right side represents the correct design coding for mux. In this case always is evaluated for any signal changes.
 
 ![image](https://github.com/user-attachments/assets/64486d48-d514-4854-97b5-7f8ddf11b976)
-
     <ul>
         <li>
             <details>
@@ -703,6 +702,7 @@ Observe the GLS of ternary_operator_mux
                         </details>
                     </li>
                     <li>
+                    
                         <details>
                             <summary>PART 2: For bad_mux</summary>
                             <p>Step 1</p>
@@ -783,6 +783,7 @@ Observe the behavior of GLS of ternary_operator_mux due to Simulation Mismatch
             </details>
         </li>
         <li>
+        <details>
             <details>
                 <summary>Synthesis Simulation Mismatch</summary>
                 <p>Step 1</p>
