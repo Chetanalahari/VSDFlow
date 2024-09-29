@@ -598,13 +598,28 @@ Why GLS?
 
 Verify the correctness of the design after synthesis
 Ensure the timing of the design is met which is done with delay annotation (timing aware)
-GLS Flow using iverilog: image
+GLS Flow using iverilog: 
+
+![image](https://github.com/user-attachments/assets/345c4b03-b35b-43f9-a5a0-0a6604281e3d)
 
 Synthesis-Simulation mismatch occurs due to following reasons:
 
 Missing sensitivity list
+
 Blocking vs non-blocking assignments
+
 Non-standard verilog coding
+
+***1.Misiing Sensitivity list**
+
+Missing Sensitivity List:
+
+Simulator works when change in signals (activity) occurs,and output gets updated. If the sensitivity list of always block does not contain all input signals,it will cause mismatches between synthesis and simulation.
+
+For ex: As seen in the screenshot below, in the left column,always block is evaluated only when sel is changing. So output y is not reflecting changes in input i1 and i0 when sel is not changing. Rather it acts like a latch. The code on the right side represents the correct design coding for mux. In this case always is evaluated for any signal changes.
+
+![image](https://github.com/user-attachments/assets/64486d48-d514-4854-97b5-7f8ddf11b976)
+
     <ul>
         <li>
             <details>
