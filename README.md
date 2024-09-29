@@ -783,7 +783,6 @@ Observe the behavior of GLS of ternary_operator_mux due to Simulation Mismatch
         </li>
         <li>
         <details>
-            <details>
                 <summary>Synthesis Simulation Mismatch</summary>
                 <p>Step 1</p>
                 <pre>
