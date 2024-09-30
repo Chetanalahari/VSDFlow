@@ -940,7 +940,7 @@ Observe the behavior of GLS of blocking_caveat due to Simulation Mismatch
 
 <details>
 
-<summary>Module 5 - Design for Test (DFT)</summary>
+<summary>Design for Test (DFT)</summary>
 
 
 Introduction to Design for Test (DFT) :
