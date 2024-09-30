@@ -638,93 +638,95 @@ For ex: In left column code,y will get old value of q0 during evaluation/simulat
                             <summary>PART 1: For ternary_operator_mux</summary>
                             <p>Step 1</p>
                             <pre>
+                            
 <img width="603" alt="image" src="https://github.com/user-attachments/assets/03dc47ea-e7ca-4b7d-b5ce-c2c0eafc5188">
                             
 Load ternary_operator_mux.v & its testbench to Iverilog.
-<img width="608" alt="image" src="https://github.com/user-attachments/assets/9ce3e939-8e65-48b5-9cf3-93b95a72186f">
 
-                            </pre>
+<img width="608" alt="image" src="https://github.com/user-attachments/assets/9ce3e939-8e65-48b5-9cf3-93b95a72186f">
+                           </pre>
                             <p>Step 2</p>
                             <pre>
 Execute a.out file.
-<img width="537" alt="image" src="https://github.com/user-attachments/assets/220edbf8-7cd0-4584-bfa8-65387cd96984">
 
+<img width="537" alt="image" src="https://github.com/user-attachments/assets/220edbf8-7cd0-4584-bfa8-65387cd96984">
                             </pre>
                             <p>Step 3</p>
                             <pre>
 Load the .vcd file genrated into GTKWave.
+                             
 <img width="604" alt="image" src="https://github.com/user-attachments/assets/3cfb4fdd-043d-42b1-b6df-2c3c798b2077">
 
-The ternary_operator_mux's behavior is analyzed on GTKWave                            
-<img width="604" alt="image" src="https://github.com/user-attachments/assets/3636f09d-7320-401b-aee5-4210b3acc97c">
+The ternary_operator_mux's behavior is analyzed on GTKWave   
 
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/3636f09d-7320-401b-aee5-4210b3acc97c">
                             </pre>
                             <p>Step 4</p>
                             <pre>
 Invoke Yosys by using command yosys
+                             
 <img width="511" alt="image" src="https://github.com/user-attachments/assets/eff0bb7c-4c03-44d7-af46-177b869b8b28">
-
                             </pre>
                             <p>Step 5</p>
                             <pre>
 Read the library using read_liberty
+                             
 <img width="374" alt="image" src="https://github.com/user-attachments/assets/cccf22e9-c129-4f24-8752-08b46920bc3d">
-
                             </pre>
                             <p>Step 6</p>
                             <pre>
 Read the ternary_operator_mux.v using read_verilog
+                             
 <img width="392" alt="image" src="https://github.com/user-attachments/assets/0e0427cc-2a25-40b9-8506-5f4bcfa91b04">
-
                             </pre>
                             <p>Step 7</p>
                             <pre>
 Define the module that needs to be synthesized
+                             
 <img width="389" alt="image" src="https://github.com/user-attachments/assets/325720ec-50c6-4da4-af6a-df052ac773e1">
 
 <img width="321" alt="image" src="https://github.com/user-attachments/assets/df448d4f-7202-4d6e-92f0-2f2ab9d4dcfa">
-
-
                             </pre>
                             <p>Step 8</p>
                             <pre>
 Generate the netlist using abc command
+                             
 <img width="602" alt="image" src="https://github.com/user-attachments/assets/a871caf2-6e48-4506-82cd-1566a047645c">
-
-
                             </pre>
                             <p>Step 9</p>
                             <pre>
 Write the netlist to ternary_operator_mux_net.v
+                             
 <img width="326" alt="image" src="https://github.com/user-attachments/assets/9e7e9fb1-f7e6-4b40-ad44-c0c67bfdb19f">
-
                             </pre>
                             <p>Step 10</p>
                             <pre>
 Execute show to view the design
+                             
 <img width="584" alt="image" src="https://github.com/user-attachments/assets/740447f6-c7ce-463d-bac2-df78608a862d">
-
                             </pre>
                             <p>Step 11</p>
                             <pre>
 Exit yosys and load the ternary_operator_mux_net.v to iverilog.
+                             
 <img width="611" alt="image" src="https://github.com/user-attachments/assets/8fbb45c4-be16-49fb-af97-f25b36562628">
-
                             </pre>
                             <p>Step 12</p>
                             <pre>
 Execute a.out file.
+                             
 <img width="591" alt="image" src="https://github.com/user-attachments/assets/a822fcf4-139e-43a4-b2fa-aa39cf076a52">
-
                             </pre>
                             <p>Step 13</p>
                             <pre>
 Load the generated .vcd file into GTKWave
+                             
 <img width="1107" alt="Screenshot 2024-05-26 at 2 33 19 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4b04c1e3-5aff-4937-9670-706364e92fa3">
                             </pre>
                             <p>Step 14</p>
                             <pre>
 Observe the GLS of ternary_operator_mux
+                             
 <img width="1357" alt="Screenshot 2024-05-26 at 2 33 52 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/746f372e-4dd9-4da4-a4ff-57836f00945e">
                             </pre>
                         </details>
@@ -737,18 +739,19 @@ Observe the GLS of ternary_operator_mux
 <img width="604" alt="image" src="https://github.com/user-attachments/assets/b690e2b6-0071-4b63-a0ac-34c5d611c270">
 
 Load bad_mux.v & its testbench to Iverilog.
-<img width="604" alt="image" src="https://github.com/user-attachments/assets/6746e369-8755-4ea7-aa05-7d4ece8331d0">
 
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/6746e369-8755-4ea7-aa05-7d4ece8331d0">
                             </pre>
                             <p>Step 2</p>
                             <pre>
 Execute a.out file.
+                             
 <img width="575" alt="image" src="https://github.com/user-attachments/assets/b5122755-55f4-44fd-ab41-ccc4f53e34a8">
-
                             </pre>
                             <p>Step 3</p>
                             <pre>
 Load the .vcd file genrated into GTKWave.
+                             
 <img width="603" alt="image" src="https://github.com/user-attachments/assets/5036e31a-c1d3-4a69-aa7b-ea1e41484537">
 
 No Activity on sel: When sel is low, i0 should be selected, but you are seeing no change in behavior. This indicates that the always block is not responding to changes in i0 or i1 when sel changes.
@@ -760,64 +763,73 @@ The sensitivity list in your always @ (sel) block only watches for changes in se
 
 The non-blocking assignment (<=) is more suited for sequential logic (like flip-flops), not combinational logic. Non-blocking assignments introduce a delay, making the output update asynchronously, which is not ideal for this multiplexer.
 
-The bad_mux's behavior is analyzed on GTKWave                            
-<img width="603" alt="image" src="https://github.com/user-attachments/assets/7cbe4b3d-550b-4582-b36d-2622a7c3675e">
+The bad_mux's behavior is analyzed on GTKWave      
 
+<img width="603" alt="image" src="https://github.com/user-attachments/assets/7cbe4b3d-550b-4582-b36d-2622a7c3675e">
                             </pre>
                             <p>Step 4</p>
                             <pre>
 Invoke Yosys by using command yosys
+                             
 <img width="535" alt="image" src="https://github.com/user-attachments/assets/93b7987e-9035-4367-98ab-c50991173165">
-
                             </pre>
                             <p>Step 5</p>
                             <pre>
 Read the library using read_liberty
+                             
 <img width="407" alt="image" src="https://github.com/user-attachments/assets/350ab2fc-7220-475f-af74-f140f2ca4d1a">
-
                             </pre>
                             <p>Step 6</p>
                             <pre>
 Read the bad_mux.v using read_verilog
+                             
 <img width="382" alt="image" src="https://github.com/user-attachments/assets/614c51ae-abd8-4499-b73a-0f2afaa4634c">
                             </pre>
                             <p>Step 7</p>
                             <pre>
 Define the module that needs to be synthesized
+                             
 <img width="323" alt="image" src="https://github.com/user-attachments/assets/1d57e190-29a1-4e5c-9f85-6095087ad5fd">
                             </pre>
                             <p>Step 8</p>
                             <pre>
 Generate the netlist using abc command
+                             
 <img width="305" alt="image" src="https://github.com/user-attachments/assets/fa14ee56-311c-4fac-b19a-fd755fd19950">
                             </pre>
                             <p>Step 9</p>
                             <pre>
 Write the netlist to bad_mux_net.v
+                             
 <img width="233" alt="image" src="https://github.com/user-attachments/assets/8f28c19c-70dc-429d-95eb-d5958b112e5a">
                             </pre>
                             <p>Step 10</p>
                             <pre>
 Execute show to view the design
+                             
 <img width="474" alt="image" src="https://github.com/user-attachments/assets/52fbd2bc-40d5-49d1-b635-1c67696d1dac">
                             </pre>
                             <p>Step 11</p>
                             <pre>
 Exit yosys and load the bad_mux_net.v to iverilog.
+                             
 <img width="605" alt="image" src="https://github.com/user-attachments/assets/bcaeb1ec-5167-45dd-b335-5301c7c367b8">
                             </pre>
                             <p>Step 12</p>
                             <pre>
 Execute a.out file.
+                             
 <img width="537" alt="image" src="https://github.com/user-attachments/assets/25263fed-740f-4cf1-914e-0b3197b6832f">
                             </pre>
                             <p>Step 13</p>
                             <pre>
 Load the generated .vcd file into GTKWave
+                             
 <img width="586" alt="image" src="https://github.com/user-attachments/assets/f8a5b674-6d98-4fb2-b173-affd170d910a">
                             <p>Step 14</p>
                             <pre>
 Observe the behavior of GLS of ternary_operator_mux due to Simulation Mismatch
+                             
 <img width="632" alt="image" src="https://github.com/user-attachments/assets/fb763ad8-660c-4080-bff0-d3237cbcc8cc">
                             </pre>          
                         </details>
