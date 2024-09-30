@@ -938,6 +938,222 @@ Observe the behavior of GLS of blocking_caveat due to Simulation Mismatch
     </ul>
 </details>
 
+<details>
+
+<summary>Module 5 - Design for Test (DFT)</summary>
+
+
+Introduction to Design for Test (DFT) :
+
+Design for Test (DFT) is a crucial aspect of electronic system design that focuses on incorporating testability features into the hardware and software of a product. 
+The primary goal of DFT is to ensure that the final product can be thoroughly tested, both during the manufacturing process and throughout its lifetime, to identify and address any defects or issues.
+
+Key Principles of DFT :
+* Accessibility: Designing the system in a way that allows easy access to internal components and signals for testing purposes.
+* Controllability: Ensuring that the system can be driven into specific states or conditions to facilitate comprehensive testing.
+* Observability: Enabling the observation and monitoring of internal signals and states during the testing process.
+* Testability: Incorporating features that simplify the testing process, such as built-in self-test (BIST) mechanisms or scan chains.
+  
+Benefits of Implementing DFT :
+
+* Improved Product Quality: DFT helps identify and address defects early in the design process, reducing the risk of shipping faulty products.
+* Reduced Manufacturing Costs: Effective testing during manufacturing can catch issues before they become more expensive to fix, leading to cost savings.
+* Faster Time-to-Market: By incorporating DFT principles, the testing process can be streamlined, allowing for quicker product development and deployment.
+* Easier Maintenance and Troubleshooting: DFT features can aid in the diagnosis and repair of issues during the product's lifetime, improving overall reliability and serviceability.
+
+DFT Techniques and Methodologies :
+
+Some common DFT techniques and methodologies include:
+* Scan-based Testing: Inserting scan chains to allow for the controllability and observability of internal logic.
+* Built-in Self-Test (BIST): Incorporating self-testing capabilities directly into the hardware or software.
+* Boundary Scan (IEEE 1149.1): Using a standard interface to access and control the pins of integrated circuits for testing purposes.
+* Design for Testability (DFT) Automation: Leveraging EDA tools to automate the incorporation of DFT features during the design process.
+
+
+
+Basic Terminologies to be known about DFT:
+
+**Defect** - A defect in an electronic system is the unintended difference between the implemented hardware and its intended design.
+
+Some typical defects in VLSI chips are :
+1. Process Defects – missing contact windows, parasitic transistors, oxide breakdown,etc.
+2. Material Defects – bulk defects (cracks, crystal imperfections), surface impurities,etc.
+3. Age Defects – dielectric breakdown, electromigration, etc.
+4. Package Defects – contact degradation, seal leaks, etc.
+
+**Error** - A wrong output signal produced by a defective system is called an error. An error is an “effect” whose cause is some “defect”.
+
+**Fault** - A representation of a “defect” at the abstracted function level is called a fault.
+
+**Controllabilty** - From DFT point of view,Controllability means the ease of both '0' and '1' being able to propagate to each and every node within the target patterns.
+                     A point is said to be controllable if both '0' and '1' can be propagated through scan patterns.
+
+<img width="576" alt="image" src="https://github.com/user-attachments/assets/7b438b9a-ed9d-4ec4-8e0e-1a24c2e9b9fe">
+
+**Observabilty** - By observability, we mean our ability to measure the state of a logic signal. When we say that a node is observable, we mean that the value at the node can be shifted out through scan patterns                    and can be observed through scan out ports.
+
+<img width="556" alt="image" src="https://github.com/user-attachments/assets/b93add16-54ef-48f9-9c45-e3f7bc521a37">
+
+**Fault Coverage** - Percentage of the total number of logical faults that can be tested using a given test set T.
+
+**Defect Level** - It refers to the fraction of shipped parts that are defective or the proportion of the faulty chip in which fault is not detected and has been classified as good.
+
+DFT Techniques :
+
+Ad-hoc Techniques : 
+
+The adhoc DFT relies on “good” design practices learned from experience. Some of these are:
+
+• **Avoid asynchronous logic feedbacks.** A feedback in the combinational logic can
+give rise to oscillation for certain inputs. This makes the circuit difficult to
+verify and impossible to generate tests for by automatic programs. This is
+because test generation algorithms are only known for acyclic combinational
+circuits.
+
+• **Make flip-flops initializable.** This is easily done by supplying clear or reset
+signals that are controllable from primary inputs.
+
+• **Avoid gates with a large number of fan-in signals.** Large fan-in makes the
+inputs of the gate difficult to observe and makes the gate output difficult to
+control.
+
+• **Provide test control for difficult-to-control signals.** Signals such as those produced
+by long counters require many clock cycles to control and hence increase
+the length of the test sequence. Long test sequences are harder to generate.
+
+Structured DFT :
+
+* Structured DFT is performed by using Scan flip-flops.
+
+* The main idea in scan design is to obtain control and observability for flip-flops.
+
+* This is done by adding a test mode to the circuit such that when the circuit is in this mode, all flip-flops functionally form one or more shift registers. 
+
+* The inputs and outputs of these shift registers (also known as scan registers) are made into primary inputs and primary outputs. 
+
+* Thus, using the test mode, all flip-flops can be set to any desired states by shifting those logic states into the shift register. 
+
+* Similarly, the states of flip-flops are observed by shifting the contents of the scan register out. All flip-flops can be set or observed in a time (in terms of clock periods) that equals the
+number of flip-flops in the longest scan register.
+
+**What is the purpose of scan flops?**
+
+There are various reasons, but 2 main reasons are noted below:
+
+* To test stuck-at faults in the manufactured devices.
+* To test the path in the manufactured devices for delay that is to test whether each path is working at a functional frequency or not.
+
+Types of Scan flip-flops:
+
+1) Multiplexed Scan cell :
+   
+   <img width="209" alt="image" src="https://github.com/user-attachments/assets/64a29a4c-35b5-4741-bcc6-7bf682e05416">
+
+3) Clocked Scan cell:
+
+   <img width="200" alt="image" src="https://github.com/user-attachments/assets/e0fb4bed-b954-44c4-ad32-7fcc15130a8c">
+
+4) LSSD Scan cell:
+
+   <img width="390" alt="image" src="https://github.com/user-attachments/assets/1c9513c5-b6e0-4edd-81b8-6c42cf0f787f">
+
+Scan chain : A scan chain is a serial interconnection of scan flip-flops within a digital circuit. It forms a shift register-like structure that enables the sequential access and manipulation of the internal states of flip-flops in the circuit for testing and debugging purposes.
+
+Here's how a scan chain works:
+
+* Interconnection: In the scan chain, each scan flip-flop is connected to the next one in the chain, forming a serial path that traverses through all the flip-flops within the circuit.
+* Shift-In/Shift-Out: The scan chain allows for the serial shifting of data into and out of the flip-flops. Test patterns can be shifted into the chain to set the initial states of the flip-flops for testing. 
+                      Similarly, the current states of the flip-flops can be serially shifted out for observation or comparison.
+* Test Patterns: Test patterns generated by automatic test pattern generation (ATPG) tools or other testing methods can be applied to the scan chain to detect faults within the circuit, such as stuck-at faults, 
+                 transition faults, and bridging faults.
+
+**How long one scan chain be?**
+The length of a scan chain in a digital circuit can vary depending on several factors, including the design requirements, the complexity of the circuit, and practical limitations imposed by the technology and implementation.
+
+In theory, there is no strict limit to the length of a scan chain, and it can span hundreds or even thousands of flip-flops in a very large integrated circuit. However, longer scan chains can present challenges in terms of testing speed, power consumption, and signal integrity.
+
+Here are some considerations regarding the length of a scan chain:
+
+* Testing Speed: As the length of the scan chain increases, the time required to shift in or shift out test patterns also increases. Longer scan chains can result in longer test times, which may be undesirable for production testing or design validation.
+* Power Consumption: Each flip-flop in the scan chain consumes power during shifting operations. Longer scan chains may result in higher power consumption, which can be a concern in low-power designs or battery-operated devices.
+* Signal Integrity: In longer scan chains, signal integrity issues such as propagation delay, skew, and crosstalk become more significant. Proper design techniques, such as buffer insertion and routing optimizations, may be necessary to mitigate these issues.
+* Design Constraints: Practical limitations imposed by the technology and implementation may restrict the length of a scan chain. For example, limitations in routing resources, timing constraints, or the available space on the integrated circuit may impose constraints on the maximum achievable scan chain length.
+
+**No. of scan ports(scan_in and scan_out) required = 2 * no. of scan chains.** because each scan chain requires its' own scan_in & scan_out port
+
+Note:
+
+**Number of cycles required to run a pattern = Length of longest scan chain**
+
+<img width="629" alt="image" src="https://github.com/user-attachments/assets/598d9f75-eccc-4e4b-8697-6349f4877060">
+
+**Why do we use ATPG?**
+* Automatic Test Pattern Generation (ATPG) is utilized in Very Large Scale Integration (VLSI) to ensure the correctness and quality of Integrated Circuits (ICs).
+* ATPG is essential because it automates the process of generating test patterns that can detect faults in the circuit, making it cost-effective, time-saving, and crucial for the design and testing phase of VLSI 
+  circuits.
+* The complexity of VLSI circuits, with millions of transistors on a single chip, makes manual testing impractical.
+
+**What is ATE?**
+
+* Automatic Test Equipment (ATE) is computerized machinery that automates the testing of electronic devices and systems, evaluating functionality, performance, quality, and stress tests. ATE uses test instruments to carry out these evaluations with minimal human interaction, ensuring adequate performance and safety of electronic devices. 
+* The components of an ATE system typically include hardware, software, test instruments, signal sources, and test probes or handlers. 
+* Industries use ATE extensively, including defense and aerospace, automotive, and industrial automation, to validate electronics before deployment or sale. ATE plays a crucial role in ensuring end-users receive 
+  devices that function as intended and are safe to use.
+
+**When and where the DFT design is included?**
+
+* When is it included? - At the beginning of the  design flow
+
+* Where exactly ? - during the synthesis flow
+
+Synopsys Tool used for DFT insertion is DFT Compiler:
+
+**<img width="612" alt="image" src="https://github.com/user-attachments/assets/27d15c61-25a5-44e9-815c-741ad6e97253">
+
+### Introduction to Synopsys Tools to be used for further exercises:
+
+1) Design Compiler:
+   
+   Design Compiler is a synthesis tool developed by Synopsys, a leading electronic design automation (EDA) company. It is widely used in the semiconductor industry for RTL (Register Transfer Level) synthesis, 
+   which is the process of converting a high-level hardware description of a digital circuit into a gate-level netlist.
+
+   Commands to start Design compiler are:
+   
+       dc_shell # invokes design compiler tool
+       start_gui # starts the GUI of the tool
+
+  <img width="587" alt="image" src="https://github.com/user-attachments/assets/8ab7775f-36b6-4613-893a-6de3df313513">
+
+2) Library compiler:
+    
+    The Synopsys Library Compiler is a software tool used in the design and development of ICs. It automates the process of creating and characterizing semiconductor intellectual property (IP) libraries, which 
+    are collections of reusable building blocks used in IC design. These libraries contain pre-designed functional blocks such as logic gates, memory cells, and analog circuits.
+    
+    The Library Compiler allows designers to generate these libraries efficiently, taking into account various parameters such as process technology, voltage, temperature, and operating conditions. It also 
+    includes features for optimizing library performance, minimizing power consumption, and ensuring compatibility with industry standards.
+
+Commands to start Library compiler are:
+   
+       lc_shell # invokes library compiler tool
+       start_gui # starts the GUI of the tool
+
+  <img width="616" alt="image" src="https://github.com/user-attachments/assets/56b719e9-4c80-45b4-937a-1859a511318e">
+
+3) ICC2 Compiler:
+
+    The ICC2 Compiler, developed by Synopsys, is a tool used in the process of physical design for integrated circuits. ICC2 stands for "Integrated Circuit Compiler 2". It's primarily utilized in the backend 
+    stages of the IC design flow, which involve translating a logical representation of a circuit (usually in the form of a netlist) into a physical layout that can be fabricated.
+
+   Commands to start ICC2 compiler are:
+   
+       icc2_shell # invokes icc2 compiler tool
+       start_gui # starts the GUI of the tool
+
+  <img width="616" alt="image" src="https://github.com/user-attachments/assets/1cfed378-42c9-4273-931e-1fd6291f1c0c">
+
+</details>
+
+
 
 
 
