@@ -619,6 +619,15 @@ Simulator works when change in signals (activity) occurs,and output gets updated
 For ex: As seen in the screenshot below, in the left column,always block is evaluated only when sel is changing. So output y is not reflecting changes in input i1 and i0 when sel is not changing. Rather it acts like a latch. The code on the right side represents the correct design coding for mux. In this case always is evaluated for any signal changes.
 
 ![image](https://github.com/user-attachments/assets/64486d48-d514-4854-97b5-7f8ddf11b976)
+
+As seen in the screenshot below,the code in left column is correct to achieve our aim of inferring two flip-flops but in code in right column,as q is getting directly assigned to d , hence only one flop is inferred. Hence,it is recommended to always use non-blocking statement in always block for sequential logic inference.
+
+![image](https://github.com/user-attachments/assets/d6292caf-9296-4ff5-9c02-ccced848e2fc)
+
+For ex: In left column code,y will get old value of q0 during evaluation/simulation,which is mimicking the behavour of a flop. To get latest value of q0,we can interchange the statements in always block,as seen in right column code. Synthesis will produce the same logic implementation for both the codes. This will lead to synthesis-simulation mismatch. 
+
+![image](https://github.com/user-attachments/assets/b9d53842-26fa-435a-8450-ed8d85527674)
+
     <ul>
         <li>
             <details>
@@ -629,65 +638,84 @@ For ex: As seen in the screenshot below, in the left column,always block is eval
                             <summary>PART 1: For ternary_operator_mux</summary>
                             <p>Step 1</p>
                             <pre>
+<img width="603" alt="image" src="https://github.com/user-attachments/assets/03dc47ea-e7ca-4b7d-b5ce-c2c0eafc5188">
+                            
 Load ternary_operator_mux.v & its testbench to Iverilog.
-<img width="1333" alt="Screenshot 2024-05-26 at 2 25 18 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5fb664a3-428b-40b5-95c3-6e5e76385d2e">
+<img width="608" alt="image" src="https://github.com/user-attachments/assets/9ce3e939-8e65-48b5-9cf3-93b95a72186f">
+
                             </pre>
                             <p>Step 2</p>
                             <pre>
 Execute a.out file.
-<img width="831" alt="Screenshot 2024-05-26 at 2 25 28 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0845279c-0fdb-458a-b911-593f7f138990">
+<img width="537" alt="image" src="https://github.com/user-attachments/assets/220edbf8-7cd0-4584-bfa8-65387cd96984">
+
                             </pre>
                             <p>Step 3</p>
                             <pre>
 Load the .vcd file genrated into GTKWave.
-<img width="895" alt="Screenshot 2024-05-26 at 2 25 46 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/a17efccf-4528-4b08-856c-e3366dea9441">
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/3cfb4fdd-043d-42b1-b6df-2c3c798b2077">
+
 The ternary_operator_mux's behavior is analyzed on GTKWave                            
-<img width="1374" alt="Screenshot 2024-05-26 at 2 26 56 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b2f81f99-be77-4d8f-8c5f-c76efa0db555">
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/3636f09d-7320-401b-aee5-4210b3acc97c">
+
                             </pre>
                             <p>Step 4</p>
                             <pre>
 Invoke Yosys by using command yosys
-<img width="817" alt="Screenshot 2024-05-26 at 2 27 23 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5aeace9b-91d1-43df-b7a7-95a22d2f7dca">
+<img width="511" alt="image" src="https://github.com/user-attachments/assets/eff0bb7c-4c03-44d7-af46-177b869b8b28">
+
                             </pre>
                             <p>Step 5</p>
                             <pre>
 Read the library using read_liberty
-<img width="733" alt="Screenshot 2024-05-26 at 2 27 36 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c7df753c-4859-4517-b10b-844be452fbc0">
+<img width="374" alt="image" src="https://github.com/user-attachments/assets/cccf22e9-c129-4f24-8752-08b46920bc3d">
+
                             </pre>
                             <p>Step 6</p>
                             <pre>
 Read the ternary_operator_mux.v using read_verilog
-<img width="754" alt="Screenshot 2024-05-26 at 2 27 54 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9bd5d509-2035-4be9-b17f-084f80f58835">
+<img width="392" alt="image" src="https://github.com/user-attachments/assets/0e0427cc-2a25-40b9-8506-5f4bcfa91b04">
+
                             </pre>
                             <p>Step 7</p>
                             <pre>
 Define the module that needs to be synthesized
-<img width="397" alt="Screenshot 2024-05-26 at 2 28 29 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/6b23f59f-4e02-43ec-932b-750d183b30f0">
+<img width="389" alt="image" src="https://github.com/user-attachments/assets/325720ec-50c6-4da4-af6a-df052ac773e1">
+
+<img width="321" alt="image" src="https://github.com/user-attachments/assets/df448d4f-7202-4d6e-92f0-2f2ab9d4dcfa">
+
+
                             </pre>
                             <p>Step 8</p>
                             <pre>
 Generate the netlist using abc command
-<img width="622" alt="Screenshot 2024-05-26 at 2 28 54 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9565e3d5-66ba-45ef-8464-7cec13c5cdd4">
+<img width="602" alt="image" src="https://github.com/user-attachments/assets/a871caf2-6e48-4506-82cd-1566a047645c">
+
+
                             </pre>
                             <p>Step 9</p>
                             <pre>
 Write the netlist to ternary_operator_mux_net.v
-<img width="490" alt="Screenshot 2024-05-26 at 2 29 20 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/61065d52-6532-4a74-b8ae-34b8734fbce6">
+<img width="326" alt="image" src="https://github.com/user-attachments/assets/9e7e9fb1-f7e6-4b40-ad44-c0c67bfdb19f">
+
                             </pre>
                             <p>Step 10</p>
                             <pre>
 Execute show to view the design
-<img width="609" alt="Screenshot 2024-05-26 at 2 29 30 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/76ee78c8-95fe-47e6-a9aa-ec2b6fa1e9c1">
+<img width="584" alt="image" src="https://github.com/user-attachments/assets/740447f6-c7ce-463d-bac2-df78608a862d">
+
                             </pre>
                             <p>Step 11</p>
                             <pre>
 Exit yosys and load the ternary_operator_mux_net.v to iverilog.
-<img width="1372" alt="Screenshot 2024-05-26 at 2 32 32 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/30cf677a-e529-4f09-a0e2-7d77f5ab48e5">
+<img width="611" alt="image" src="https://github.com/user-attachments/assets/8fbb45c4-be16-49fb-af97-f25b36562628">
+
                             </pre>
                             <p>Step 12</p>
                             <pre>
 Execute a.out file.
-<img width="829" alt="Screenshot 2024-05-26 at 2 32 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/9194b986-d637-4919-9a9a-a66ef5fd8150">
+<img width="591" alt="image" src="https://github.com/user-attachments/assets/a822fcf4-139e-43a4-b2fa-aa39cf076a52">
+
                             </pre>
                             <p>Step 13</p>
                             <pre>
@@ -706,75 +734,91 @@ Observe the GLS of ternary_operator_mux
                             <summary>PART 2: For bad_mux</summary>
                             <p>Step 1</p>
                             <pre>
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/b690e2b6-0071-4b63-a0ac-34c5d611c270">
+
 Load bad_mux.v & its testbench to Iverilog.
-<img width="1072" alt="Screenshot 2024-05-26 at 2 47 47 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3886f80b-b39e-4f91-9cfb-d7fd26f87a2b">
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/6746e369-8755-4ea7-aa05-7d4ece8331d0">
+
                             </pre>
                             <p>Step 2</p>
                             <pre>
 Execute a.out file.
-<img width="836" alt="Screenshot 2024-05-26 at 2 47 59 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/80bff7b8-6f38-42e9-b7ee-b527d9e06de7">
+<img width="575" alt="image" src="https://github.com/user-attachments/assets/b5122755-55f4-44fd-ab41-ccc4f53e34a8">
+
                             </pre>
                             <p>Step 3</p>
                             <pre>
 Load the .vcd file genrated into GTKWave.
-<img width="980" alt="Screenshot 2024-05-26 at 2 48 17 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/94c68039-9cd8-435f-b02d-914619642094">
+<img width="603" alt="image" src="https://github.com/user-attachments/assets/5036e31a-c1d3-4a69-aa7b-ea1e41484537">
+
+No Activity on sel: When sel is low, i0 should be selected, but you are seeing no change in behavior. This indicates that the always block is not responding to changes in i0 or i1 when sel changes.
+
+Multiplexer Acting Like a Flip-Flop: The behavior where only y is changing and not responding to i1 or sel signals properly is more like a flip-flop than a multiplexer. This is because the always @ (sel) sensitivity list limits the updates to y only when sel changes, which is incorrect for a combinational circuit like a multiplexer.
+
+Why This is Happening:
+The sensitivity list in your always @ (sel) block only watches for changes in sel. This means it ignores changes in i0 and i1, which explains why the multiplexer is not responding to changes in these inputs.
+
+The non-blocking assignment (<=) is more suited for sequential logic (like flip-flops), not combinational logic. Non-blocking assignments introduce a delay, making the output update asynchronously, which is not ideal for this multiplexer.
+
 The bad_mux's behavior is analyzed on GTKWave                            
-<img width="1362" alt="Screenshot 2024-05-26 at 2 49 01 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cb432d9f-023b-4b28-ac59-c25e9abff098">
+<img width="603" alt="image" src="https://github.com/user-attachments/assets/7cbe4b3d-550b-4582-b36d-2622a7c3675e">
+
                             </pre>
                             <p>Step 4</p>
                             <pre>
 Invoke Yosys by using command yosys
-<img width="815" alt="Screenshot 2024-05-26 at 2 49 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3a80b296-11d9-4150-ae87-17d6d2c971d1">
+<img width="535" alt="image" src="https://github.com/user-attachments/assets/93b7987e-9035-4367-98ab-c50991173165">
+
                             </pre>
                             <p>Step 5</p>
                             <pre>
 Read the library using read_liberty
-<img width="731" alt="Screenshot 2024-05-26 at 2 49 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4e9fade6-5f81-41ac-a5d1-f3dbf9c35e98">
+<img width="407" alt="image" src="https://github.com/user-attachments/assets/350ab2fc-7220-475f-af74-f140f2ca4d1a">
+
                             </pre>
                             <p>Step 6</p>
                             <pre>
 Read the bad_mux.v using read_verilog
-<img width="756" alt="Screenshot 2024-05-26 at 2 49 40 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3d74ecc6-a028-4c2f-bf0b-9567d5270b26">
+<img width="382" alt="image" src="https://github.com/user-attachments/assets/614c51ae-abd8-4499-b73a-0f2afaa4634c">
                             </pre>
                             <p>Step 7</p>
                             <pre>
 Define the module that needs to be synthesized
-<img width="268" alt="Screenshot 2024-05-26 at 2 50 33 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ac8165b4-4a23-46ad-8196-242af9a8a9a8">
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/1d57e190-29a1-4e5c-9f85-6095087ad5fd">
                             </pre>
                             <p>Step 8</p>
                             <pre>
 Generate the netlist using abc command
-<img width="612" alt="Screenshot 2024-05-26 at 2 50 51 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ca4dc976-5645-4c1f-878c-650c93136276">
+<img width="305" alt="image" src="https://github.com/user-attachments/assets/fa14ee56-311c-4fac-b19a-fd755fd19950">
                             </pre>
                             <p>Step 9</p>
                             <pre>
 Write the netlist to bad_mux_net.v
-<img width="364" alt="Screenshot 2024-05-26 at 2 51 09 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/87c4ebdf-95ff-4a34-847e-d49d5fe62e2a">
+<img width="233" alt="image" src="https://github.com/user-attachments/assets/8f28c19c-70dc-429d-95eb-d5958b112e5a">
                             </pre>
                             <p>Step 10</p>
                             <pre>
 Execute show to view the design
-<img width="603" alt="Screenshot 2024-05-26 at 2 51 21 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/287737a1-3d21-4fde-8578-7a65d568b560">
+<img width="474" alt="image" src="https://github.com/user-attachments/assets/52fbd2bc-40d5-49d1-b635-1c67696d1dac">
                             </pre>
                             <p>Step 11</p>
                             <pre>
 Exit yosys and load the bad_mux_net.v to iverilog.
-<img width="1368" alt="Screenshot 2024-05-26 at 2 52 52 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f4bc8f2c-e08a-4675-be9a-e905b879c28a">
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/bcaeb1ec-5167-45dd-b335-5301c7c367b8">
                             </pre>
                             <p>Step 12</p>
                             <pre>
 Execute a.out file.
-<img width="835" alt="Screenshot 2024-05-26 at 2 53 02 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7813fe2a-bb20-43de-9cf7-ec53c1459f51">
+<img width="537" alt="image" src="https://github.com/user-attachments/assets/25263fed-740f-4cf1-914e-0b3197b6832f">
                             </pre>
                             <p>Step 13</p>
                             <pre>
 Load the generated .vcd file into GTKWave
-<img width="979" alt="Screenshot 2024-05-26 at 2 53 25 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/87f26967-6d37-45e9-963e-15d4107e767f">
-                            </pre>
+<img width="586" alt="image" src="https://github.com/user-attachments/assets/f8a5b674-6d98-4fb2-b173-affd170d910a">
                             <p>Step 14</p>
                             <pre>
 Observe the behavior of GLS of ternary_operator_mux due to Simulation Mismatch
-<img width="1365" alt="Screenshot 2024-05-26 at 2 53 59 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/16ececd7-a724-43be-91a3-b394763a3678">
+<img width="632" alt="image" src="https://github.com/user-attachments/assets/fb763ad8-660c-4080-bff0-d3237cbcc8cc">
                             </pre>          
                         </details>
                     </li>
