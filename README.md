@@ -720,7 +720,7 @@ Execute a.out file.
                             <pre>
 Load the generated .vcd file into GTKWave
                              
-<img width="1107" alt="Screenshot 2024-05-26 at 2 33 19 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4b04c1e3-5aff-4937-9670-706364e92fa3">
+<img width="547" alt="image" src="https://github.com/user-attachments/assets/c16c4628-f2fd-44d0-89d3-96a36851d2aa">
                             </pre>
                             <p>Step 14</p>
                             <pre>
@@ -841,75 +841,97 @@ Observe the behavior of GLS of ternary_operator_mux due to Simulation Mismatch
                 <summary>Synthesis Simulation Mismatch</summary>
                 <p>Step 1</p>
                 <pre>
+ <img width="636" alt="image" src="https://github.com/user-attachments/assets/c4cc895d-b8aa-4fb5-85c3-2fc5d27ba5e3">
+
 Load blocking_caveat.v & its testbench to Iverilog.
-<img width="1232" alt="Screenshot 2024-05-26 at 3 20 01 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/98e89aec-e1e0-4371-9865-7f4d46970466">
+
+<img width="607" alt="image" src="https://github.com/user-attachments/assets/073ec1a5-edde-4e97-b96b-9a48330639ee">
                 </pre>
                 <p>Step 2</p>
                 <pre>
 Execute a.out file.
-<img width="831" alt="Screenshot 2024-05-26 at 3 20 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cabfbd67-5caf-467e-a4fe-36b9dd3613ae">
+                 
+<img width="566" alt="image" src="https://github.com/user-attachments/assets/dd977a5b-552c-4b15-9515-4e1c23413328">
                 </pre>
                 <p>Step 3</p>
                 <pre>
 Load the .vcd file genrated into GTKWave.
-<img width="1056" alt="Screenshot 2024-05-26 at 3 20 37 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cd3b4d01-c92d-40e8-842f-e41fcb512967">
-The blocking_caveat's behavior is analyzed on GTKWave                            
-<img width="1362" alt="Screenshot 2024-05-26 at 3 21 17 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0313fa9c-df40-46d2-9e31-0e18b9eb5b84">
+                 
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/c7e985cc-6504-49be-9679-384406b2cdf3">
+
+The blocking_caveat's behavior is analyzed on GTKWave  
+
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/97a8fbff-2ce9-47d9-8958-7311dca90fe5">
                 </pre>
                 <p>Step 4</p>
                 <pre>
 Invoke Yosys by using command yosys
-<img width="809" alt="Screenshot 2024-05-26 at 3 21 29 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/45aa14d6-5cc0-4a4d-b629-74bc87fda4fa">
+                 
+<img width="548" alt="image" src="https://github.com/user-attachments/assets/1a1b6398-bedb-4d84-bbea-ab966fd82e8b">
                 </pre>
                 <p>Step 5</p>
                 <pre>
 Read the library using read_liberty
-<img width="727" alt="Screenshot 2024-05-26 at 3 21 43 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e4aa45a5-c575-4ecc-9fe6-e10553ba31da">
+                 
+<img width="407" alt="image" src="https://github.com/user-attachments/assets/f825b9e2-103d-44e9-8302-8aecacffb2ca">
                 </pre>
                 <p>Step 6</p>
-                <pre>
+                <pre>             
 Read the blocking_caveat.v using read_verilog
-<img width="709" alt="Screenshot 2024-05-26 at 3 21 55 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2c84de8b-63bc-4394-b833-79569ab86d0c">
+
+<img width="374" alt="image" src="https://github.com/user-attachments/assets/cceb64b4-2ec1-4982-94a1-9b36d79ce317">
                 </pre>
                 <p>Step 7</p>
                 <pre>
 Define the module that needs to be synthesized
-<img width="596" alt="Screenshot 2024-05-26 at 3 23 34 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/886c9129-5cf7-4622-8857-326ffef0597f">
+                 
+<img width="311" alt="image" src="https://github.com/user-attachments/assets/14a3fd42-70ca-4059-9fa5-f51212029d10">
+
+<img width="455" alt="image" src="https://github.com/user-attachments/assets/7c2522a0-ab0f-49b2-a8c2-2e7e8167faf7">
                 </pre>
                 <p>Step 8</p>
                 <pre>
 Generate the netlist using abc command
-<img width="615" alt="Screenshot 2024-05-26 at 3 24 14 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3035c361-2a06-41ca-8363-5a40d4827d87">
+                 
+<img width="328" alt="image" src="https://github.com/user-attachments/assets/85e4c166-283a-4787-bf0d-1f5a1e03add6">
                 </pre>
                 <p>Step 9</p>
                 <pre>
 Write the netlist to blocking_caveat_net.v
-<img width="523" alt="Screenshot 2024-05-26 at 3 25 02 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cef23d28-8d32-4c0c-941f-a0420db792d6">
+                 
+<img width="235" alt="image" src="https://github.com/user-attachments/assets/9949b3f1-ce9a-4531-861c-48e866180c05">
                 </pre>
                 <p>Step 10</p>
                 <pre>
 Execute show to view the design
-<img width="603" alt="Screenshot 2024-05-26 at 3 25 14 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f05de1e7-98ce-4ac3-bbaa-fbf14a31336c">
+                 
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/e78bafd1-04fb-4be4-bf08-2478c2e3b884">
                 </pre>
                 <p>Step 11</p>
                 <pre>
+To do GLS
+                 
 Exit yosys and load the blocking_caveat_net.v to iverilog.
-<img width="1370" alt="Screenshot 2024-05-26 at 3 27 05 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/db39196e-3fba-424f-95ad-6b2f2e069d03">
+                 
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/e5c368df-bdd5-42fd-9874-ed1a7c466620">
                 </pre>
                 <p>Step 12</p>
                 <pre>
 Execute a.out file.
-<img width="832" alt="Screenshot 2024-05-26 at 3 27 14 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/897f10b8-5491-46d7-a7ff-ca0eac28123a">
+                 
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/5fc15b8c-f1ea-4237-ba43-a4c9b380dc8f">
                 </pre>
                 <p>Step 13</p>
                 <pre>
 Load the generated .vcd file into GTKWave
-<img width="1059" alt="Screenshot 2024-05-26 at 3 27 38 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2f6188c0-d262-48f1-a756-24f1c709de6f">
+                 
+<img width="601" alt="image" src="https://github.com/user-attachments/assets/ce3e1f8e-50a5-4edd-9cd2-9261d4055239">
                 </pre>
                 <p>Step 14</p>
                 <pre>
 Observe the behavior of GLS of blocking_caveat due to Simulation Mismatch
-<img width="1357" alt="Screenshot 2024-05-26 at 3 28 12 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4f2dcd1c-5d73-474e-bf68-12c82ff30205">
+                 
+<img width="601" alt="image" src="https://github.com/user-attachments/assets/8c938f65-142a-4a77-850d-85d84fae6d87">
                 </pre>
             </details>
         </li>
