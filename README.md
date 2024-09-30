@@ -627,7 +627,6 @@ As seen in the screenshot below,the code in left column is correct to achieve ou
 For ex: In left column code,y will get old value of q0 during evaluation/simulation,which is mimicking the behavour of a flop. To get latest value of q0,we can interchange the statements in always block,as seen in right column code. Synthesis will produce the same logic implementation for both the codes. This will lead to synthesis-simulation mismatch. 
 
 ![image](https://github.com/user-attachments/assets/b9d53842-26fa-435a-8450-ed8d85527674)
-
     <ul>
         <li>
             <details>
@@ -733,7 +732,7 @@ Observe the GLS of ternary_operator_mux
                     </li>
                     <li>
                         <details>
-                            <summary>PART 2: For bad_mux</summary>
+                             <summary>PART 2: For bad_mux</summary>
                             <p>Step 1</p>
                             <pre>
 <img width="604" alt="image" src="https://github.com/user-attachments/assets/b690e2b6-0071-4b63-a0ac-34c5d611c270">
