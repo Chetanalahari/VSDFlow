@@ -1112,6 +1112,80 @@ Synopsys Tool used for DFT insertion is DFT Compiler:
 
 </details>
 
+<details>
+
+<summary>Module 6 - Introduction to Logic Synthesis</summary>
+
+Tools to be used for this course :
+
+1) iverilog - For Verilog Compilation and Simulation
+2) gtkwave - For viewing Simulation Output
+3) Synopsys Design Compiler - For Logic Synthesis
+4) Skywater 130nm Library
+
+Objectives of this Course :
+
+1) Understand various steps in Logic Synthesis.
+2) Understand and write SDC (Synopsys Design Constraints) for a given design module.
+3) Perform Synthesis and write out netlist using Design Compiler.
+4) Generate and Analyze the Synthesis reports/STA reports.
+
+**What is Logic Synthesis?**
+
+Logic Synthesis is the process of converting RTL description of design into Gate-level netlist.
+The design is converted into gates and the connections are made between the Gates.
+This is given out as a file called netlist.
+
+![image](https://github.com/user-attachments/assets/f31fd4d9-59ec-4334-b8a6-26f4318125ff)
+
+**What is .lib?**
+
+![image](https://github.com/user-attachments/assets/75d14b44-c7b1-4884-a9ed-26d8ebf1689d)
+
+
+**Why Different Flavors of gate are required?**
+
+![image](https://github.com/user-attachments/assets/f6e4a6d4-3078-42e1-b960-b92c93c46dcd)
+
+* Different flavors of gate are required because the delay of combo logic between flops determines maximum speed of operation (clock frequency) of our design.
+* Smaller the combinational delay,larger can be the clock frequency,which can be achieved by using faster cells.
+* But, we also need to meet our hold time requirement for flops,so that data should not come within the hold window of a flop.Here the need arises for slower cells.
+* Hence,both faster and slower cells are used to meet our target clock frequency while avoiding hold time violations in our design.
+* These cells collectively form our std. cell library and their timing and logical information is used by tools,in the form of .lib format.
+
+![image](https://github.com/user-attachments/assets/311864b0-2659-4e66-aab3-938d9ab1ec77)
+
+**Faster cell vs slower cell**
+
+![image](https://github.com/user-attachments/assets/0a89c472-b82e-4436-89fb-b13963e32d03)
+
+![image](https://github.com/user-attachments/assets/fb8f075a-2724-4dbd-9c02-03d6fc7215b0)
+
+![image](https://github.com/user-attachments/assets/b4c447dc-6f7c-47a5-abc4-5b09f383282c)
+
+**Logic Synthesis Example:**
+
+![image](https://github.com/user-attachments/assets/9e7a682a-74c7-49ae-90f3-68606bbf8137)
+
+**Which is the best implementation**?
+
+![image](https://github.com/user-attachments/assets/d454ea3c-2c12-4278-936a-3ea6aeccfadc)
+
+![image](https://github.com/user-attachments/assets/8460bf48-9a12-4088-8b46-cc412c625825)
+
+![image](https://github.com/user-attachments/assets/2c020d5a-6a78-4c20-ba57-0eab1784e715)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
