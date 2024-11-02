@@ -1110,47 +1110,6 @@ Synopsys Tool used for DFT insertion is DFT Compiler:
 
 **<img width="612" alt="image" src="https://github.com/user-attachments/assets/27d15c61-25a5-44e9-815c-741ad6e97253">
 
-### Introduction to Synopsys Tools to be used for further exercises:
-
-1) Design Compiler:
-   
-   Design Compiler is a synthesis tool developed by Synopsys, a leading electronic design automation (EDA) company. It is widely used in the semiconductor industry for RTL (Register Transfer Level) synthesis, 
-   which is the process of converting a high-level hardware description of a digital circuit into a gate-level netlist.
-
-   Commands to start Design compiler are:
-   
-       dc_shell # invokes design compiler tool
-       start_gui # starts the GUI of the tool
-
-  <img width="587" alt="image" src="https://github.com/user-attachments/assets/8ab7775f-36b6-4613-893a-6de3df313513">
-
-2) Library compiler:
-    
-    The Synopsys Library Compiler is a software tool used in the design and development of ICs. It automates the process of creating and characterizing semiconductor intellectual property (IP) libraries, which 
-    are collections of reusable building blocks used in IC design. These libraries contain pre-designed functional blocks such as logic gates, memory cells, and analog circuits.
-    
-    The Library Compiler allows designers to generate these libraries efficiently, taking into account various parameters such as process technology, voltage, temperature, and operating conditions. It also 
-    includes features for optimizing library performance, minimizing power consumption, and ensuring compatibility with industry standards.
-
-Commands to start Library compiler are:
-   
-       lc_shell # invokes library compiler tool
-       start_gui # starts the GUI of the tool
-
-  <img width="616" alt="image" src="https://github.com/user-attachments/assets/56b719e9-4c80-45b4-937a-1859a511318e">
-
-3) ICC2 Compiler:
-
-    The ICC2 Compiler, developed by Synopsys, is a tool used in the process of physical design for integrated circuits. ICC2 stands for "Integrated Circuit Compiler 2". It's primarily utilized in the backend 
-    stages of the IC design flow, which involve translating a logical representation of a circuit (usually in the form of a netlist) into a physical layout that can be fabricated.
-
-   Commands to start ICC2 compiler are:
-   
-       icc2_shell # invokes icc2 compiler tool
-       start_gui # starts the GUI of the tool
-
-  <img width="616" alt="image" src="https://github.com/user-attachments/assets/1cfed378-42c9-4273-931e-1fd6291f1c0c">
-
 </details>
 
 
