@@ -1110,48 +1110,76 @@ Synopsys Tool used for DFT insertion is DFT Compiler:
 
 **<img width="612" alt="image" src="https://github.com/user-attachments/assets/27d15c61-25a5-44e9-815c-741ad6e97253">
 
-### Introduction to Synopsys Tools to be used for further exercises:
-
-1) Design Compiler:
-   
-   Design Compiler is a synthesis tool developed by Synopsys, a leading electronic design automation (EDA) company. It is widely used in the semiconductor industry for RTL (Register Transfer Level) synthesis, 
-   which is the process of converting a high-level hardware description of a digital circuit into a gate-level netlist.
-
-   Commands to start Design compiler are:
-   
-       dc_shell # invokes design compiler tool
-       start_gui # starts the GUI of the tool
-
-  <img width="587" alt="image" src="https://github.com/user-attachments/assets/8ab7775f-36b6-4613-893a-6de3df313513">
-
-2) Library compiler:
-    
-    The Synopsys Library Compiler is a software tool used in the design and development of ICs. It automates the process of creating and characterizing semiconductor intellectual property (IP) libraries, which 
-    are collections of reusable building blocks used in IC design. These libraries contain pre-designed functional blocks such as logic gates, memory cells, and analog circuits.
-    
-    The Library Compiler allows designers to generate these libraries efficiently, taking into account various parameters such as process technology, voltage, temperature, and operating conditions. It also 
-    includes features for optimizing library performance, minimizing power consumption, and ensuring compatibility with industry standards.
-
-Commands to start Library compiler are:
-   
-       lc_shell # invokes library compiler tool
-       start_gui # starts the GUI of the tool
-
-  <img width="616" alt="image" src="https://github.com/user-attachments/assets/56b719e9-4c80-45b4-937a-1859a511318e">
-
-3) ICC2 Compiler:
-
-    The ICC2 Compiler, developed by Synopsys, is a tool used in the process of physical design for integrated circuits. ICC2 stands for "Integrated Circuit Compiler 2". It's primarily utilized in the backend 
-    stages of the IC design flow, which involve translating a logical representation of a circuit (usually in the form of a netlist) into a physical layout that can be fabricated.
-
-   Commands to start ICC2 compiler are:
-   
-       icc2_shell # invokes icc2 compiler tool
-       start_gui # starts the GUI of the tool
-
-  <img width="616" alt="image" src="https://github.com/user-attachments/assets/1cfed378-42c9-4273-931e-1fd6291f1c0c">
 
 </details>
+
+<details>
+
+<summary>Module 6 - Introduction to Logic Synthesis</summary>
+
+Tools to be used for this course :
+
+1) iverilog - For Verilog Compilation and Simulation
+2) gtkwave - For viewing Simulation Output
+3) Synopsys Design Compiler - For Logic Synthesis
+4) Skywater 130nm Library
+
+Objectives of this Course :
+
+1) Understand various steps in Logic Synthesis.
+2) Understand and write SDC (Synopsys Design Constraints) for a given design module.
+3) Perform Synthesis and write out netlist using Design Compiler.
+4) Generate and Analyze the Synthesis reports/STA reports.
+
+**What is Logic Synthesis?**
+
+Logic Synthesis is the process of converting RTL description of design into Gate-level netlist.
+The design is converted into gates and the connections are made between the Gates.
+This is given out as a file called netlist.
+
+![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/017f0d06-6464-4e1c-95d4-4a08b127c4af)
+
+**What is .lib?**
+
+![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/3c02c1ad-85f6-46a8-b58c-29b0be08044a)
+
+**Why Different Flavors of gate are required?**
+
+* Different flavors of gate are required because the delay of combo logic between flops determines maximum speed of operation (clock frequency) of our design.
+* Smaller the combinational delay,larger can be the clock frequency,which can be achieved by using faster cells.
+* But, we also need to meet our hold time requirement for flops,so that data should not come within the hold window of a flop.Here the need arises for slower cells.
+* Hence,both faster and slower cells are used to meet our target clock frequency while avoiding hold time violations in our design.
+* These cells collectively form our std. cell library and their timing and logical information is used by tools,in the form of .lib format.
+
+  ![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/ecfeda1e-507f-4ac8-9b01-67554efbf9a7)
+
+  ![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/a9181229-0291-4a60-a5aa-6db8ff171c37)
+
+
+
+**Faster Cells vs Slower Cells** :
+
+![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/8a08a070-6f55-40a5-be98-59920227025d)
+
+**How Cells are Selected?**
+
+We provide guidance to the Synthesizer,using **Constraints** to select the flavor of cells which will be optimum for the implementation of logic circuit.
+
+![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/a9670d1d-527a-47b7-af11-fba00ee85c90)
+
+Logic Synthesis Example:
+
+![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/f41a7a71-bce1-4f60-aaa6-029f12e13564)
+
+![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/c9262826-3b95-4583-81e1-a5443c6c8cee)
+
+![image](https://github.com/Subhasis-Sahu/SFAL-VSD/assets/165357439/5fc69a2f-b72b-4463-9351-9c43e2e8e21e)
+
+* From above we can see implementation 3 provides least area and delay among all,but is it the best?
+* If implementation 3 is present in hold sensitive path,additional buffers have to be added to meet hold timing,leading to increase in area and power of design.
+* So,here the **Significance of Constraints** come into picture.
+* Any one of the above three implementations may be picked by the synthesizer,as per need,guided by the **constraints** provided by the designer.
+
 
 
 
