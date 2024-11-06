@@ -1114,7 +1114,7 @@ Synopsys Tool used for DFT insertion is DFT Compiler:
 
 <details>
 
-<summary>Module 6 - Introduction to Logic Synthesis</summary>
+<summary>Introduction to Logic Synthesis</summary>
 
 Tools to be used for this course :
 
@@ -1174,6 +1174,91 @@ This is given out as a file called netlist.
 ![image](https://github.com/user-attachments/assets/8460bf48-9a12-4088-8b46-cc412c625825)
 
 ![image](https://github.com/user-attachments/assets/2c020d5a-6a78-4c20-ba57-0eab1784e715)
+
+**What is the correct recipie**
+
+***Constraints*** Constraints are the guide to the sythesizer to pick the correct library cells which is most appropriate for the design. As illustrate Implementation 1,2 and 3 are correct and will be picked based on the need.
+
+#### Introduction to Design Compiler
+
+**What is Design Compiler (DC)?** :
+
+![image](https://github.com/user-attachments/assets/aa3819da-bb72-4f38-83c7-2322a85ff0fa)
+
+![image](https://github.com/user-attachments/assets/1cccb2e7-171c-4403-8153-6715939dc4aa)
+
+**What are Synopsys Design Constraints (SDC)?**
+
+![image](https://github.com/user-attachments/assets/db68188f-cc58-4502-8923-dfebd6a43229)
+
+**DC Setup**
+
+![image](https://github.com/user-attachments/assets/d4afcef8-06fc-4482-93cb-bb7fe33f7072)
+
+![image](https://github.com/user-attachments/assets/b59549b3-b88a-4465-9f46-493b7067eabc)
+
+**DC Synthesis Flow**
+
+![image](https://github.com/user-attachments/assets/6319eca1-9ab7-4201-accc-a29d3271d5cc)
+
+#### Lab 1 - Invoking DC Basic Setup :
+
+git clone the repository 
+
+Commands to invoke DC are :
+
+csh # to invoke c shell
+
+dc_shell # to invoke DC tool
+
+![image](https://github.com/user-attachments/assets/c0c3eaf0-d466-4da0-b289-ebee942f0953)
+
+target_library - It specifies the library of std. cells for a particular technology to be used by DC tool during technology mapping and optimization phase of synthesis.
+
+link_library - It contains the set of design entities,i.e,any std. cell,PLL,SRAM,Analog IPs which are directly instantiated in RTL,and is used by DC tool to resolve these references.These entities are not used 
+               during technology mapping phase.
+
+* When we echo the target_library and link_library variables in dc_shell we see they are pointing to `your_library.db` and `* your_library.db` respectively,which are non-existent imaginary libraries.
+
+![image](https://github.com/user-attachments/assets/b82b4f91-9b0b-4c53-b316-ded2775b1d80)
+
+**Read the design**
+
+read_verilog verilog_files/lab1_flop_with_en.v - Command used to reads design information from Verilog files into memory. It does the work of both analyze and elaborate command in single step.
+
+![image](https://github.com/user-attachments/assets/25e7495f-2d4e-45a7-92ce-92ab5de29683)
+
+![image](https://github.com/user-attachments/assets/d86e7377-2d90-43ad-966c-2886443b6661)
+
+**Write the design**
+
+![image](https://github.com/user-attachments/assets/431a566e-f362-49df-b9c6-5166c0f0ec9c)
+
+RTL for lab1_net.v
+
+![image](https://github.com/user-attachments/assets/147d5ec5-ebc3-492f-9427-096a34bc1a2d)
+
+After writing out the netlist, we can observe in above screenshot,that the tool has currently synthesized our design using generic technology independent cells,which are part of GTECH library of DC to produce the netlist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
