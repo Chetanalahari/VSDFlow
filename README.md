@@ -1240,6 +1240,61 @@ RTL for lab1_net.v
 
 After writing out the netlist, we can observe in above screenshot,that the tool has currently synthesized our design using generic technology independent cells,which are part of GTECH library of DC to produce the netlist.
 
+To understand our design, DC has some virtual libraries called GTECH libraries.
+
+To get a proper technology mapped netlist,we need to specify our technology library for the target_library and link_library variables.
+
+**Read the design after specifying library**
+
+![image](https://github.com/user-attachments/assets/b10caca0-ece6-45cb-9d36-b604bd5d4d42)
+
+**Write the design after specifying library**
+
+![image](https://github.com/user-attachments/assets/5db92979-d085-436a-85a0-51c1399a609c)
+
+![image](https://github.com/user-attachments/assets/dcacd57a-10db-4c8f-ad92-ff0eb2d40d2a)
+
+It is still writing in the GTECH format only. we need to set two variables 
+
+![image](https://github.com/user-attachments/assets/e2287d9d-3042-4fd2-9dd7-34e10da9373d)
+
+It is still pointing out the your library.db and this need to be corrected 
+
+![image](https://github.com/user-attachments/assets/081da6c7-a4a9-467b-aa15-e2e264be8de4)
+
+![image](https://github.com/user-attachments/assets/37a72a54-71be-401b-a903-240df14016b3)
+
+**link**
+
+![image](https://github.com/user-attachments/assets/3c19f8b6-bcb0-4a6f-b7b1-ef542f6c1c33)
+
+**Compile**
+
+![image](https://github.com/user-attachments/assets/2d671969-38bc-41ed-a3ef-1c830b7bd9bb)
+
+![image](https://github.com/user-attachments/assets/016c2197-a350-4a77-b26d-91a88831b0cd)
+
+**Write**
+
+![image](https://github.com/user-attachments/assets/952b730f-efd2-48b1-9aed-6baa751395a9)
+
+![image](https://github.com/user-attachments/assets/1c72527e-fb1e-4ee2-a417-de3dd1397fce)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
