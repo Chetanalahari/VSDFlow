@@ -1280,6 +1280,24 @@ It is still pointing out the your library.db and this need to be corrected
 
 ![image](https://github.com/user-attachments/assets/1c72527e-fb1e-4ee2-a417-de3dd1397fce)
 
+#### Lab 2 - Intro to ddc gui with design_vision :
+
+`.ddc` - .ddc consists of the same information as a .db file. ddc is a synopsys encrypted form of our design which can be read by the tools such as Design compiler, IC compiler and prime time. It consists of the netlist(list of components and nets) information of our design , .db libraries (target and link) used, along with the constraints which we have specified for implementing the design.
+
+**What is Design Vision?**
+
+* The Design Vision tool is the graphical user interface (GUI) for the Synopsys logic synthesis environment. 
+* Design Vision provides analysis tools for viewing and analyzing your design at the generic technology (GTECH) level and the gate level. 
+* It also provides all of the synthesis capabilities of the Design Compiler tool. Design Vision provides menu commands and dialog boxes for the most commonly used synthesis features. 
+* In addition, we can enter any dc_shell command on the command line in the GUI or the shell.
+
+Commands to generate .ddc file and read it in design vision tool:
+
+      After Synthesis has been performed using DC shell,
+      write -f ddc -out lab1_net_with_sky130.ddc # writes out .ddc file for current design
+      design_vision # invokes design vision tool , invoke after exiting DC shell or in new terminal window/tab
+      read_ddc lab1_net_with_sky130.ddc # read the design information for the specified .ddc file
+
 
 
 
