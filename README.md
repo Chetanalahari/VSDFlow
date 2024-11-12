@@ -1396,6 +1396,8 @@ Set a Variable:
 
 ![image](https://github.com/user-attachments/assets/9ba10b80-c71d-46fd-9a7f-8ab297f2a255)
 
+</details>
+
 <details>
 
 <summary>Module 7 - Basics of Static Timing Analysis</summary>
