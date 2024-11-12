@@ -1497,6 +1497,110 @@ implementing our design in the most optimized manner,while adhering to our goals
 
 ![image](https://github.com/user-attachments/assets/e9fbbca6-778a-436a-a175-7524289756db)
 
+![image](https://github.com/user-attachments/assets/fa72853b-0947-46e4-8be6-f56a6be4e43d)
+
+![image](https://github.com/user-attachments/assets/1fbb41d6-b680-4da3-b96a-3df64df411b0)
+
+In a design with two external registers, Register 1 and Register 2, both being driven by the same clock, the paths between them effectively become register-to-register paths when the design starts operating. However, since these registers are at the boundary of the design, the internal STA tool may not initially see or analyze these paths.
+
+When the design starts functioning and the entire system is considered, these register-to-register paths become visible and are analyzed for timing. This means that the logic between the input and output of these registers must be optimized to ensure that the data can travel within the required timing window set by the clock period.
+
+To meet timing requirements, the input logic must be carefully managed and optimized for minimal delay. This includes:
+
+By squeezing or optimizing the input logic path for delay, the overall timing can be maintained so that the design functions correctly when integrated with the rest of the system.
+
+![image](https://github.com/user-attachments/assets/86a4e937-c39c-439d-95c8-bf292b1e567d)
+
+REG_EXT_3 is also clocked by the same clock as the other registers, making it part of a synchronous path. This means that the path between internal register REG_3 and external register REG_EXT_3 must be properly constrained to ensure timing correctness.
+
+**Key Points to Consider:**
+The output logic between REG_3 and REG_EXT_3 must have a defined delay limit. This ensures that the data arriving at REG_EXT_3 meets the required setup and hold timing requirements for proper operation.
+
+If the delay of the output logic is not constrained, it can lead to timing violations in this path. This can result in data not being correctly captured by REG_EXT_3, leading to potential functional errors.
+
+**Importance of Output Logic Constraints:**
+Output Timing Path: The path from REG_3 through the output logic to REG_EXT_3 needs to be managed to ensure that the total delay does not exceed the clock period minus the setup time of REG_EXT_3.
+
+Constraining the Path: It is essential to apply appropriate timing constraints, such as set_output_delay, to define how much delay can be tolerated for the output logic. This constraint ensures that the output data arrives on time for REG_EXT_3 to latch it correctly during the active clock edge.
+
+**Solution:**
+Set Output Delay: Use STA constraints like set_output_delay to limit the delay of the output logic path. This helps in specifying how much time is available for the signal to travel from REG_3 to REG_EXT_3.
+
+Clock Uncertainty and Margins: Factor in clock uncertainty, skew, and jitter while setting these constraints to provide a buffer for real-world variations.
+
+![image](https://github.com/user-attachments/assets/0c2b7e63-3e26-4238-8bf9-a6d5e3bb41cf)
+
+The diagram shows a synchronous path where all registers are driven by the same clock. The key components include external registers (REG_EXT_1, REG_EXT_2, REG_EXT_3), internal registers (REG_1, REG_2, REG_3), and logic blocks (input logic, combo logic, and output logic). The design operates at a clock frequency of 500 MHz, meaning the clock period (Tclk) is 2 ns.
+
+**Key Points and Markings:**
+
+**Clock Period (Tclk):**
+
+The clock frequency is 500 MHz, so the clock period is 2 ns. This is the time within which all the signal propagation, register delays, and logic delays must fit to avoid timing violations.
+
+**Setup Time (Tsetup) and Clock-to-Q Delay (Tclk-Q):**
+
+All flip-flops in the design have a setup time (Tsetup) of 0.5 ns.
+The clock-to-Q delay (Tclk-Q) for the registers is also marked as 0.5 ns. This represents the time it takes for the output to change after a clock edge.
+
+**Delays in the Input Logic Path:**
+
+The external delay from REG_EXT_1 to the start of the input logic is 0.7 ns.
+The internal delay from the input logic to REG_1 is marked as 0.5 ns. This means the total delay from REG_EXT_1 to REG_1 is 1.2 ns (0.7 ns + 0.5 ns).
+
+**REG_1 to Combo Logic:**
+
+The delay between REG_1 and the combo logic block is 0.5 ns, as marked.
+The delay within the combo logic is 1 ns, totaling 1.5 ns from REG_1 to the end of the combo logic.
+
+**REG_3 to Output Logic Path:**
+
+The path from REG_3 to the start of the output logic has a Tclk-Q delay of 0.5 ns.
+The delay within the output logic is 1 ns, resulting in a total path delay of 1.5 ns from REG_3 to the output pin.
+
+**External Output Delay to REG_EXT_3:**
+
+The output delay from the end of the output logic to REG_EXT_3 is 0.3 ns.
+This means the total path from REG_3 to REG_EXT_3 is 1.8 ns (0.5 ns + 1 ns + 0.3 ns).
+
+**Constraints and Timing Analysis:**
+The total delay from REG_3 to REG_EXT_3 must fit within the clock period minus the setup time of REG_EXT_3.
+The setup time at REG_EXT_3 is 0.5 ns, so the available time for the signal to propagate is 1.5 ns (2 ns - 0.5 ns).
+The actual total delay in the output path (1.8 ns) exceeds the available time (1.5 ns), indicating a timing violation. This highlights the need to constrain the output logic and reduce delays to meet timing requirements.
+
+**How the Tool Uses These Constraints to Optimize the Design:**
+
+**Timing Analysis and Optimization:** The tool uses the constraints provided (e.g., clock period, setup time, external delays) to perform detailed timing analysis on the paths. It identifies paths that do not meet the required timing and flags them as potential violations.
+
+**Logic Squeezing:** When the tool detects that the total path delay exceeds the available timing window (as seen in the path from REG_3 to REG_EXT_3), it attempts to optimize the logic. This process, known as logic squeezing, involves:
+
+Reducing Path Delays: The tool may restructure or optimize the output logic to reduce delays. This can involve simplifying the logic or using faster gates.
+
+Buffer Insertion: The tool might insert buffers or adjust the existing circuit to balance delays and improve the signal propagation time.
+
+Gate Sizing: Adjusting the size of gates to ensure they drive the load more efficiently, thus reducing transition delays.
+
+**How the Tool Figures Out and Adjusts:**
+
+Static Timing Analysis (STA): The tool performs STA by calculating the timing for each path and comparing it against the constraints. If the total delay in a path (like the 1.8 ns in the path from REG_3 to REG_EXT_3) exceeds the available time (1.5 ns), the tool marks it as a critical path.
+
+Iterative Optimization: The tool iteratively optimizes the paths by adjusting logic and checking if the updated path now meets the timing constraints.
+
+Feedback and Reporting: After squeezing the logic and making necessary adjustments, the tool reports the new timing characteristics, showing whether the timing requirements are now met.
+
+This is how tools like synthesis engines and place-and-route (PnR) tools analyze, adjust, and squeeze the logic to ensure that the design meets the required timing constraints, ultimately leading to a reliable and efficient circuit design.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
