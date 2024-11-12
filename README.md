@@ -1,4 +1,4 @@
-# RTL TO GDS 
+![image](https://github.com/user-attachments/assets/f1ac277b-598d-4261-ace5-3448d6fcb21b)# RTL TO GDS 
 
 <details>
 
@@ -1530,6 +1530,8 @@ Clock Uncertainty and Margins: Factor in clock uncertainty, skew, and jitter whi
 
 ![image](https://github.com/user-attachments/assets/0c2b7e63-3e26-4238-8bf9-a6d5e3bb41cf)
 
+![image](https://github.com/user-attachments/assets/a6b5117d-50d1-4c47-a3df-52f645e50277)
+
 The diagram shows a synchronous path where all registers are driven by the same clock. The key components include external registers (REG_EXT_1, REG_EXT_2, REG_EXT_3), internal registers (REG_1, REG_2, REG_3), and logic blocks (input logic, combo logic, and output logic). The design operates at a clock frequency of 500 MHz, meaning the clock period (Tclk) is 2 ns.
 
 **Key Points and Markings:**
@@ -1589,6 +1591,43 @@ Iterative Optimization: The tool iteratively optimizes the paths by adjusting lo
 Feedback and Reporting: After squeezing the logic and making necessary adjustments, the tool reports the new timing characteristics, showing whether the timing requirements are now met.
 
 This is how tools like synthesis engines and place-and-route (PnR) tools analyze, adjust, and squeeze the logic to ensure that the design meets the required timing constraints, ultimately leading to a reliable and efficient circuit design.
+
+![image](https://github.com/user-attachments/assets/8b182c47-03d8-48ad-b92b-556f4050dff6)
+
+**IO Modelleing**
+
+![image](https://github.com/user-attachments/assets/73457746-6043-4ae4-81f3-60fe79ab0ebc)
+
+This diagram discusses the importance of I/O delay modeling and highlights potential issues related to input transitions in timing analysis.
+
+The note “Cell delay is a function of input transition” emphasizes that the delay of a cell depends on the transition time of the input signal. Faster transitions result in lower delays, while slower transitions increase delay.
+
+Practical vs. Ideal Transitions:
+Ideal (Green): Represents an ideal scenario where the input signal has zero rise or fall time, leading to minimal delay.
+Practical (Red): Represents the real-world scenario where the input signal has a non-zero rise or fall time, which increases the delay in the input logic.
+
+The note “Non-zero rise time will cause the ‘Input Logic’ delay to increase!! Potential Setup Problem?” points out that if the input transition is not ideal, it will cause the delay in the input logic block to increase. This can result in a setup timing issue, where data does not reach the subsequent register within the clock period.
+
+The blue box asks, “External Delay is accounted, but are the signals ideal here? Will the transition play a role?”, indicating that while external delays might be considered, it’s essential to account for practical signal transitions. Non-ideal transitions can impact the input logic delay, potentially causing setup timing violations.
+
+Setup Violation seen with practical transition”: This indicates that in real scenarios, where transitions are non-zero, the increased delay in the input logic can lead to a setup violation.
+
+![image](https://github.com/user-attachments/assets/91093f57-1a9a-44cd-9f3b-7e55832092f7)
+
+This diagram emphasizes the importance of I/O delay and input transition modeling for ensuring timing correctness in paths that include external and internal components.
+
+The note **“Cell delay is a function of output load!”** highlights that the delay experienced in the output logic depends on the load connected to it. If the load (e.g., REG_EXT_3) is significant, it can increase the delay of the output path.
+
+This can cause potential setup timing failures at the receiving register (REG_EXT_3) due to increased propagation delay through the output logic.
+
+The note **“The Output Load increased the delay of output logic, thereby potentially causing setup failure at the receiving flop”** indicates that if the delay caused by the output load is too high, it can result in the data not reaching REG_EXT_3 within the required timing window. This would cause a setup timing violation and could lead to functional failures in the design.
+
+The blue box **“External Delay is accounted, Will the load play a role?”** asks whether the output load’s impact on delay is considered in the analysis. If not, the timing analysis may underestimate the actual delay and miss potential setup violations.
+
+modeling the output load accurately is crucial for eliminating setup violations. The amount to model comes from specifications and library data, which outline the expected loading conditions.
+
+
+
 
 
 
