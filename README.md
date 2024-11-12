@@ -1354,9 +1354,70 @@ If the file .synopsys_dc.setup is either moved from home directory or its' name 
 </details>
  
 <details>
-  <summary>🔧 TCL Scripting Lab</summary>
+  <summary> TCL Scripting Lab</summary>
+
+TCL (Tool Command Language) is extensively used for writing SDC (Synopsys Design Constraints) files, which are essential for defining the design intent and constraints during synthesis and physical design. Additionally, all the internal commands within Design Compiler (DC) and other Synopsys tools are written and executed using TCL. This allows for greater flexibility and automation in design processes, making TCL a fundamental scripting language for EDA tools and workflows in the VLSI industry.
+
+![image](https://github.com/user-attachments/assets/2da85d1d-d518-4239-ad0d-f0a01b4a699c)
+
+![image](https://github.com/user-attachments/assets/7047292d-e23f-465d-bc1f-1ed8450d3dd5)
+
+Syntax is very inportant in TCL
+
+**While loop**
+
+![image](https://github.com/user-attachments/assets/3eef0c33-ff39-476e-8769-7bfe0c05a77c)
+
+**For loop**
+
+![image](https://github.com/user-attachments/assets/2ff44972-fe17-49e8-8185-11825f678478)
+
+**foreach loop**
+
+![image](https://github.com/user-attachments/assets/a6133b65-4704-4447-9ea1-4743d4137e10)
 
 # TCL Scripting Lab
+
+**1.Initialize and view variables:**
+
+Set a Variable:
+
+![image](https://github.com/user-attachments/assets/3ec65286-c1e8-48d7-81c0-11a82891997e)
+
+**2.Using For loop**
+
+![image](https://github.com/user-attachments/assets/e549200a-47d7-4817-8c71-6a644146ccc0)
+
+**3.Using While loop**
+
+![image](https://github.com/user-attachments/assets/1a76f488-a4ea-4022-9fac-7376aac3c1ac)
+
+**4.Creating a list**
+
+![image](https://github.com/user-attachments/assets/9ba10b80-c71d-46fd-9a7f-8ab297f2a255)
+
+<details>
+
+<summary>Module 7 - Basics of Static Timing Analysis</summary>
+
+#### **What is STA?**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
