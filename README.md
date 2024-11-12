@@ -1594,23 +1594,23 @@ This is how tools like synthesis engines and place-and-route (PnR) tools analyze
 
 ![image](https://github.com/user-attachments/assets/8b182c47-03d8-48ad-b92b-556f4050dff6)
 
-**IO Modelleing**
+##**IO Modelleing**
 
 ![image](https://github.com/user-attachments/assets/73457746-6043-4ae4-81f3-60fe79ab0ebc)
 
 This diagram discusses the importance of I/O delay modeling and highlights potential issues related to input transitions in timing analysis.
 
-The note “Cell delay is a function of input transition” emphasizes that the delay of a cell depends on the transition time of the input signal. Faster transitions result in lower delays, while slower transitions increase delay.
+The note **“Cell delay is a function of input transition”** emphasizes that the delay of a cell depends on the transition time of the input signal. Faster transitions result in lower delays, while slower transitions increase delay.
 
 Practical vs. Ideal Transitions:
 Ideal (Green): Represents an ideal scenario where the input signal has zero rise or fall time, leading to minimal delay.
 Practical (Red): Represents the real-world scenario where the input signal has a non-zero rise or fall time, which increases the delay in the input logic.
 
-The note “Non-zero rise time will cause the ‘Input Logic’ delay to increase!! Potential Setup Problem?” points out that if the input transition is not ideal, it will cause the delay in the input logic block to increase. This can result in a setup timing issue, where data does not reach the subsequent register within the clock period.
+The note **“Non-zero rise time will cause the ‘Input Logic’ delay to increase!! Potential Setup Problem?”** points out that if the input transition is not ideal, it will cause the delay in the input logic block to increase. This can result in a setup timing issue, where data does not reach the subsequent register within the clock period.
 
-The blue box asks, “External Delay is accounted, but are the signals ideal here? Will the transition play a role?”, indicating that while external delays might be considered, it’s essential to account for practical signal transitions. Non-ideal transitions can impact the input logic delay, potentially causing setup timing violations.
+The blue box asks, **“External Delay is accounted, but are the signals ideal here? Will the transition play a role?”**, indicating that while external delays might be considered, it’s essential to account for practical signal transitions. Non-ideal transitions can impact the input logic delay, potentially causing setup timing violations.
 
-Setup Violation seen with practical transition”: This indicates that in real scenarios, where transitions are non-zero, the increased delay in the input logic can lead to a setup violation.
+**Setup Violation seen with practical transition”:** This indicates that in real scenarios, where transitions are non-zero, the increased delay in the input logic can lead to a setup violation.
 
 ![image](https://github.com/user-attachments/assets/91093f57-1a9a-44cd-9f3b-7e55832092f7)
 
@@ -1626,6 +1626,15 @@ The blue box **“External Delay is accounted, Will the load play a role?”** a
 
 modeling the output load accurately is crucial for eliminating setup violations. The amount to model comes from specifications and library data, which outline the expected loading conditions.
 
+**Note**As a general rule of thumb, 70% of clock period is set aside for external delay and 30% of clock period is set aside for internal delays. (Note : This is not applicable for all scenarios and for all designs).
+
+![image](https://github.com/user-attachments/assets/d9664ee9-b283-4e84-97c9-1aa8d925f3ba)
+
+</details>
+
+<details>
+
+<summary>Lab Sessions on STA</summary>
 
 
 
