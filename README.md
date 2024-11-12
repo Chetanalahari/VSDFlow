@@ -1400,9 +1400,123 @@ Set a Variable:
 
 <details>
 
-<summary>Module 7 - Basics of Static Timing Analysis</summary>
+<summary>Basics of Static Timing Analysis</summary>
 
 #### **What is STA?**
+
+* Static Timing Analysis (STA) is a method of validating the timing performance of a digital circuit design by checking all possible paths for timing violations under worst-case conditions. The key points about 
+  STA are:
+  
+    * It breaks down the design into timing paths, calculates the signal propagation delay along each path, and checks for violations of timing constraints inside the design and at the input/output interface.
+    * STA considers the worst possible delay through each logic element, but does not simulate the logical operation of the circuit. This makes it faster than dynamic simulation, which requires simulating 
+      multiple test vectors.
+    * The goal of STA is to verify that despite variations in factors like input data, temperature, voltage, and manufacturing, all signals will arrive at the correct time - not too early or too late.
+    * STA checks for two types of timing violations: setup time violations (where a signal arrives too late) and hold time violations (where a signal changes too soon after the clock edge).
+    * STA is an essential part of the integrated circuit design process, allowing timing issues to be identified and fixed before manufacturing, improving first-pass silicon success.  
+ 
+![image](https://github.com/user-attachments/assets/24a58023-c505-41f5-82c6-1096f145d368)
+
+Delay is function of the inflow(input transition).
+
+![image](https://github.com/user-attachments/assets/85b76aa2-898d-4fad-8d20-0cdfa9a70427)
+
+Delay is the function of bucket(output capacitance)
+
+![image](https://github.com/user-attachments/assets/712aa92f-31b9-43c7-8cc1-a5341537887e)
+
+**Timing Arcs**
+
+In Static Timing Analysis (STA), a timing arc refers to the path through a logic cell or gate that represents the propagation of a signal from one point (input) to another (output). It defines how a signal transition at the input of a cell impacts the output and is essential for calculating delays and analyzing the timing characteristics of a design.
+
+**Key Points About Timing Arcs:**
+
+**Types of Timing Arcs:**
+
+Combinational Timing Arcs: These connect input pins to output pins of logic gates (e.g., from input A to output Y of an AND gate).
+
+Sequential Timing Arcs: These connect input or clock pins to output pins or timing-related internal pins of sequential elements (e.g., from the clock to Q output of a flip-flop).
+
+**Characterization:**
+
+Timing arcs have associated delay values that are characterized based on various factors such as input slew, output load, and other cell-specific conditions.
+Libraries (e.g., Liberty format) contain these delay and timing models to be used during STA.
+
+**Importance in STA:**
+
+Timing arcs are used to propagate timing information across the design during STA.
+They help in calculating setup time, hold time, propagation delay, and clock-to-Q delays for sequential elements.
+Analyzing timing arcs allows for identifying paths that might violate timing constraints, such as critical paths that could lead to timing failures.
+Understanding timing arcs is fundamental for accurately modeling the timing behavior of a circuit and ensuring it meets the required performance specifications.
+
+![image](https://github.com/user-attachments/assets/714af4cf-5f98-494f-9bae-1fe35b3cbf6d)
+
+![image](https://github.com/user-attachments/assets/28db0d9a-3527-4c86-b2cf-573f7c0f5408)
+
+![image](https://github.com/user-attachments/assets/d83f3b4a-c968-4f22-89d6-3abe3d6e050b)
+
+Note :
+
+For Sequential cells, Setup and hold constraint arcs are always around/calculated around sampling point of the clock waveform.
+
+For DFFs, for Setup and hold constraints arcs, sampling point are calculated from the respective clock edge according to the flip-flop (posedge or negedge) used.
+For DLATs (D-Latches),
+For positive latch, setup and hold constraint arcs are from negedge of clock (The point where latch transitions from transparent state to opaque state)
+For negative latch, setup and hold constraint arcs are from posedge of clock (The point where latch transitions from transparent state to opaque state)
+
+#### **What are Timing Paths?**
+
+The concept of timing paths in VLSI design is crucial for ensuring proper timing performance. Timing paths are defined as the paths between start points and end points in a design, where the timing requirements need to be met within a clock cycle. Different types of timing paths include Input to Register, Input to Output, Register to Register, and Register to Output paths. Each type has specific characteristics and requirements:
+
+* Input to Register Path: This path starts at an input port and ends at the data input of a sequential element. It is semi-synchronous, where the register is controlled by the clock, and input data can arrive 
+  at any time.
+* Register to Register Path: In this purely sequential path, both the starting and ending flops are controlled by the clock.
+* Register to Output Path: Data can arrive at any point in time in this path, starting at the clock pin of a sequential element and ending at an output port.
+* Input to Output Path: This pure combinational path starts at an input port and ends at an output port.
+
+* Moreover, timing paths can be further categorized into Clock Paths, Clock Gating Paths, and Asynchronous Paths based on their characteristics. Clock paths involve the traversal of clock signals, clock 
+  buffers, and clock inverters. Clock gating paths introduce additional advantages by passing through gated elements.
+* Asynchronous paths, on the other hand, involve paths from input ports to asynchronous set or clear pins of sequential elements.
+
+![image](https://github.com/user-attachments/assets/e743f8b9-961c-414e-bab8-2f084212c510)
+
+ The valid paths in above figure are:
+  
+   * input port A to UFFA/D
+   * input port A to output port Z
+   * UFFA/CLK to UFFB/D
+   * UFFB/CLK to output port Z
+
+ #### **Why Constraints are used?**
+
+ We use design constraints (Timing Specifications,constraints related to area,power etc.) to guide the synthesizer, to choose the correct flavor of std. cells from our std. cell library, which will help in
+implementing our design in the most optimized manner,while adhering to our goals of **PPA (Power,Performance & Area)**.
+
+ ![image](https://github.com/user-attachments/assets/b9ef13e6-9782-46a3-b367-b555e593f867)
+
+ ![image](https://github.com/user-attachments/assets/3a9561a9-b176-4912-9160-6ed4ae07a65a)
+
+![image](https://github.com/user-attachments/assets/e9fbbca6-778a-436a-a175-7524289756db)
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
