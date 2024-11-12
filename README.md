@@ -1295,8 +1295,77 @@ Commands to generate .ddc file and read it in design vision tool:
 
       After Synthesis has been performed using DC shell,
       write -f ddc -out lab1_net_with_sky130.ddc # writes out .ddc file for current design
+      exit dc shell and enable C Shell with the command csh
       design_vision # invokes design vision tool , invoke after exiting DC shell or in new terminal window/tab
       read_ddc lab1_net_with_sky130.ddc # read the design information for the specified .ddc file
+
+ [image](https://github.com/user-attachments/assets/de4e36f0-ee8d-456f-a146-e87f5370ed66)
+
+ Design Vision is the gui format of dc compiler
+
+ ![image](https://github.com/user-attachments/assets/b165f1f2-6620-4975-b9dd-521c3d4aa5fe)
+
+ #### Lab 3 - dc synopsys setup :
+
+ 1.csh
+
+ 2.dc_shell
+
+ 3.echo $target_library (shows your non-existant virtual library)
+
+ ![image](https://github.com/user-attachments/assets/068dd1ec-c3aa-47d3-9853-c9fe152ec0f7)
+
+ 4.echo $link_library
+
+ ![image](https://github.com/user-attachments/assets/8d6450c8-c1fe-488c-9500-1971c6dca5bb)
+
+ 5.set target_library DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db 
+
+ ![image](https://github.com/user-attachments/assets/1371bf72-b4f4-4964-bb0b-8db089fbf169)
+
+ 6.set link_library {*target_library}
+
+ ![image](https://github.com/user-attachments/assets/10695cea-a8a0-4e59-9fc9-08d00ac1c5ba)
+
+ * When we have design with multiple .db libraries , it is very cumbersome & error-prone to set target_library and lInk_library manually, as we cannot miss even one .db library
+* So to solve the above issue, all repetitive tasks ( setting target and link libraries) which is essential for tool setup can be put in a single file ,called `.synopsys_dc.setup`.
+* `.synopsys_dc.setup` can be present in two locations
+    * First,in DC tool install directory which is the default one to be picked by DC tool
+    * Second, can be created in user home directory,and which when present will be read by DC tool for setup instead of the default one present in its' install directory.
+ 
+ ![image](https://github.com/user-attachments/assets/63c325e7-899d-47f2-b04e-6d7458fcce63)
+
+ **Creating manually in home directory**
+
+1.pwd
+
+ ![image](https://github.com/user-attachments/assets/effddbdc-a985-4527-99b7-39d856f772a1)
+
+ 2.gvim .synopsys_dc.setup( Save the file in the home directory)
+
+ ![image](https://github.com/user-attachments/assets/667eabf7-9413-4e7e-9f9e-5102e73bc208)
+
+ 3. Invoke dc_shell and give the command echo $target_library. It is set properly.
+
+![image](https://github.com/user-attachments/assets/706212e8-dbe2-42e8-976d-4e5187630d31)
+
+If the file .synopsys_dc.setup is either moved from home directory or its' name is altered in any manner, it will not be read by dc_shell when the tool is being invoked.
+
+</details>
+ 
+<details>
+  <summary>🔧 TCL Scripting Lab</summary>
+
+# TCL Scripting Lab
+
+
+ 
+
+
+     
+
+
+
 
 
 
