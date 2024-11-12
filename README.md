@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/f1ac277b-598d-4261-ace5-3448d6fcb21b)# RTL TO GDS 
+# RTL TO GDS 
 
 <details>
 
