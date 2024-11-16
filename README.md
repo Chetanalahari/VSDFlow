@@ -1743,7 +1743,51 @@ Practical Significance:
 Positive and Negative Unate Gates are easier to predict in terms of timing behavior.
 Non-Unate Gates introduce complexity in timing analysis as their output transition depends on the state of multiple inputs.
 
-#### Lab 2 - Querying Properties of .lib from dc_shell :
+#### Lab 2 - .lib from dc_shell :
+
+![image](https://github.com/user-attachments/assets/2c7678d9-7424-470a-81e4-197e5001589e)
+
+In .lib file, for cells with **non_unate** timing sense (such as xor,xnor etc.), the pin information will have information for both postive unate and negative unate timing sense.
+
+For Sequential cells like DFFs etc, 
+
+* `CLK_N` is the clock pin of negedge flop.
+* Clock-to-Q delay of flip-flop is mentioned as `timing_type : "falling_edge"`(sequential timing arc) , informing that this is a negative edge flip-flop.
+* Timing sense/unateness of Output Q is `non-unate` as `output Q` rises or falls according to rising or falling of `input D`.
+
+![image](https://github.com/user-attachments/assets/acb2d81b-9b1c-4914-85a7-f877926485f7)
+
+* Similarly,for a positive edge flip-flop, `CLK` is the clock pin of posedge flop.
+* Clock-to-Q delay of flip-flop is mentioned as `timing_type : "rising_edge"` , informing that this is a positive edge flip-flop.
+
+![image](https://github.com/user-attachments/assets/07d58c2e-20fa-4e89-ac81-536045630269)
+
+For setup check,the clock edge to be used is also mentioned as, timing_type : "setup_falling"; or timing_type : "setup_rising"; for negedge and posedge flop respectively.
+
+![image](https://github.com/user-attachments/assets/88b47049-5246-48d9-ac8f-a227bd97cc95)
+
+For Latches,
+* For Negative Latch, setup check is done at sampling point which is **posedge of clock signal**,and this is mentioned in .lib as `timing_type : "setup_rising";`
+* For Positive Latch, setup check is done at sampling point which is **negedge of clock signal**,and this is mentioned in .lib as `timing_type : "setup_falling";`
+
+  ![image](https://github.com/user-attachments/assets/0bba54b1-544c-4a7a-b81e-673bef2a58dd)
+
+![image](https://github.com/user-attachments/assets/57829d17-609e-40c5-b8e0-7eb547f78443)
+
+#### Lab 3 - .lib from dc_shell :
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
