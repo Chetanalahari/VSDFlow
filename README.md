@@ -1693,6 +1693,65 @@ In the below figure, clock attribute is true. This is the way library will know 
 
 ![image](https://github.com/user-attachments/assets/aad9e41a-132d-482b-90ad-f3126be63a4a)
 
+For delay lookup table, index 1 is used to form rows and index 2 is used to form columns and delays are shown below
+
+![image](https://github.com/user-attachments/assets/c4068261-6683-44ce-8100-7bc286c32e06)
+
+![image](https://github.com/user-attachments/assets/729714d1-d377-43b6-afd7-8df742114300)
+
+**Unateness**
+
+![image](https://github.com/user-attachments/assets/1a96a0e3-e84d-4ee6-9dc4-246ecca0b06c)
+
+This diagram is an explanation of unateness in logic gates, which describes how the output of a gate responds to changes in its inputs. Here’s a detailed breakdown of the diagram and the types of unateness shown:
+
+**1. Positive Unateness:**
+Definition: A logic gate is said to be positively unate if a rising input always causes the output to either rise or remain unchanged. Similarly, a falling input causes the output to fall or remain unchanged.
+
+Examples:
+**AND Gate:**
+When both inputs (A and B) rise, the output (Y) rises.
+A low-to-high transition in one of the inputs, while the other input is high, results in a high output.
+The truth table in the diagram shows that for the AND gate, a rise in inputs leads to a consistent behavior in the output (highlighted in red).
+
+**OR Gate:**
+A rise in any input leads to a rise in the output. The truth table for the OR gate shows that a low-to-high transition in any input results in a high output.
+
+**2. Negative Unateness:**
+Definition: A logic gate is negatively unate if a rising input causes the output to fall or remain unchanged, and a falling input causes the output to rise or remain unchanged.
+
+Examples:
+**NOT Gate:**
+A rise in the input (A) results in a fall in the output (Y), and vice versa.
+The truth table shows that the NOT gate consistently has an inverse relationship between input and output transitions.
+
+**NAND Gate:**
+When one of the inputs rises, the output falls, showing negative unateness.
+NOR Gate:
+A rise in any input causes the output to fall, as shown in the truth table.
+
+**3. Non-Unate:**
+Definition: A gate is non-unate if a change in an input can result in either a rise or a fall in the output, depending on the state of the other inputs. The output behavior cannot be categorized strictly as positive or negative unate.
+
+Example:
+**XOR Gate:**
+The truth table for the XOR gate shows that an input rise can cause either a rise or a fall in the output, depending on the other input's state.
+The output behavior is inconsistent when one input transitions from low to high or high to low, resulting in non-unate behavior.
+
+The concept of unateness is crucial in timing analysis for determining how signal transitions affect timing paths and delays in digital circuits.
+Practical Significance:
+Positive and Negative Unate Gates are easier to predict in terms of timing behavior.
+Non-Unate Gates introduce complexity in timing analysis as their output transition depends on the state of multiple inputs.
+
+#### Lab 2 - Querying Properties of .lib from dc_shell :
+
+
+
+
+
+
+
+
 
 
 
