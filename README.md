@@ -1781,12 +1781,13 @@ For Latches,
 <summary>Advanced Constraints</summary>
 
 Specifying Constraints Through SDC
+
 To define a clock, we need to provide the following information:
 
-Clock source: it can be a port of the design, or be a pin of a cell inside the design (typically that is part of a clock generation logic).
+**Clock source:** It can be a port of the design, or be a pin of a cell inside the design (typically that is part of a clock generation logic).
 Period: the time period of the clock.
-Duty cycle: the high duration (positive phase) and the low duration (negative phase).
-Edge times: the times for the rising edge and the falling edge.
+**Duty cycle:** the high duration (positive phase) and the low duration (negative phase).
+**Edge times:** the times for the rising edge and the falling edge.
 By defining the clocks, all the internal timing paths (all flip-flop to flip-flop paths) are constrained; this implies that all internal paths can be analyzed with just the clock specifications.
 The clock specification specifies that a flip-flop to flip-flop path must take one cycle.
 But is the above information enough?
