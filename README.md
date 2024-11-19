@@ -1874,6 +1874,41 @@ Note : ports,pins,clock,etc. all names are case-sensitive in SDC format.
 
 ![image](https://github.com/user-attachments/assets/d2eed9bd-f387-4758-b779-a578847af0ec)
 
+</details>
+
+<details>
+
+<summary>Labs on Advanced Constraints</summary>
+
+#### Lab 1 - Loading design get_cells, get_ports, get_nets :
+
+Synthesis of lab8_circuit.v :
+
+RTL code of lab8_circuit.v :
+
+![image](https://github.com/user-attachments/assets/294f7d41-7c1b-4d75-95a5-a7d2fabaaa2d)
+
+1.**read the verilog file**
+
+Command used - read_verilog lab8_circuit.v
+
+![image](https://github.com/user-attachments/assets/cdd0f73f-95bc-4c00-ab30-d2ac1af3f5dd)
+
+Presto compilation successfully means RTL is not having any errors and is loaded successfully.
+
+**link the design**
+
+command used - link
+
+![image](https://github.com/user-attachments/assets/0d3cc45b-1a3a-4baf-8815-4966aa39ed03)
+
+
+
+
+
+
+
+
 
 
 
