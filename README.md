@@ -1959,6 +1959,14 @@ command used - read_ddc lab8_circuit.ddc
 
 ![image](https://github.com/user-attachments/assets/d68c4f0f-a8fc-4657-b33e-f5e97033f2eb)
 
+In digital design, Each and every net must have only one driver only.
+
+![image](https://github.com/user-attachments/assets/594165ae-9329-42b6-b403-8709da26f9f1)
+
+![image](https://github.com/user-attachments/assets/3eac786d-3a7d-430e-bfe2-9df6bddbb1df)
+
+
+
 
 
 
