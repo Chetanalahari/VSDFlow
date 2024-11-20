@@ -1888,7 +1888,7 @@ RTL code of lab8_circuit.v :
 
 ![image](https://github.com/user-attachments/assets/294f7d41-7c1b-4d75-95a5-a7d2fabaaa2d)
 
-1.**read the verilog file**
+**read the verilog file**
 
 Command used - read_verilog lab8_circuit.v
 
@@ -1901,6 +1901,89 @@ Presto compilation successfully means RTL is not having any errors and is loaded
 command used - link
 
 ![image](https://github.com/user-attachments/assets/0d3cc45b-1a3a-4baf-8815-4966aa39ed03)
+
+**Compile** 
+
+command used - compile_ultra
+
+As we can see from screenshot below, 3 1-bit wide Flip-flops with Asyncronous reset have been inferred :
+
+![image](https://github.com/user-attachments/assets/9e533777-720d-4f25-84b6-2659f3dddd1f)
+
+Screenshot of execution of get_ports command :
+
+![image](https://github.com/user-attachments/assets/7652567d-a6d2-4434-8033-95133bfc1fec)
+
+![image](https://github.com/user-attachments/assets/3f6ea76d-4705-4b21-9013-50e5fdabb6cd)
+
+![image](https://github.com/user-attachments/assets/50905431-083e-4e12-90db-37047b10b630)
+
+**To know the direction of the ports**
+
+command used - get_attribute [get_ports rst] direction
+
+![image](https://github.com/user-attachments/assets/e7e54e1d-9e43-4cb6-a37d-777d593ab218)
+
+**To print all ports and direction of each port**
+
+foreach_in_collection my_port [get_ports *] {                                                                                                             set my_port_name [get_object_name $my_port];                                                                                                set dir [get_attribute [get_ports $my_port_name] direction];                                                                                echo $my_port_name $dir;                                                                                                                    }
+
+![image](https://github.com/user-attachments/assets/db5cc287-92dd-47a9-8003-d6dad45cb5bf)
+
+Screenshot of execution of get_cells command :
+
+![image](https://github.com/user-attachments/assets/a5dac5b7-6f49-4645-a281-7443395f0949)
+
+![image](https://github.com/user-attachments/assets/ceb76a70-7ee7-49cb-b120-7ddadc21ef36)
+
+![image](https://github.com/user-attachments/assets/37d14811-89da-4186-b0a5-0f82d6ffe020)
+
+foreach_in_collection my_cell [get_cells * -hier] {                                                                                               set my_cell_name [get_object_name $my_cell];                                                                                                set rname [get_attribute [get_cells $my_cell_name] ref_name];                                                                               echo $my_cell_name $rname;
+}
+
+get_attribute [get_cells REGA_reg] ref_name - To show the reference name (actual name of cell in .lib) on the screen
+
+We can see REGA_reg cell instance has a reference name of sky130_fd_sc_hd__dfrtp_1. sky130_fd_sc_hd__dfrtp_1 is a DFF with asyncronous reset,positive edge triggered with Q (true) as output.
+
+![image](https://github.com/user-attachments/assets/5faa2066-b03d-47de-a33f-a322395a9d8a)
+
+write -f ddc -out lab8_circuit.ddc - write .ddc file to open in design vision tool.
+
+![image](https://github.com/user-attachments/assets/3fd8c963-e639-4f93-b55e-2693badbf451)
+
+Schematic of design as seen in design vision tool :
+
+command used - read_ddc lab8_circuit.ddc
+
+![image](https://github.com/user-attachments/assets/1e874a90-f830-4469-be17-428e89af24b4)
+
+![image](https://github.com/user-attachments/assets/d68c4f0f-a8fc-4657-b33e-f5e97033f2eb)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
