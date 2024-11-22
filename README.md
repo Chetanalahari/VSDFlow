@@ -2077,6 +2077,97 @@ Tapeout: Generate the final graphic files for creating the photomasks of the lay
 
 Testing and packaging: Test to confirm the SoC delivers on the specifications and is ready for use. The silicon chip is then encapsulated in a protective package.
 
+**Examples of Popular SoCs :**
+
+Apple A-Series: Used in iPhones and iPads.
+Qualcomm Snapdragon: Found in many Android smartphones.
+Samsung Exynos: Used in Samsung devices.
+NVIDIA Tegra: Used in devices like the Nintendo Switch.
+
+</details>
+
+<details>
+
+<summary>Introduction to VSDBabySOC</summary>
+
+## Overview
+
+VSDBabySoC is a compact and robust RISCV-based System on Chip. The primary goal of designing this small SoC is to integrate and test three open-source IP cores together for the first time and to calibrate its analog components. VSDBabySoC includes an RVMYTH microprocessor, an 8x Phase-Locked Loop (PLL) for generating a stable clock, and a 10-bit Digital-to-Analog Converter (DAC) for communication with other analog devices.
+
+![image](https://github.com/user-attachments/assets/0f52a108-2cf7-461d-813e-67e30fb23432)
+
+## BabySoC Components
+
+### RVMYTH
+- **RVMYTH**: The RVMYTH core is a simple RISC V-based CPU designed for educational purposes and small-scale applications. It provides a practical example of a RISC-V processor implementation.
+
+### PLL
+- **Phase-Locked Loop (PLL)**: A phase-locked loop or PLL is a control system that generates an output signal whose phase is related to the phase of an input signal. PLLs are widely used for synchronization purposes, including clock generation and distribution.
+
+### DAC
+- **Digital-to-Analog Converter (DAC)**: A DAC is a system that converts a digital signal into an analog signal. DACs are widely used in modern communication systems, enabling the generation of digitally-defined transmission signals.
+
+## What is a PLL?
+
+A phase-locked loop (also phase lock loop or PLL) is a system that generates an output signal whose phase is related to its input. The two signals will have the same frequency and either no phase difference or a constant phase difference between them.
+
+A PLL typically consists of the following components:
+- **Phase Detector**: Compares the reference signal with the oscillator frequency and outputs an error signal.
+- **Loop Filter**: Usually a low-pass filter that generates an error voltage from the error signal.
+- **Voltage-Controlled Oscillator (VCO)**: Adjusts the oscillator frequency to lock to the input frequency, producing an output frequency equal to the input frequency with a constant phase shift.
+
+A PLL may also include a frequency divider in its feedback loop to create an output that is a multiple of the reference frequency instead of one that is exactly equal to it.
+
+![image](https://github.com/user-attachments/assets/a15364b3-d264-4716-985e-4e68db720cd8)
+
+## Why Off-Chip Clocks Can't Be Used All the Time?
+
+Using off-chip clocks for all on-chip operations in VLSI design is often impractical due to several key factors:
+
+### Clock Distribution Delays
+The clock signal needs to be distributed to a multitude of blocks on the chip. If a single off-chip clock source is used, the long wires required for distribution can introduce significant delays.
+
+### Clock Jitter
+Off-chip clocks are more susceptible to clock jitter, which can degrade the performance and reliability of the system.
+
+### Different Frequency Requirements
+Various blocks on the chip may require different clock frequencies. For example, one block might need 200 MHz while another needs 100 MHz. It is challenging to accommodate these varying frequency requirements with a single off-chip clock source.
+
+### Clock Accuracy (ppm)
+Quartz crystals used for clock generation have a specified accuracy in parts per million (ppm). A higher ppm error implies greater deviation from the desired frequency, impacting timing precision in electronic systems.
+
+### Frequency Stability
+Frequency stability denotes the maximum frequency variation over the operating temperature range. Crystals with higher ppm errors may exhibit significant frequency variations with temperature changes, affecting the reliability of timing references, especially in extreme temperature conditions.
+
+### Total Frequency Error
+The total frequency error of a crystal is the sum of errors from frequency tolerance, frequency stability, and aging. A higher ppm error in any of these components can lead to a larger total frequency error, affecting the crystal's overall accuracy in maintaining precise timing references.
+
+## Digital-to-Analog Converter (DAC)
+
+A Digital-to-Analog Converter (DAC) converts a digital input signal into an analog output signal. The digital signal is represented by a binary code, a combination of bits 0 and 1.
+
+### Components of a DAC
+- **Binary Inputs**: The number of binary inputs of a DAC is generally a power of two.
+- **Analog Output**: A single output representing the analog signal.
+
+### Types of DACs
+- **Weighted Resistor DAC**: Uses resistors with weighted values to convert the binary input into an analog output.
+
+ ![image](https://github.com/user-attachments/assets/7fdbed2b-1f26-4b6a-9d9e-9735f5d2b019)
+
+- **R-2R Ladder DAC**: Utilizes a repetitive structure of resistors with values of R and 2R to achieve the conversion.
+
+ ![image](https://github.com/user-attachments/assets/8807c0a2-0253-4e83-8832-e8ce7c2971f3)
+
+In our VSDBabySoC design, we are using a 10-bit DAC.
+
+</details>
+
+<details>
+	<summary>VSDBabySoC Modelling</summary>
+
+
+
 
 
 
