@@ -1965,6 +1965,104 @@ In digital design, Each and every net must have only one driver only.
 
 ![image](https://github.com/user-attachments/assets/3eac786d-3a7d-430e-bfe2-9df6bddbb1df)
 
+</details>
+
+<details>
+
+<summary>What is System On Chip(SOC) </summary>
+
+#**System on a Chip: How Smaller, Faster Devices are Made**
+In electronics, the name of the game is “more performance, less power, and less space.” Especially in portable devices such as tablets and smartphones, massively complex technology must fit within the smallest possible footprint and use the least amount of power. To create devices that are both fast and small, engineers eliminate the need for multiple integrated circuits by consolidating all the necessary components into a single package, called a system on a chip (SoC).
+
+**What is a System on a Chip?**
+
+A system on a chip is an integrated circuit that compresses all of a system’s required components onto one piece of silicon. By eliminating the need for separate and large system components, SoCs help simplify circuit board design, resulting in improved power and speed without compromising system functionality. Components contained within an SoC can be:
+
+*Data processing units
+*Embedded memory
+*Graphics processing units (GPUs)
+*USB interfaces
+*Video and audio processing
+
+Compact SOCs have become an indispensable solutions for various markets, spanning from wired applications like data centers, artificial intelligence (AI), and high-performance computing (HPC) to battery-operated devices like mobile phones and wearables.
+
+![image](https://github.com/user-attachments/assets/3dd16d59-921a-48b4-a78f-d50ae2b26103)
+
+**The History of SoCs**
+With smaller devices so common in our everyday lives, it’s hard to imagine a time when SoCs weren’t in everything. But it wasn’t until the 1970s that the concept of fitting an entire system onto a single microchip first became a reality.
+
+1970s: According to the Computer History Museum, the first system on a chip appeared in an LCD watch in 1974. Until then, microprocessors had only been standalone chips that required the support of external chips.
+
+1980s-90s: Advancements in semiconductor manufacturing technology made it possible to integrate more components on a single chip. Mixed-signal integration allowed chips to process both analog and digital signals.
+
+2000-2010s: SoCs began integrating Wi-Fi, Bluetooth, and cellular modems, bringing wireless communications to our mobile devices. The addition of powerful processors and graphics capabilities helped make smartphones a new way of life. 
+
+Present: SoCs are becoming increasingly specialized and are expanding beyond mobile to include automotive systems, wearable devices, industrial automation, and more. New features include artificial intelligence (AI), machine learning (ML), and edge computing.
+
+**System on a Chip Applications**
+Thanks to their ability to be customized for highly specialized requirements, SoCs can be used in a variety of applications, from children’s toys and doorbell cameras to industrial engines. Some SoC uses include:
+
+Mobile devices: SoCs integrate wireless connectivity and multimedia capabilities in smartphones and tablets.
+
+Automotive systems: Vehicles of all types use SoCs to power navigation systems, sensor interfaces, infotainment systems, and danger avoidance systems.
+
+Internet of Things (IoT): Highly efficient in low-power use cases, SoCs are widely used in IoT devices such as wearables and smart home monitors.
+
+Networking equipment: In routers, switches, and network appliances, SoCs integrate packet processing capabilities, security features, and specialized components for efficient data routing.
+
+Consumer electronics: SoCs provide graphics processing power and connectivity to a wide range of common multimedia devices, such as gaming consoles and digital media players.
+
+Industrial applications: SoCs enable real-time processing, connectivity, and interfacing capabilities, contributing to efficient and intelligent industrial solutions.
+
+Medical devices: SoCs assist in improving patient care by improving the processing power and connectivity of patient monitoring systems, diagnostic equipment, and implantable devices.
+
+**SoC Design: Pros and Cons**
+The integration of multiple components onto a single chip offers numerous benefits. But when determining if an SoC is the right solution for a device, these benefits must be weighed against the challenges of such a complex design.
+
+**Advantages of System on a Chip**
+
+Space optimization: SoCs take up less space than multiple discreet components, making smaller device designs possible.
+
+Power efficiency: Replacement of large components and circuits with SOCs leads to a significant reduction in power consumption and the required PPA (power, performance, and area) metrics can be achieved.
+
+Cheaper: A single SoC chip is cheaper than the set of multiple, separate chips that would otherwise be needed.
+
+Reliability: A single SoC has fewer connections and is thus significantly more reliable than a multipart system connected through a substrate.
+
+Performance: Because the signals can stay on chip, an SoC can achieve higher performance and speed than a multipart solution.
+
+**Disadvantages of System on a Chip**
+
+Single point of failure: With all components in a single chip, a failure in one component affects the entire system (which limits upgrades, too).
+
+Time to market: When compared to off-the-shelf components, designing custom SoCs requires more expertise and specialized tools with increased development time and costs. These higher costs can only be recouped if the market for the SoC is big enough to absorb them.
+
+Mixed analog/digital: As all the components on an SoC are manufactured with a single process technology, there is no option to use optimal technology for the analog sections. This leads to reduced analog performance and makes SoCs better suited for digital applications.
+
+Flexibility: An SoC is ideally suited to its intended task but has limited scope to be applied for any other task.
+
+**System on a Chip Design Flow**
+Similar to an integrated circuit, the design workflow for a system on a chip involves several stages to plan, refine, and produce. Each stage requires the collaboration of experts including system architects, design engineers, and manufacturers. The major milestones of the SoC design flow include:
+
+Specification: Clearly define the desired function of the SoC. What are the applications, performance goals, power limitations, etc.?
+
+Logical design: Describe the desired behavior in a hardware description language (HDL) and simulate the functional behavior to verify it is correct.
+
+Logic synthesis: Automatically translate HDL behavioral description into a list of transistor elements and their interconnections, called the “netlist.”
+
+Physical design: Choose the appropriate transistor components, determine their physical locations on the silicon, and the trajectories of the interconnection wires between them.
+
+Signoff: Use verification software like Ansys RedHawk-SC to analyze and validate the design to ensure proper functionality and performance. Verify that the layout meets all manufacturability requirements. Chips cannot be repaired, so if there is any mistake in the design, all the manufactured chips must be thrown away and the design has to be revised. This is why it’s so important to check and verify before proceeding to manufacturing.
+
+Tapeout: Generate the final graphic files for creating the photomasks of the layout and send to the manufacturer for production.
+
+Testing and packaging: Test to confirm the SoC delivers on the specifications and is ready for use. The silicon chip is then encapsulated in a protective package.
+
+
+
+
+
+
 
 
 
