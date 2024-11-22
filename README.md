@@ -1971,22 +1971,41 @@ In digital design, Each and every net must have only one driver only.
 
 <summary>What is System On Chip(SOC) </summary>
 
-#**System on a Chip: How Smaller, Faster Devices are Made**
+**System on a Chip: How Smaller, Faster Devices are Made**
 In electronics, the name of the game is “more performance, less power, and less space.” Especially in portable devices such as tablets and smartphones, massively complex technology must fit within the smallest possible footprint and use the least amount of power. To create devices that are both fast and small, engineers eliminate the need for multiple integrated circuits by consolidating all the necessary components into a single package, called a system on a chip (SoC).
 
 **What is a System on a Chip?**
 
-A system on a chip is an integrated circuit that compresses all of a system’s required components onto one piece of silicon. By eliminating the need for separate and large system components, SoCs help simplify circuit board design, resulting in improved power and speed without compromising system functionality. Components contained within an SoC can be:
+At their core, SoCs are microchips that contain all the necessary electronic circuits for a fully functional system on a single integrated circuit (IC). In other words, the CPU, internal memory, I/O ports, analog inputs and output, as well as additional application-specific circuit blocks, are all designed to be integrated on the same chip. SoCs differentiate themselves from traditional devices and PC architectures, where a separate chip is used for the CPU, GPU, RAM, and other essential functional components. 
 
-*Data processing units
-*Embedded memory
-*Graphics processing units (GPUs)
-*USB interfaces
-*Video and audio processing
+Various SoCs are developed depending on their intended device. For example, SoCs on smartphones or other IoT devices may also incorporate Wi-Fi and cellular network modems. In the traditional approach, SoCs use shorter wiring between circuit blocks to reduce power expenditure and increase efficiencies.
 
-Compact SOCs have become an indispensable solutions for various markets, spanning from wired applications like data centers, artificial intelligence (AI), and high-performance computing (HPC) to battery-operated devices like mobile phones and wearables.
+**Understanding the Components and Construction of SoCs**
+System-on-chips, as their name implies, contain nearly all the necessary functional circuit blocks for a full system on a single chip. Generally, you will find the following components on any SoC:
 
-![image](https://github.com/user-attachments/assets/3dd16d59-921a-48b4-a78f-d50ae2b26103)
+A processor with multiple cores in the form of a microcontroller, microprocessor, digital signal processor, or application-specific instruction set processor.
+
+Memory capabilities such as RAM, ROM, FLASH, EEPROM, and/or cache memory.
+
+External interfaces for wired communication protocols such as HDMI, USB, FireWire, USART, SPI,  I²C, or Ethernet.
+
+Wireless capabilities such as WiFi or Bluetooth and other radio frequency capabilities.
+
+A Graphical Processing Unit (GPU) for accelerating specific tasks.
+
+Voltage regulators, phase lock loop (PLL) control systems, built-in oscillators, timers, and analog-to-digital (ADC) converters.
+Intrachip communication subsystems for connecting individual circuit blocks, such as Interface busses or newer intercommunication networks known as networks-on-chip (NoC).
+
+Digital, analog, and mixed-signal processing circuit blocks for any sensors, actuators, data collection, and data analysis.
+SoC capabilities powering the next generation.
+
+Generally, engineers want to reduce energy waste, save on spending, and further miniaturize devices. With system-on-chip technology, this is possible through advanced integration methods on a single IC. 
+
+These compact and versatile chips have powered the rise of smartphones, allowing for incredible power in a small form factor. Similarly, due to their compact and power-efficient qualities, manufacturers are incorporating SoCs into new IoT devices, embedded systems, and even automobiles. 
+
+Furthermore, we’ve also seen a shift in SoC technology used in personal computers and laptops to further reduce power consumption and improve performance. Less circuit real estate generally results in less heat generation, less power consumption, and a lower cost of production. This has allowed more efficient device design for heat distribution, minimal latency, and accelerated data transmission. 
+
+Because SoCs are highly specialized, they are often applied in individualized tasks. Custom SoCs are now being developed for specific applications such as enhancing machine learning, advanced AI capabilities, and high-performance computing with faster data processing. SoCs can perform multiple calculations as a distributed operation (rather than the limited parallelism offered by traditional CPUs) to further accelerate calculations. For this reason, many companies are now investing in their own development of custom SoCs to support their advanced data and signal processing needs. 
 
 **The History of SoCs**
 With smaller devices so common in our everyday lives, it’s hard to imagine a time when SoCs weren’t in everything. But it wasn’t until the 1970s that the concept of fitting an entire system onto a single microchip first became a reality.
