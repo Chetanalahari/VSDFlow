@@ -2157,6 +2157,37 @@ In our VSDBabySoC design, we are using a 10-bit DAC.
 <details>
 	<summary>VSDBabySoC Modelling</summary>
 
+ #### What is Modelling?
+
+* Modelling and simulation (M&S) is the use of a physical/logical representation of a given system to generate data and help determine decisions/make predictions about the system.
+* M&S is widely used in the VLSI domain.
+
+#### Purpose of modelling :
+
+System models are specifically developed to support analysis, specification, design, verification and validation of a system, as well as to communicate certain information.
+
+#### **What are we modelling? (VSDBabySoC)**
+
+* Some initial input signals will be fed into `vsdbabysoc` module.
+* PLL will start generating the proper `CLK` for the circuit.
+* Clock signal `CLK` will make the `rvmyth` to execute instructions and some values are generated, these values are used by `DAC` core to provide the final output signal named `OUT`
+* There are 3 main elements (IP cores) and a wrapper as SoC and also a testbench module.
+
+#### Step-by-Step process of modelling :
+
+1) Install These Required Packages:
+   
+        $ pip3 install pyyaml click sandpiper-saas
+
+2) `git clone https://github.com/manili/VSDBabySoC.git` - clone this repo containing VSDBabySoC design files and testbench.
+   
+3) cd `/home/subhasis/VSDBabySoC`
+   
+4) `sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/` - to translate `.tlv` definition of `rvmyth` into `.v` definition.
+
+![image](https://github.com/user-attachments/assets/10beeae2-99b9-46ac-a6aa-db81d319b467)
+
+
  
 
 
