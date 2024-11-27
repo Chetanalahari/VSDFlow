@@ -2150,21 +2150,14 @@ A Digital-to-Analog Converter (DAC) converts a digital input signal into an anal
 - **Binary Inputs**: The number of binary inputs of a DAC is generally a power of two.
 - **Analog Output**: A single output representing the analog signal.
 
-### Types of DACs
-- **Weighted Resistor DAC**: Uses resistors with weighted values to convert the binary input into an analog output.
-
- ![image](https://github.com/user-attachments/assets/7fdbed2b-1f26-4b6a-9d9e-9735f5d2b019)
-
-- **R-2R Ladder DAC**: Utilizes a repetitive structure of resistors with values of R and 2R to achieve the conversion.
-
- ![image](https://github.com/user-attachments/assets/8807c0a2-0253-4e83-8832-e8ce7c2971f3)
-
 In our VSDBabySoC design, we are using a 10-bit DAC.
 
 </details>
 
 <details>
 	<summary>VSDBabySoC Modelling</summary>
+
+ 
 
 
 
