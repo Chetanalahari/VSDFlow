@@ -2181,7 +2181,7 @@ System models are specifically developed to support analysis, specification, des
 
 2) `git clone https://github.com/manili/VSDBabySoC.git` - clone this repo containing VSDBabySoC design files and testbench.
    
-3) cd `/home/subhasis/VSDBabySoC`
+3) cd `/home/chetana/VSDBabySoC`
    
 4) `sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/` - to translate `.tlv` definition of `rvmyth` into `.v` definition.
 
