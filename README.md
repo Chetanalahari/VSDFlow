@@ -2173,6 +2173,20 @@ System models are specifically developed to support analysis, specification, des
 * Clock signal `CLK` will make the `rvmyth` to execute instructions and some values are generated, these values are used by `DAC` core to provide the final output signal named `OUT`
 * There are 3 main elements (IP cores) and a wrapper as SoC and also a testbench module.
 
+####**Follow these steps to model the IP cores separately**
+
+**For modelling RVMYTH(RISC-V)**
+
+git clone https://github.com/kunalg123/rvmyth/
+cd rvmyth
+csh
+iverilog mythcore_test.v tb_mythcore_test.v
+./a.out
+gtkwave <file_name>.vcd &
+Add the required waveforms.
+
+![image](https://github.com/user-attachments/assets/b0240d10-7dc9-4710-98eb-dc863467f3fa)
+
 #### Step-by-Step process of modelling :
 
 1) Install These Required Packages:
@@ -2186,6 +2200,30 @@ System models are specifically developed to support analysis, specification, des
 4) `sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/` - to translate `.tlv` definition of `rvmyth` into `.v` definition.
 
 ![image](https://github.com/user-attachments/assets/10beeae2-99b9-46ac-a6aa-db81d319b467)
+
+5) `iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module` - to compile and simulate vsdbabysoc design.
+   
+6) cd `output`
+   
+7) `./pre_synth_sim.out` - To generate pre_synth_sim.vcd file,which is our simulation waveform file.
+    
+8) gtkwave `pre_synth_sim.out` - to open simulation waveform in gtkwave tool.
+
+   ![image](https://github.com/user-attachments/assets/ce19976d-6862-4d73-b90c-2f26e4181934)
+
+   ![image](https://github.com/user-attachments/assets/6086cc9e-f603-4a8d-93d5-e7b0ede1d2e6)
+
+ </details>
+
+<details>
+
+<summary>Module 11 - Post-Synthesis Simulation (GLS) of BabySoC</summary>
+
+#### Why do pre-synthesis Simulation? Why not just do post-synthesis Simulation? :  
+
+
+
+
 
 
  
