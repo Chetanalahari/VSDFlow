@@ -2219,7 +2219,9 @@ Add the required waveforms.
 
 <summary>Module 11 - Post-Synthesis Simulation (GLS) of BabySoC</summary>
 
-#### Why do pre-synthesis Simulation? Why not just do post-synthesis Simulation? :  
+#### Why do pre-synthesis Simulation? Why not just do post-synthesis Simulation? : 
+
+
 
 
 
