@@ -2,7 +2,7 @@
 
 <details>
 
-<summary>module1- Tools Installation</summary>
+<summary>Tools Installation</summary>
 
 ### Install Yosys
 
@@ -50,7 +50,7 @@ sudo apt install gtkwave
 
 <details>
 
-<summary>module 2 - Introduction to Verilog RTL Design and Synthesis</summary>
+<summary>Introduction to Verilog RTL Design and Synthesis</summary>
 
 In RTL design, the adherence to specifications is verified through simulation using a tool called a simulator. For this course, the simulator used is Icarus Verilog (Iverilog). The design refers to the actual Verilog code or set of codes that implement the intended functionality to meet the required specifications.
 
@@ -163,7 +163,7 @@ yosys> write_verilog -noattr good_mux.netlist.v
 
 <details>
 
-<summary>module 3 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
+<summary>Timing libs, hierarchical vs flat synthesis and efficient flop coding styles</summary>
 
 
  A .lib file, also referred to as a Liberty file, is a standardized format in the electronic design automation (EDA) industry. Library cell description contains a lot of information like timing information, power estimation, other several attributes like area, functionality, operating condition etc. Speaking more technically, liberty format is a format to represent timing and power properties of black boxes (which we cant descend into). Liberty is an ASCII format, usually represented in a text file with extension “.lib“.
@@ -364,6 +364,2248 @@ In the scenario described, when the reset signal goes low before the clock arriv
 **Simulation of Synchronous Reset D-Flip Flop using iverilog followed by GTKWave**
 
 <img width="640" alt="image" src="https://github.com/user-attachments/assets/ab809fab-1c04-483b-b7ff-8438f6c13cc3">
+
+**Synthesis of Asynchronous Reset D-Flip Flop using yosys:**
+
+Here, we have to map the Flip-Flops to the dfflib which is present in sky130_fd_sc_hd_tt_025C_1v80.lib
+
+Here's the command for mapping the flipflops to the dfflib:
+
+yosys> dfflibmap -liberty ../lib/sky130_fd_sc_hd_tt_025C_1v80.lib
+
+![image](https://github.com/user-attachments/assets/e2617527-845e-444c-ba62-1e7b3d8d2813)
+
+**Synthesis of Asynchronous set D-Flip Flop using yosys:**
+
+![image](https://github.com/user-attachments/assets/22ca9d8b-35e0-40f3-8f1e-4aeb86b5d466)
+
+**Synthesis of Synchronous Reset D-Flip Flop using yosys:**
+
+![image](https://github.com/user-attachments/assets/02bc9128-4d3d-4863-b17e-4aa21620ec80)
+
+</details>
+
+<details>
+    <summary>Combinational and Sequential Optimization</summary>
+
+  <ul>
+        <li>
+            <details>
+                <summary>Combinational Logic Optimization</summary>
+                <ul>
+                    <li>
+                        <details>
+                           <summary><strong>PART 1: For opt_check Modules</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read Library</strong>
+                                    <p>In Yosys, execute the command to read the library:</p>
+                                    <img width="728" alt="Read Library" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/bf2a8b14-da19-41ff-96ac-ee1fc0572722">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Read Verilog File</strong>
+                                    <p>Load the Verilog file for the 'opt_check' module:</p>
+                                    <img width="652" alt="Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1c68e3e0-f349-4a91-9aa0-df769f531e71">
+                                </li>
+                                <li>
+                                    <strong>Step 3: Define Module for Synthesis</strong>
+                                    <p>Define the module to be synthesized and view the number of cells in the module:</p>
+                                    <img width="286" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7e9cb74a-e0d5-4779-b786-eb7d62618c60">
+                                    <img width="420" alt="Cell Count" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ea4b5d4a-122a-4881-903f-66d5a37996c0">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Execute opt_clean</strong>
+                                    <p>Run opt_clean to remove unused cells and wires:</p>
+                                    <img width="623" alt="opt_clean Execution" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/b9d682ef-5229-4092-9dff-ac44c408aff0">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate Netlist</strong>
+                                    <p>Generate the netlist and observe the reduction in the number of cells:</p>
+                                    <img width="611" alt="Netlist Generation" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4d887668-b080-4942-a05d-5350f1ac6e51">
+                                    <img width="598" alt="Cell Reduction" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/78dbf1ca-d2c6-458c-9b3e-8ef595bd0c82">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View Netlist Design</strong>
+                                    <p>Execute the show command to view the netlist design:</p>
+                                    <img width="611" alt="View Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/0992c28f-063b-4a43-90b0-b2abdfad762b">
+                                </li>
+                                <li>
+                                    <strong>Steps 7-12: Repeat for Additional Modules</strong>
+                                    <p>Repeat the above steps for additional modules (opt_check2, opt_check3, opt_check4), observing the changes and improvements each time:</p>
+                                    <img width="418" alt="Further Steps" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/16b97a65-65b6-4b51-ac38-3218c9d2865d">
+                                    <img width="556" alt="ABC Command" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/17c9dd9f-fd22-4312-bb51-0be49eadb040">
+                                    <img width="497" alt="Further ABC Command" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/3607a834-f446-462b-ab11-25856870721a">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>PART 2: multiple_modules Optimization</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read Verilog File</strong>
+                                    <p>Load the Verilog file for 'multiple_modules_opt.v'.</p>
+                                    <img width="744" alt="Read Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4ef7a599-3701-4953-8c1a-450a923a9876">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Define the Module for Synthesis</strong>
+                                    <p>Specify which module to synthesize.</p>
+                                    <img width="398" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/73c1c313-ae77-45ad-9814-436b4d1cdebf">
+                                </li>
+                                <li>
+                                    <strong>Step 3: Flatten the Design</strong>
+                                    <p>Apply design flattening techniques to simplify the hierarchy.</p>
+                                    <img width="475" alt="Flatten Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/7dd4686a-7897-4ba8-8a65-52111a04903d">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Execute opt_clean</strong>
+                                    <p>Remove unused cells and wires to optimize the design.</p>
+                                    <img width="635" alt="Execute opt_clean" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4bfecaba-c49b-4ca9-958e-f1e7486aaa62">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate the Netlist</strong>
+                                    <p>Generate the netlist and note the reduction in the number of cells.</p>
+                                    <img width="617" alt="Generate Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c7b85d9d-f18d-4992-bf0b-151f22301e3d">
+                                    <img width="571" alt="Cell Reduction" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/cf863f0b-27aa-4781-8b36-0e6bd0f6275a">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View Netlist Design</strong>
+                                    <p>Display the synthesized netlist design to verify correctness and optimization.</p>
+                                    <img width="595" alt="View Netlist Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/83c65d81-da59-49a9-8735-3938a35d7c18">
+                                </li>
+                                <li>
+                                    <strong>Step 7: Repeat Optimization for Additional Module</strong>
+                                    <p>Repeat the optimization steps for 'multiple_modules_opt2.v' and observe changes.</p>
+                                </li>
+                                <li>
+                                    <strong>Step 8: View Netlist Design for Additional Module</strong>
+                                    <p>Review the final netlist design for 'multiple_modules_opt2.v'.</p>
+                                    <img width="353" alt="Final Netlist Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/18374a6c-27ec-4bb3-9094-b057cbc6a9e2">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Sequential Logic Optimization</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary><strong>PART 1: Dff_const Synthesis</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read the Library</strong>
+                                    <p>Load the required library in Yosys.</p>
+                                    <img width="735" alt="Read Library" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c4b43fb9-4a90-4695-842f-d68680ce4f0b">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Read the Verilog File</strong>
+                                    <p>Load the Verilog file for 'dff_const1.v'.</p>
+                                    <img width="669" alt="Read Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/e85367f2-5aa3-4692-9684-a5726016a08e">
+                                </li>          
+                                <li>
+                                    <strong>Step 3: Define the Module for Synthesis</strong>
+                                    <p>Specify the module to be synthesized and view the design hierarchy.</p>
+                                    <img width="306" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c5e25901-ce0f-4520-9e21-ac1d5bc2666c">
+                                    <img width="422" alt="Design Hierarchy" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/80bc0503-0ade-47e4-bb10-a6773c53051f">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Run dfflibmap</strong>
+                                    <p>Map the D flip-flop cells to sequential cells using dfflibmap.</p>
+                                    <img width="870" alt="Run dfflibmap" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/76ce4935-130d-4692-a5b3-211c7211afdc">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate the Netlist</strong>
+                                    <p>Create the netlist for the design.</p>
+                                    <img width="611" alt="Generate Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/4802d8a6-2763-4975-be62-805a4473ac2a">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View the Design</strong>
+                                    <p>Execute the 'show' command to view the synthesized design.</p>
+                                    <img width="594" alt="View Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/8dcc75b9-0bc2-43a3-89ae-9b0a1a8b6122">
+                                </li>
+                                <li>
+                                    <strong>Steps 7-12: Repeat for Additional Files</strong>
+                                    <p>Repeat the above steps for 'dff_const2.v', 'dff_const3.v', and 'dff_const4.v', viewing the design after each synthesis.</p>
+                                    <img width="609" alt="View Design 2" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/481c7486-83c1-4fe3-8301-ba1f930bc791">
+                                    <img width="1359" alt="View Design 3" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/5f8109ea-1f69-4d4f-bdb5-fb59e37cc882">
+                                    <img width="616" alt="View Design 4" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/69a155b4-d899-4597-9631-59e497c7edb5">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><strong>PART 2: Sequential Optimizations for Unused Outputs</strong></summary>
+                            <ol>
+                                <li>
+                                    <strong>Step 1: Read the Library</strong>
+                                    <p>Load the required library in Yosys.</p>
+                                    <img width="744" alt="Read Library" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/f2b3de6b-a2c1-498b-b957-aec0487c08be">
+                                </li>
+                                <li>
+                                    <strong>Step 2: Read the Verilog File</strong>
+                                    <p>Load the Verilog file for 'counter_opt.v'.</p>
+                                    <img width="663" alt="Read Verilog File" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/c603c612-d903-4e05-ab1d-bde84a52fd3c">
+                                </li>          
+                                <li>
+                                    <strong>Step 3: Define the Module for Synthesis</strong>
+                                    <p>Specify the module to be synthesized and view the design hierarchy.</p>
+                                    <img width="324" alt="Define Module" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/1a4979c3-0da7-4cf9-9bb2-a698f2b4c51d">
+                                    <img width="407" alt="Design Hierarchy" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/ecd2ad69-1e69-44cf-8403-d8670bf7028e">
+                                </li>
+                                <li>
+                                    <strong>Step 4: Run dfflibmap</strong>
+                                    <p>Map the D flip-flop cells to sequential cells using dfflibmap.</p>
+                                    <img width="873" alt="Run dfflibmap" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/65e34b53-4b7a-4d55-a43f-0cf59489a386">
+                                </li>
+                                <li>
+                                    <strong>Step 5: Generate the Netlist</strong>
+                                    <p>Create the netlist for the design.</p>
+                                    <img width="621" alt="Generate Netlist" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/d4b49572-0224-4ca6-978d-71ace7464ce3">
+                                </li>
+                                <li>
+                                    <strong>Step 6: View the Design</strong>
+                                    <p>Execute the 'show' command to view the synthesized design.</p>
+                                    <img width="1361" alt="View Design" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/26807584-5733-4728-bc9f-de30d5d18d4d">
+                                </li>
+                                <li>
+                                    <strong>Steps 7-8: Repeat for Additional Files</strong>
+                                    <p>Repeat the above steps for 'counter_opt2.v', viewing the design after synthesis.</p>
+                                    <img width="425" alt="View Design 2" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/2fdaa020-ca5a-4bf7-9ca2-b4087914ac52">
+                                    <img width="1370" alt="View Design 3" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/848db3bb-35bd-4fd2-8e92-122e76d86f70">
+                                </li>
+                            </ol>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+
+<details>
+    <summary> Gate Level Simulation, Synthesis Simulation Mismatch, and Blocking & Non-Blocking Statements </summary>
+ Gate-level simulation is a critical process in digital design, verification, and validation, especially for complex digital systems in modern technology nodes. It involves modeling digital circuits at the gate level to understand their behavior accurately. Gate-level simulation occurs after synthesis, providing a detailed netlist representation of the circuit with functional and timing characteristics. This simulation method is essential for dynamic behavior verification, complex timing checks, power efficiency concerns, and design-for-test features integrated at the gate level,ensuring the accuracy of scan chain insertions in DFT. Gate-level simulation is crucial for gaining confidence in design and verification, offering a more comprehensive analysis than static methods. It plays a pivotal role in validating, verifying, and optimizing digital circuits, making it a cornerstone of digital design.
+
+In Gate level Simulation(GLS): Testbench used for RTL verification is used for netlist simulation,as they are logically same.
+
+Why GLS?
+
+Verify the correctness of the design after synthesis
+Ensure the timing of the design is met which is done with delay annotation (timing aware)
+GLS Flow using iverilog: 
+
+![image](https://github.com/user-attachments/assets/345c4b03-b35b-43f9-a5a0-0a6604281e3d)
+
+Synthesis-Simulation mismatch occurs due to following reasons:
+
+Missing sensitivity list
+
+Blocking vs non-blocking assignments
+
+Non-standard verilog coding
+
+***1.Misiing Sensitivity list**
+
+Missing Sensitivity List:
+
+Simulator works when change in signals (activity) occurs,and output gets updated. If the sensitivity list of always block does not contain all input signals,it will cause mismatches between synthesis and simulation.
+
+For ex: As seen in the screenshot below, in the left column,always block is evaluated only when sel is changing. So output y is not reflecting changes in input i1 and i0 when sel is not changing. Rather it acts like a latch. The code on the right side represents the correct design coding for mux. In this case always is evaluated for any signal changes.
+
+![image](https://github.com/user-attachments/assets/64486d48-d514-4854-97b5-7f8ddf11b976)
+
+As seen in the screenshot below,the code in left column is correct to achieve our aim of inferring two flip-flops but in code in right column,as q is getting directly assigned to d , hence only one flop is inferred. Hence,it is recommended to always use non-blocking statement in always block for sequential logic inference.
+
+![image](https://github.com/user-attachments/assets/d6292caf-9296-4ff5-9c02-ccced848e2fc)
+
+For ex: In left column code,y will get old value of q0 during evaluation/simulation,which is mimicking the behavour of a flop. To get latest value of q0,we can interchange the statements in always block,as seen in right column code. Synthesis will produce the same logic implementation for both the codes. This will lead to synthesis-simulation mismatch. 
+
+![image](https://github.com/user-attachments/assets/b9d53842-26fa-435a-8450-ed8d85527674)
+    <ul>
+        <li>
+            <details>
+                <summary>Lab on GLS and Synth Simulation Mismatch</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary>PART 1: For ternary_operator_mux</summary>
+                            <p>Step 1</p>
+                            <pre>
+                            
+<img width="603" alt="image" src="https://github.com/user-attachments/assets/03dc47ea-e7ca-4b7d-b5ce-c2c0eafc5188">
+                            
+Load ternary_operator_mux.v & its testbench to Iverilog.
+
+<img width="608" alt="image" src="https://github.com/user-attachments/assets/9ce3e939-8e65-48b5-9cf3-93b95a72186f">
+                           </pre>
+                            <p>Step 2</p>
+                            <pre>
+Execute a.out file.
+
+<img width="537" alt="image" src="https://github.com/user-attachments/assets/220edbf8-7cd0-4584-bfa8-65387cd96984">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Load the .vcd file genrated into GTKWave.
+                             
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/3cfb4fdd-043d-42b1-b6df-2c3c798b2077">
+
+The ternary_operator_mux's behavior is analyzed on GTKWave   
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/3636f09d-7320-401b-aee5-4210b3acc97c">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Invoke Yosys by using command yosys
+                             
+<img width="511" alt="image" src="https://github.com/user-attachments/assets/eff0bb7c-4c03-44d7-af46-177b869b8b28">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Read the library using read_liberty
+                             
+<img width="374" alt="image" src="https://github.com/user-attachments/assets/cccf22e9-c129-4f24-8752-08b46920bc3d">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Read the ternary_operator_mux.v using read_verilog
+                             
+<img width="392" alt="image" src="https://github.com/user-attachments/assets/0e0427cc-2a25-40b9-8506-5f4bcfa91b04">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Define the module that needs to be synthesized
+                             
+<img width="389" alt="image" src="https://github.com/user-attachments/assets/325720ec-50c6-4da4-af6a-df052ac773e1">
+
+<img width="321" alt="image" src="https://github.com/user-attachments/assets/df448d4f-7202-4d6e-92f0-2f2ab9d4dcfa">
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Generate the netlist using abc command
+                             
+<img width="602" alt="image" src="https://github.com/user-attachments/assets/a871caf2-6e48-4506-82cd-1566a047645c">
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Write the netlist to ternary_operator_mux_net.v
+                             
+<img width="326" alt="image" src="https://github.com/user-attachments/assets/9e7e9fb1-f7e6-4b40-ad44-c0c67bfdb19f">
+                            </pre>
+                            <p>Step 10</p>
+                            <pre>
+Execute show to view the design
+                             
+<img width="584" alt="image" src="https://github.com/user-attachments/assets/740447f6-c7ce-463d-bac2-df78608a862d">
+                            </pre>
+                            <p>Step 11</p>
+                            <pre>
+Exit yosys and load the ternary_operator_mux_net.v to iverilog.
+                             
+<img width="611" alt="image" src="https://github.com/user-attachments/assets/8fbb45c4-be16-49fb-af97-f25b36562628">
+                            </pre>
+                            <p>Step 12</p>
+                            <pre>
+Execute a.out file.
+                             
+<img width="591" alt="image" src="https://github.com/user-attachments/assets/a822fcf4-139e-43a4-b2fa-aa39cf076a52">
+                            </pre>
+                            <p>Step 13</p>
+                            <pre>
+Load the generated .vcd file into GTKWave
+                             
+<img width="547" alt="image" src="https://github.com/user-attachments/assets/c16c4628-f2fd-44d0-89d3-96a36851d2aa">
+                            </pre>
+                            <p>Step 14</p>
+                            <pre>
+Observe the GLS of ternary_operator_mux
+                             
+<img width="1357" alt="Screenshot 2024-05-26 at 2 33 52 PM" src="https://github.com/c-dhanush-p/SFAL-VSD/assets/170220133/746f372e-4dd9-4da4-a4ff-57836f00945e">
+                            </pre>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                             <summary>PART 2: For bad_mux</summary>
+                            <p>Step 1</p>
+                            <pre>
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/b690e2b6-0071-4b63-a0ac-34c5d611c270">
+
+Load bad_mux.v & its testbench to Iverilog.
+
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/6746e369-8755-4ea7-aa05-7d4ece8331d0">
+                            </pre>
+                            <p>Step 2</p>
+                            <pre>
+Execute a.out file.
+                             
+<img width="575" alt="image" src="https://github.com/user-attachments/assets/b5122755-55f4-44fd-ab41-ccc4f53e34a8">
+                            </pre>
+                            <p>Step 3</p>
+                            <pre>
+Load the .vcd file genrated into GTKWave.
+                             
+<img width="603" alt="image" src="https://github.com/user-attachments/assets/5036e31a-c1d3-4a69-aa7b-ea1e41484537">
+
+No Activity on sel: When sel is low, i0 should be selected, but you are seeing no change in behavior. This indicates that the always block is not responding to changes in i0 or i1 when sel changes.
+
+Multiplexer Acting Like a Flip-Flop: The behavior where only y is changing and not responding to i1 or sel signals properly is more like a flip-flop than a multiplexer. This is because the always @ (sel) sensitivity list limits the updates to y only when sel changes, which is incorrect for a combinational circuit like a multiplexer.
+
+Why This is Happening:
+The sensitivity list in your always @ (sel) block only watches for changes in sel. This means it ignores changes in i0 and i1, which explains why the multiplexer is not responding to changes in these inputs.
+
+The non-blocking assignment (<=) is more suited for sequential logic (like flip-flops), not combinational logic. Non-blocking assignments introduce a delay, making the output update asynchronously, which is not ideal for this multiplexer.
+
+The bad_mux's behavior is analyzed on GTKWave      
+
+<img width="603" alt="image" src="https://github.com/user-attachments/assets/7cbe4b3d-550b-4582-b36d-2622a7c3675e">
+                            </pre>
+                            <p>Step 4</p>
+                            <pre>
+Invoke Yosys by using command yosys
+                             
+<img width="535" alt="image" src="https://github.com/user-attachments/assets/93b7987e-9035-4367-98ab-c50991173165">
+                            </pre>
+                            <p>Step 5</p>
+                            <pre>
+Read the library using read_liberty
+                             
+<img width="407" alt="image" src="https://github.com/user-attachments/assets/350ab2fc-7220-475f-af74-f140f2ca4d1a">
+                            </pre>
+                            <p>Step 6</p>
+                            <pre>
+Read the bad_mux.v using read_verilog
+                             
+<img width="382" alt="image" src="https://github.com/user-attachments/assets/614c51ae-abd8-4499-b73a-0f2afaa4634c">
+                            </pre>
+                            <p>Step 7</p>
+                            <pre>
+Define the module that needs to be synthesized
+                             
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/1d57e190-29a1-4e5c-9f85-6095087ad5fd">
+                            </pre>
+                            <p>Step 8</p>
+                            <pre>
+Generate the netlist using abc command
+                             
+<img width="305" alt="image" src="https://github.com/user-attachments/assets/fa14ee56-311c-4fac-b19a-fd755fd19950">
+                            </pre>
+                            <p>Step 9</p>
+                            <pre>
+Write the netlist to bad_mux_net.v
+                             
+<img width="233" alt="image" src="https://github.com/user-attachments/assets/8f28c19c-70dc-429d-95eb-d5958b112e5a">
+                            </pre>
+                            <p>Step 10</p>
+                            <pre>
+Execute show to view the design
+                             
+<img width="474" alt="image" src="https://github.com/user-attachments/assets/52fbd2bc-40d5-49d1-b635-1c67696d1dac">
+                            </pre>
+                            <p>Step 11</p>
+                            <pre>
+Exit yosys and load the bad_mux_net.v to iverilog.
+                             
+<img width="605" alt="image" src="https://github.com/user-attachments/assets/bcaeb1ec-5167-45dd-b335-5301c7c367b8">
+                            </pre>
+                            <p>Step 12</p>
+                            <pre>
+Execute a.out file.
+                             
+<img width="537" alt="image" src="https://github.com/user-attachments/assets/25263fed-740f-4cf1-914e-0b3197b6832f">
+                            </pre>
+                            <p>Step 13</p>
+                            <pre>
+Load the generated .vcd file into GTKWave
+                             
+<img width="586" alt="image" src="https://github.com/user-attachments/assets/f8a5b674-6d98-4fb2-b173-affd170d910a">
+                            <p>Step 14</p>
+                            <pre>
+Observe the behavior of GLS of ternary_operator_mux due to Simulation Mismatch
+                             
+<img width="632" alt="image" src="https://github.com/user-attachments/assets/fb763ad8-660c-4080-bff0-d3237cbcc8cc">
+                            </pre>          
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+        <li>
+        <details>
+                <summary>Synthesis Simulation Mismatch</summary>
+                <p>Step 1</p>
+                <pre>
+ <img width="636" alt="image" src="https://github.com/user-attachments/assets/c4cc895d-b8aa-4fb5-85c3-2fc5d27ba5e3">
+
+Load blocking_caveat.v & its testbench to Iverilog.
+
+<img width="607" alt="image" src="https://github.com/user-attachments/assets/073ec1a5-edde-4e97-b96b-9a48330639ee">
+                </pre>
+                <p>Step 2</p>
+                <pre>
+Execute a.out file.
+                 
+<img width="566" alt="image" src="https://github.com/user-attachments/assets/dd977a5b-552c-4b15-9515-4e1c23413328">
+                </pre>
+                <p>Step 3</p>
+                <pre>
+Load the .vcd file genrated into GTKWave.
+                 
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/c7e985cc-6504-49be-9679-384406b2cdf3">
+
+The blocking_caveat's behavior is analyzed on GTKWave  
+
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/97a8fbff-2ce9-47d9-8958-7311dca90fe5">
+                </pre>
+                <p>Step 4</p>
+                <pre>
+Invoke Yosys by using command yosys
+                 
+<img width="548" alt="image" src="https://github.com/user-attachments/assets/1a1b6398-bedb-4d84-bbea-ab966fd82e8b">
+                </pre>
+                <p>Step 5</p>
+                <pre>
+Read the library using read_liberty
+                 
+<img width="407" alt="image" src="https://github.com/user-attachments/assets/f825b9e2-103d-44e9-8302-8aecacffb2ca">
+                </pre>
+                <p>Step 6</p>
+                <pre>             
+Read the blocking_caveat.v using read_verilog
+
+<img width="374" alt="image" src="https://github.com/user-attachments/assets/cceb64b4-2ec1-4982-94a1-9b36d79ce317">
+                </pre>
+                <p>Step 7</p>
+                <pre>
+Define the module that needs to be synthesized
+                 
+<img width="311" alt="image" src="https://github.com/user-attachments/assets/14a3fd42-70ca-4059-9fa5-f51212029d10">
+
+<img width="455" alt="image" src="https://github.com/user-attachments/assets/7c2522a0-ab0f-49b2-a8c2-2e7e8167faf7">
+                </pre>
+                <p>Step 8</p>
+                <pre>
+Generate the netlist using abc command
+                 
+<img width="328" alt="image" src="https://github.com/user-attachments/assets/85e4c166-283a-4787-bf0d-1f5a1e03add6">
+                </pre>
+                <p>Step 9</p>
+                <pre>
+Write the netlist to blocking_caveat_net.v
+                 
+<img width="235" alt="image" src="https://github.com/user-attachments/assets/9949b3f1-ce9a-4531-861c-48e866180c05">
+                </pre>
+                <p>Step 10</p>
+                <pre>
+Execute show to view the design
+                 
+<img width="598" alt="image" src="https://github.com/user-attachments/assets/e78bafd1-04fb-4be4-bf08-2478c2e3b884">
+                </pre>
+                <p>Step 11</p>
+                <pre>
+To do GLS
+                 
+Exit yosys and load the blocking_caveat_net.v to iverilog.
+                 
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/e5c368df-bdd5-42fd-9874-ed1a7c466620">
+                </pre>
+                <p>Step 12</p>
+                <pre>
+Execute a.out file.
+                 
+<img width="513" alt="image" src="https://github.com/user-attachments/assets/5fc15b8c-f1ea-4237-ba43-a4c9b380dc8f">
+                </pre>
+                <p>Step 13</p>
+                <pre>
+Load the generated .vcd file into GTKWave
+                 
+<img width="601" alt="image" src="https://github.com/user-attachments/assets/ce3e1f8e-50a5-4edd-9cd2-9261d4055239">
+                </pre>
+                <p>Step 14</p>
+                <pre>
+Observe the behavior of GLS of blocking_caveat due to Simulation Mismatch
+                 
+<img width="601" alt="image" src="https://github.com/user-attachments/assets/8c938f65-142a-4a77-850d-85d84fae6d87">
+                </pre>
+            </details>
+        </li>
+    </ul>
+</details>
+
+<details>
+
+<summary>Design for Test (DFT)</summary>
+
+
+Introduction to Design for Test (DFT) :
+
+Design for Test (DFT) is a crucial aspect of electronic system design that focuses on incorporating testability features into the hardware and software of a product. 
+The primary goal of DFT is to ensure that the final product can be thoroughly tested, both during the manufacturing process and throughout its lifetime, to identify and address any defects or issues.
+
+Key Principles of DFT :
+* Accessibility: Designing the system in a way that allows easy access to internal components and signals for testing purposes.
+* Controllability: Ensuring that the system can be driven into specific states or conditions to facilitate comprehensive testing.
+* Observability: Enabling the observation and monitoring of internal signals and states during the testing process.
+* Testability: Incorporating features that simplify the testing process, such as built-in self-test (BIST) mechanisms or scan chains.
+  
+Benefits of Implementing DFT :
+
+* Improved Product Quality: DFT helps identify and address defects early in the design process, reducing the risk of shipping faulty products.
+* Reduced Manufacturing Costs: Effective testing during manufacturing can catch issues before they become more expensive to fix, leading to cost savings.
+* Faster Time-to-Market: By incorporating DFT principles, the testing process can be streamlined, allowing for quicker product development and deployment.
+* Easier Maintenance and Troubleshooting: DFT features can aid in the diagnosis and repair of issues during the product's lifetime, improving overall reliability and serviceability.
+
+DFT Techniques and Methodologies :
+
+Some common DFT techniques and methodologies include:
+* Scan-based Testing: Inserting scan chains to allow for the controllability and observability of internal logic.
+* Built-in Self-Test (BIST): Incorporating self-testing capabilities directly into the hardware or software.
+* Boundary Scan (IEEE 1149.1): Using a standard interface to access and control the pins of integrated circuits for testing purposes.
+* Design for Testability (DFT) Automation: Leveraging EDA tools to automate the incorporation of DFT features during the design process.
+
+
+
+Basic Terminologies to be known about DFT:
+
+**Defect** - A defect in an electronic system is the unintended difference between the implemented hardware and its intended design.
+
+Some typical defects in VLSI chips are :
+1. Process Defects – missing contact windows, parasitic transistors, oxide breakdown,etc.
+2. Material Defects – bulk defects (cracks, crystal imperfections), surface impurities,etc.
+3. Age Defects – dielectric breakdown, electromigration, etc.
+4. Package Defects – contact degradation, seal leaks, etc.
+
+**Error** - A wrong output signal produced by a defective system is called an error. An error is an “effect” whose cause is some “defect”.
+
+**Fault** - A representation of a “defect” at the abstracted function level is called a fault.
+
+**Controllabilty** - From DFT point of view,Controllability means the ease of both '0' and '1' being able to propagate to each and every node within the target patterns.
+                     A point is said to be controllable if both '0' and '1' can be propagated through scan patterns.
+
+<img width="576" alt="image" src="https://github.com/user-attachments/assets/7b438b9a-ed9d-4ec4-8e0e-1a24c2e9b9fe">
+
+**Observabilty** - By observability, we mean our ability to measure the state of a logic signal. When we say that a node is observable, we mean that the value at the node can be shifted out through scan patterns                    and can be observed through scan out ports.
+
+<img width="556" alt="image" src="https://github.com/user-attachments/assets/b93add16-54ef-48f9-9c45-e3f7bc521a37">
+
+**Fault Coverage** - Percentage of the total number of logical faults that can be tested using a given test set T.
+
+**Defect Level** - It refers to the fraction of shipped parts that are defective or the proportion of the faulty chip in which fault is not detected and has been classified as good.
+
+DFT Techniques :
+
+Ad-hoc Techniques : 
+
+The adhoc DFT relies on “good” design practices learned from experience. Some of these are:
+
+• **Avoid asynchronous logic feedbacks.** A feedback in the combinational logic can
+give rise to oscillation for certain inputs. This makes the circuit difficult to
+verify and impossible to generate tests for by automatic programs. This is
+because test generation algorithms are only known for acyclic combinational
+circuits.
+
+• **Make flip-flops initializable.** This is easily done by supplying clear or reset
+signals that are controllable from primary inputs.
+
+• **Avoid gates with a large number of fan-in signals.** Large fan-in makes the
+inputs of the gate difficult to observe and makes the gate output difficult to
+control.
+
+• **Provide test control for difficult-to-control signals.** Signals such as those produced
+by long counters require many clock cycles to control and hence increase
+the length of the test sequence. Long test sequences are harder to generate.
+
+Structured DFT :
+
+* Structured DFT is performed by using Scan flip-flops.
+
+* The main idea in scan design is to obtain control and observability for flip-flops.
+
+* This is done by adding a test mode to the circuit such that when the circuit is in this mode, all flip-flops functionally form one or more shift registers. 
+
+* The inputs and outputs of these shift registers (also known as scan registers) are made into primary inputs and primary outputs. 
+
+* Thus, using the test mode, all flip-flops can be set to any desired states by shifting those logic states into the shift register. 
+
+* Similarly, the states of flip-flops are observed by shifting the contents of the scan register out. All flip-flops can be set or observed in a time (in terms of clock periods) that equals the
+number of flip-flops in the longest scan register.
+
+**What is the purpose of scan flops?**
+
+There are various reasons, but 2 main reasons are noted below:
+
+* To test stuck-at faults in the manufactured devices.
+* To test the path in the manufactured devices for delay that is to test whether each path is working at a functional frequency or not.
+
+Types of Scan flip-flops:
+
+1) Multiplexed Scan cell :
+   
+   <img width="209" alt="image" src="https://github.com/user-attachments/assets/64a29a4c-35b5-4741-bcc6-7bf682e05416">
+
+3) Clocked Scan cell:
+
+   <img width="200" alt="image" src="https://github.com/user-attachments/assets/e0fb4bed-b954-44c4-ad32-7fcc15130a8c">
+
+4) LSSD Scan cell:
+
+   <img width="390" alt="image" src="https://github.com/user-attachments/assets/1c9513c5-b6e0-4edd-81b8-6c42cf0f787f">
+
+Scan chain : A scan chain is a serial interconnection of scan flip-flops within a digital circuit. It forms a shift register-like structure that enables the sequential access and manipulation of the internal states of flip-flops in the circuit for testing and debugging purposes.
+
+Here's how a scan chain works:
+
+* Interconnection: In the scan chain, each scan flip-flop is connected to the next one in the chain, forming a serial path that traverses through all the flip-flops within the circuit.
+* Shift-In/Shift-Out: The scan chain allows for the serial shifting of data into and out of the flip-flops. Test patterns can be shifted into the chain to set the initial states of the flip-flops for testing. 
+                      Similarly, the current states of the flip-flops can be serially shifted out for observation or comparison.
+* Test Patterns: Test patterns generated by automatic test pattern generation (ATPG) tools or other testing methods can be applied to the scan chain to detect faults within the circuit, such as stuck-at faults, 
+                 transition faults, and bridging faults.
+
+**How long one scan chain be?**
+The length of a scan chain in a digital circuit can vary depending on several factors, including the design requirements, the complexity of the circuit, and practical limitations imposed by the technology and implementation.
+
+In theory, there is no strict limit to the length of a scan chain, and it can span hundreds or even thousands of flip-flops in a very large integrated circuit. However, longer scan chains can present challenges in terms of testing speed, power consumption, and signal integrity.
+
+Here are some considerations regarding the length of a scan chain:
+
+* Testing Speed: As the length of the scan chain increases, the time required to shift in or shift out test patterns also increases. Longer scan chains can result in longer test times, which may be undesirable for production testing or design validation.
+* Power Consumption: Each flip-flop in the scan chain consumes power during shifting operations. Longer scan chains may result in higher power consumption, which can be a concern in low-power designs or battery-operated devices.
+* Signal Integrity: In longer scan chains, signal integrity issues such as propagation delay, skew, and crosstalk become more significant. Proper design techniques, such as buffer insertion and routing optimizations, may be necessary to mitigate these issues.
+* Design Constraints: Practical limitations imposed by the technology and implementation may restrict the length of a scan chain. For example, limitations in routing resources, timing constraints, or the available space on the integrated circuit may impose constraints on the maximum achievable scan chain length.
+
+**No. of scan ports(scan_in and scan_out) required = 2 * no. of scan chains.** because each scan chain requires its' own scan_in & scan_out port
+
+Note:
+
+**Number of cycles required to run a pattern = Length of longest scan chain**
+
+<img width="629" alt="image" src="https://github.com/user-attachments/assets/598d9f75-eccc-4e4b-8697-6349f4877060">
+
+**Why do we use ATPG?**
+* Automatic Test Pattern Generation (ATPG) is utilized in Very Large Scale Integration (VLSI) to ensure the correctness and quality of Integrated Circuits (ICs).
+* ATPG is essential because it automates the process of generating test patterns that can detect faults in the circuit, making it cost-effective, time-saving, and crucial for the design and testing phase of VLSI 
+  circuits.
+* The complexity of VLSI circuits, with millions of transistors on a single chip, makes manual testing impractical.
+
+**What is ATE?**
+
+* Automatic Test Equipment (ATE) is computerized machinery that automates the testing of electronic devices and systems, evaluating functionality, performance, quality, and stress tests. ATE uses test instruments to carry out these evaluations with minimal human interaction, ensuring adequate performance and safety of electronic devices. 
+* The components of an ATE system typically include hardware, software, test instruments, signal sources, and test probes or handlers. 
+* Industries use ATE extensively, including defense and aerospace, automotive, and industrial automation, to validate electronics before deployment or sale. ATE plays a crucial role in ensuring end-users receive 
+  devices that function as intended and are safe to use.
+
+**When and where the DFT design is included?**
+
+* When is it included? - At the beginning of the  design flow
+
+* Where exactly ? - during the synthesis flow
+
+Synopsys Tool used for DFT insertion is DFT Compiler:
+
+**<img width="612" alt="image" src="https://github.com/user-attachments/assets/27d15c61-25a5-44e9-815c-741ad6e97253">
+
+</details>
+
+<details>
+
+<summary>Introduction to Logic Synthesis</summary>
+
+Tools to be used for this course :
+
+1) iverilog - For Verilog Compilation and Simulation
+2) gtkwave - For viewing Simulation Output
+3) Synopsys Design Compiler - For Logic Synthesis
+4) Skywater 130nm Library
+
+Objectives of this Course :
+
+1) Understand various steps in Logic Synthesis.
+2) Understand and write SDC (Synopsys Design Constraints) for a given design module.
+3) Perform Synthesis and write out netlist using Design Compiler.
+4) Generate and Analyze the Synthesis reports/STA reports.
+
+**What is Logic Synthesis?**
+
+Logic Synthesis is the process of converting RTL description of design into Gate-level netlist.
+The design is converted into gates and the connections are made between the Gates.
+This is given out as a file called netlist.
+
+![image](https://github.com/user-attachments/assets/f31fd4d9-59ec-4334-b8a6-26f4318125ff)
+
+**What is .lib?**
+
+![image](https://github.com/user-attachments/assets/75d14b44-c7b1-4884-a9ed-26d8ebf1689d)
+
+
+**Why Different Flavors of gate are required?**
+
+![image](https://github.com/user-attachments/assets/f6e4a6d4-3078-42e1-b960-b92c93c46dcd)
+
+* Different flavors of gate are required because the delay of combo logic between flops determines maximum speed of operation (clock frequency) of our design.
+* Smaller the combinational delay,larger can be the clock frequency,which can be achieved by using faster cells.
+* But, we also need to meet our hold time requirement for flops,so that data should not come within the hold window of a flop.Here the need arises for slower cells.
+* Hence,both faster and slower cells are used to meet our target clock frequency while avoiding hold time violations in our design.
+* These cells collectively form our std. cell library and their timing and logical information is used by tools,in the form of .lib format.
+
+![image](https://github.com/user-attachments/assets/311864b0-2659-4e66-aab3-938d9ab1ec77)
+
+**Faster cell vs slower cell**
+
+![image](https://github.com/user-attachments/assets/0a89c472-b82e-4436-89fb-b13963e32d03)
+
+![image](https://github.com/user-attachments/assets/fb8f075a-2724-4dbd-9c02-03d6fc7215b0)
+
+![image](https://github.com/user-attachments/assets/b4c447dc-6f7c-47a5-abc4-5b09f383282c)
+
+**Logic Synthesis Example:**
+
+![image](https://github.com/user-attachments/assets/9e7a682a-74c7-49ae-90f3-68606bbf8137)
+
+**Which is the best implementation**?
+
+![image](https://github.com/user-attachments/assets/d454ea3c-2c12-4278-936a-3ea6aeccfadc)
+
+![image](https://github.com/user-attachments/assets/8460bf48-9a12-4088-8b46-cc412c625825)
+
+![image](https://github.com/user-attachments/assets/2c020d5a-6a78-4c20-ba57-0eab1784e715)
+
+**What is the correct recipie**
+
+***Constraints*** Constraints are the guide to the sythesizer to pick the correct library cells which is most appropriate for the design. As illustrate Implementation 1,2 and 3 are correct and will be picked based on the need.
+
+#### Introduction to Design Compiler
+
+**What is Design Compiler (DC)?** :
+
+![image](https://github.com/user-attachments/assets/aa3819da-bb72-4f38-83c7-2322a85ff0fa)
+
+![image](https://github.com/user-attachments/assets/1cccb2e7-171c-4403-8153-6715939dc4aa)
+
+**What are Synopsys Design Constraints (SDC)?**
+
+![image](https://github.com/user-attachments/assets/db68188f-cc58-4502-8923-dfebd6a43229)
+
+**DC Setup**
+
+![image](https://github.com/user-attachments/assets/d4afcef8-06fc-4482-93cb-bb7fe33f7072)
+
+![image](https://github.com/user-attachments/assets/b59549b3-b88a-4465-9f46-493b7067eabc)
+
+**DC Synthesis Flow**
+
+![image](https://github.com/user-attachments/assets/6319eca1-9ab7-4201-accc-a29d3271d5cc)
+
+#### Lab 1 - Invoking DC Basic Setup :
+
+git clone the repository 
+
+Commands to invoke DC are :
+
+csh # to invoke c shell
+
+dc_shell # to invoke DC tool
+
+![image](https://github.com/user-attachments/assets/c0c3eaf0-d466-4da0-b289-ebee942f0953)
+
+target_library - It specifies the library of std. cells for a particular technology to be used by DC tool during technology mapping and optimization phase of synthesis.
+
+link_library - It contains the set of design entities,i.e,any std. cell,PLL,SRAM,Analog IPs which are directly instantiated in RTL,and is used by DC tool to resolve these references.These entities are not used 
+               during technology mapping phase.
+
+* When we echo the target_library and link_library variables in dc_shell we see they are pointing to `your_library.db` and `* your_library.db` respectively,which are non-existent imaginary libraries.
+
+![image](https://github.com/user-attachments/assets/b82b4f91-9b0b-4c53-b316-ded2775b1d80)
+
+**Read the design**
+
+read_verilog verilog_files/lab1_flop_with_en.v - Command used to reads design information from Verilog files into memory. It does the work of both analyze and elaborate command in single step.
+
+![image](https://github.com/user-attachments/assets/25e7495f-2d4e-45a7-92ce-92ab5de29683)
+
+![image](https://github.com/user-attachments/assets/d86e7377-2d90-43ad-966c-2886443b6661)
+
+**Write the design**
+
+![image](https://github.com/user-attachments/assets/431a566e-f362-49df-b9c6-5166c0f0ec9c)
+
+RTL for lab1_net.v
+
+![image](https://github.com/user-attachments/assets/147d5ec5-ebc3-492f-9427-096a34bc1a2d)
+
+After writing out the netlist, we can observe in above screenshot,that the tool has currently synthesized our design using generic technology independent cells,which are part of GTECH library of DC to produce the netlist.
+
+To understand our design, DC has some virtual libraries called GTECH libraries.
+
+To get a proper technology mapped netlist,we need to specify our technology library for the target_library and link_library variables.
+
+**Read the design after specifying library**
+
+![image](https://github.com/user-attachments/assets/b10caca0-ece6-45cb-9d36-b604bd5d4d42)
+
+**Write the design after specifying library**
+
+![image](https://github.com/user-attachments/assets/5db92979-d085-436a-85a0-51c1399a609c)
+
+![image](https://github.com/user-attachments/assets/dcacd57a-10db-4c8f-ad92-ff0eb2d40d2a)
+
+It is still writing in the GTECH format only. we need to set two variables 
+
+![image](https://github.com/user-attachments/assets/e2287d9d-3042-4fd2-9dd7-34e10da9373d)
+
+It is still pointing out the your library.db and this need to be corrected 
+
+![image](https://github.com/user-attachments/assets/081da6c7-a4a9-467b-aa15-e2e264be8de4)
+
+![image](https://github.com/user-attachments/assets/37a72a54-71be-401b-a903-240df14016b3)
+
+**link**
+
+![image](https://github.com/user-attachments/assets/3c19f8b6-bcb0-4a6f-b7b1-ef542f6c1c33)
+
+**Compile**
+
+![image](https://github.com/user-attachments/assets/2d671969-38bc-41ed-a3ef-1c830b7bd9bb)
+
+![image](https://github.com/user-attachments/assets/016c2197-a350-4a77-b26d-91a88831b0cd)
+
+**Write**
+
+![image](https://github.com/user-attachments/assets/952b730f-efd2-48b1-9aed-6baa751395a9)
+
+![image](https://github.com/user-attachments/assets/1c72527e-fb1e-4ee2-a417-de3dd1397fce)
+
+#### Lab 2 - Intro to ddc gui with design_vision :
+
+`.ddc` - .ddc consists of the same information as a .db file. ddc is a synopsys encrypted form of our design which can be read by the tools such as Design compiler, IC compiler and prime time. It consists of the netlist(list of components and nets) information of our design , .db libraries (target and link) used, along with the constraints which we have specified for implementing the design.
+
+**What is Design Vision?**
+
+* The Design Vision tool is the graphical user interface (GUI) for the Synopsys logic synthesis environment. 
+* Design Vision provides analysis tools for viewing and analyzing your design at the generic technology (GTECH) level and the gate level. 
+* It also provides all of the synthesis capabilities of the Design Compiler tool. Design Vision provides menu commands and dialog boxes for the most commonly used synthesis features. 
+* In addition, we can enter any dc_shell command on the command line in the GUI or the shell.
+
+Commands to generate .ddc file and read it in design vision tool:
+
+      After Synthesis has been performed using DC shell,
+      write -f ddc -out lab1_net_with_sky130.ddc # writes out .ddc file for current design
+      exit dc shell and enable C Shell with the command csh
+      design_vision # invokes design vision tool , invoke after exiting DC shell or in new terminal window/tab
+      read_ddc lab1_net_with_sky130.ddc # read the design information for the specified .ddc file
+
+ [image](https://github.com/user-attachments/assets/de4e36f0-ee8d-456f-a146-e87f5370ed66)
+
+ Design Vision is the gui format of dc compiler
+
+ ![image](https://github.com/user-attachments/assets/b165f1f2-6620-4975-b9dd-521c3d4aa5fe)
+
+ #### Lab 3 - dc synopsys setup :
+
+ 1.csh
+
+ 2.dc_shell
+
+ 3.echo $target_library (shows your non-existant virtual library)
+
+ ![image](https://github.com/user-attachments/assets/068dd1ec-c3aa-47d3-9853-c9fe152ec0f7)
+
+ 4.echo $link_library
+
+ ![image](https://github.com/user-attachments/assets/8d6450c8-c1fe-488c-9500-1971c6dca5bb)
+
+ 5.set target_library DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db 
+
+ ![image](https://github.com/user-attachments/assets/1371bf72-b4f4-4964-bb0b-8db089fbf169)
+
+ 6.set link_library {*target_library}
+
+ ![image](https://github.com/user-attachments/assets/10695cea-a8a0-4e59-9fc9-08d00ac1c5ba)
+
+ * When we have design with multiple .db libraries , it is very cumbersome & error-prone to set target_library and lInk_library manually, as we cannot miss even one .db library
+* So to solve the above issue, all repetitive tasks ( setting target and link libraries) which is essential for tool setup can be put in a single file ,called `.synopsys_dc.setup`.
+* `.synopsys_dc.setup` can be present in two locations
+    * First,in DC tool install directory which is the default one to be picked by DC tool
+    * Second, can be created in user home directory,and which when present will be read by DC tool for setup instead of the default one present in its' install directory.
+ 
+ ![image](https://github.com/user-attachments/assets/63c325e7-899d-47f2-b04e-6d7458fcce63)
+
+ **Creating manually in home directory**
+
+1.pwd
+
+ ![image](https://github.com/user-attachments/assets/effddbdc-a985-4527-99b7-39d856f772a1)
+
+ 2.gvim .synopsys_dc.setup( Save the file in the home directory)
+
+ ![image](https://github.com/user-attachments/assets/667eabf7-9413-4e7e-9f9e-5102e73bc208)
+
+ 3. Invoke dc_shell and give the command echo $target_library. It is set properly.
+
+![image](https://github.com/user-attachments/assets/706212e8-dbe2-42e8-976d-4e5187630d31)
+
+If the file .synopsys_dc.setup is either moved from home directory or its' name is altered in any manner, it will not be read by dc_shell when the tool is being invoked.
+
+</details>
+ 
+<details>
+  <summary> TCL Scripting Lab</summary>
+
+TCL (Tool Command Language) is extensively used for writing SDC (Synopsys Design Constraints) files, which are essential for defining the design intent and constraints during synthesis and physical design. Additionally, all the internal commands within Design Compiler (DC) and other Synopsys tools are written and executed using TCL. This allows for greater flexibility and automation in design processes, making TCL a fundamental scripting language for EDA tools and workflows in the VLSI industry.
+
+![image](https://github.com/user-attachments/assets/2da85d1d-d518-4239-ad0d-f0a01b4a699c)
+
+![image](https://github.com/user-attachments/assets/7047292d-e23f-465d-bc1f-1ed8450d3dd5)
+
+Syntax is very inportant in TCL
+
+**While loop**
+
+![image](https://github.com/user-attachments/assets/3eef0c33-ff39-476e-8769-7bfe0c05a77c)
+
+**For loop**
+
+![image](https://github.com/user-attachments/assets/2ff44972-fe17-49e8-8185-11825f678478)
+
+**foreach loop**
+
+![image](https://github.com/user-attachments/assets/a6133b65-4704-4447-9ea1-4743d4137e10)
+
+# TCL Scripting Lab
+
+**1.Initialize and view variables:**
+
+Set a Variable:
+
+![image](https://github.com/user-attachments/assets/3ec65286-c1e8-48d7-81c0-11a82891997e)
+
+**2.Using For loop**
+
+![image](https://github.com/user-attachments/assets/e549200a-47d7-4817-8c71-6a644146ccc0)
+
+**3.Using While loop**
+
+![image](https://github.com/user-attachments/assets/1a76f488-a4ea-4022-9fac-7376aac3c1ac)
+
+**4.Creating a list**
+
+![image](https://github.com/user-attachments/assets/9ba10b80-c71d-46fd-9a7f-8ab297f2a255)
+
+</details>
+
+<details>
+
+<summary>Basics of Static Timing Analysis</summary>
+
+#### **What is STA?**
+
+* Static Timing Analysis (STA) is a method of validating the timing performance of a digital circuit design by checking all possible paths for timing violations under worst-case conditions. The key points about 
+  STA are:
+  
+    * It breaks down the design into timing paths, calculates the signal propagation delay along each path, and checks for violations of timing constraints inside the design and at the input/output interface.
+    * STA considers the worst possible delay through each logic element, but does not simulate the logical operation of the circuit. This makes it faster than dynamic simulation, which requires simulating 
+      multiple test vectors.
+    * The goal of STA is to verify that despite variations in factors like input data, temperature, voltage, and manufacturing, all signals will arrive at the correct time - not too early or too late.
+    * STA checks for two types of timing violations: setup time violations (where a signal arrives too late) and hold time violations (where a signal changes too soon after the clock edge).
+    * STA is an essential part of the integrated circuit design process, allowing timing issues to be identified and fixed before manufacturing, improving first-pass silicon success.  
+ 
+![image](https://github.com/user-attachments/assets/24a58023-c505-41f5-82c6-1096f145d368)
+
+Delay is function of the inflow(input transition).
+
+![image](https://github.com/user-attachments/assets/85b76aa2-898d-4fad-8d20-0cdfa9a70427)
+
+Delay is the function of bucket(output capacitance)
+
+![image](https://github.com/user-attachments/assets/712aa92f-31b9-43c7-8cc1-a5341537887e)
+
+**Timing Arcs**
+
+In Static Timing Analysis (STA), a timing arc refers to the path through a logic cell or gate that represents the propagation of a signal from one point (input) to another (output). It defines how a signal transition at the input of a cell impacts the output and is essential for calculating delays and analyzing the timing characteristics of a design.
+
+**Key Points About Timing Arcs:**
+
+**Types of Timing Arcs:**
+
+Combinational Timing Arcs: These connect input pins to output pins of logic gates (e.g., from input A to output Y of an AND gate).
+
+Sequential Timing Arcs: These connect input or clock pins to output pins or timing-related internal pins of sequential elements (e.g., from the clock to Q output of a flip-flop).
+
+**Characterization:**
+
+Timing arcs have associated delay values that are characterized based on various factors such as input slew, output load, and other cell-specific conditions.
+Libraries (e.g., Liberty format) contain these delay and timing models to be used during STA.
+
+**Importance in STA:**
+
+Timing arcs are used to propagate timing information across the design during STA.
+They help in calculating setup time, hold time, propagation delay, and clock-to-Q delays for sequential elements.
+Analyzing timing arcs allows for identifying paths that might violate timing constraints, such as critical paths that could lead to timing failures.
+Understanding timing arcs is fundamental for accurately modeling the timing behavior of a circuit and ensuring it meets the required performance specifications.
+
+![image](https://github.com/user-attachments/assets/714af4cf-5f98-494f-9bae-1fe35b3cbf6d)
+
+![image](https://github.com/user-attachments/assets/28db0d9a-3527-4c86-b2cf-573f7c0f5408)
+
+![image](https://github.com/user-attachments/assets/d83f3b4a-c968-4f22-89d6-3abe3d6e050b)
+
+Note :
+
+For Sequential cells, Setup and hold constraint arcs are always around/calculated around sampling point of the clock waveform.
+
+For DFFs, for Setup and hold constraints arcs, sampling point are calculated from the respective clock edge according to the flip-flop (posedge or negedge) used.
+For DLATs (D-Latches),
+For positive latch, setup and hold constraint arcs are from negedge of clock (The point where latch transitions from transparent state to opaque state)
+For negative latch, setup and hold constraint arcs are from posedge of clock (The point where latch transitions from transparent state to opaque state)
+
+#### **What are Timing Paths?**
+
+The concept of timing paths in VLSI design is crucial for ensuring proper timing performance. Timing paths are defined as the paths between start points and end points in a design, where the timing requirements need to be met within a clock cycle. Different types of timing paths include Input to Register, Input to Output, Register to Register, and Register to Output paths. Each type has specific characteristics and requirements:
+
+* Input to Register Path: This path starts at an input port and ends at the data input of a sequential element. It is semi-synchronous, where the register is controlled by the clock, and input data can arrive 
+  at any time.
+* Register to Register Path: In this purely sequential path, both the starting and ending flops are controlled by the clock.
+* Register to Output Path: Data can arrive at any point in time in this path, starting at the clock pin of a sequential element and ending at an output port.
+* Input to Output Path: This pure combinational path starts at an input port and ends at an output port.
+
+* Moreover, timing paths can be further categorized into Clock Paths, Clock Gating Paths, and Asynchronous Paths based on their characteristics. Clock paths involve the traversal of clock signals, clock 
+  buffers, and clock inverters. Clock gating paths introduce additional advantages by passing through gated elements.
+* Asynchronous paths, on the other hand, involve paths from input ports to asynchronous set or clear pins of sequential elements.
+
+![image](https://github.com/user-attachments/assets/e743f8b9-961c-414e-bab8-2f084212c510)
+
+ The valid paths in above figure are:
+  
+   * input port A to UFFA/D
+   * input port A to output port Z
+   * UFFA/CLK to UFFB/D
+   * UFFB/CLK to output port Z
+
+ #### **Why Constraints are used?**
+
+ We use design constraints (Timing Specifications,constraints related to area,power etc.) to guide the synthesizer, to choose the correct flavor of std. cells from our std. cell library, which will help in
+implementing our design in the most optimized manner,while adhering to our goals of **PPA (Power,Performance & Area)**.
+
+ ![image](https://github.com/user-attachments/assets/b9ef13e6-9782-46a3-b367-b555e593f867)
+
+ ![image](https://github.com/user-attachments/assets/3a9561a9-b176-4912-9160-6ed4ae07a65a)
+
+![image](https://github.com/user-attachments/assets/e9fbbca6-778a-436a-a175-7524289756db)
+
+![image](https://github.com/user-attachments/assets/fa72853b-0947-46e4-8be6-f56a6be4e43d)
+
+![image](https://github.com/user-attachments/assets/1fbb41d6-b680-4da3-b96a-3df64df411b0)
+
+In a design with two external registers, Register 1 and Register 2, both being driven by the same clock, the paths between them effectively become register-to-register paths when the design starts operating. However, since these registers are at the boundary of the design, the internal STA tool may not initially see or analyze these paths.
+
+When the design starts functioning and the entire system is considered, these register-to-register paths become visible and are analyzed for timing. This means that the logic between the input and output of these registers must be optimized to ensure that the data can travel within the required timing window set by the clock period.
+
+To meet timing requirements, the input logic must be carefully managed and optimized for minimal delay. This includes:
+
+By squeezing or optimizing the input logic path for delay, the overall timing can be maintained so that the design functions correctly when integrated with the rest of the system.
+
+![image](https://github.com/user-attachments/assets/86a4e937-c39c-439d-95c8-bf292b1e567d)
+
+REG_EXT_3 is also clocked by the same clock as the other registers, making it part of a synchronous path. This means that the path between internal register REG_3 and external register REG_EXT_3 must be properly constrained to ensure timing correctness.
+
+**Key Points to Consider:**
+The output logic between REG_3 and REG_EXT_3 must have a defined delay limit. This ensures that the data arriving at REG_EXT_3 meets the required setup and hold timing requirements for proper operation.
+
+If the delay of the output logic is not constrained, it can lead to timing violations in this path. This can result in data not being correctly captured by REG_EXT_3, leading to potential functional errors.
+
+**Importance of Output Logic Constraints:**
+Output Timing Path: The path from REG_3 through the output logic to REG_EXT_3 needs to be managed to ensure that the total delay does not exceed the clock period minus the setup time of REG_EXT_3.
+
+Constraining the Path: It is essential to apply appropriate timing constraints, such as set_output_delay, to define how much delay can be tolerated for the output logic. This constraint ensures that the output data arrives on time for REG_EXT_3 to latch it correctly during the active clock edge.
+
+**Solution:**
+Set Output Delay: Use STA constraints like set_output_delay to limit the delay of the output logic path. This helps in specifying how much time is available for the signal to travel from REG_3 to REG_EXT_3.
+
+Clock Uncertainty and Margins: Factor in clock uncertainty, skew, and jitter while setting these constraints to provide a buffer for real-world variations.
+
+![image](https://github.com/user-attachments/assets/0c2b7e63-3e26-4238-8bf9-a6d5e3bb41cf)
+
+![image](https://github.com/user-attachments/assets/a6b5117d-50d1-4c47-a3df-52f645e50277)
+
+The diagram shows a synchronous path where all registers are driven by the same clock. The key components include external registers (REG_EXT_1, REG_EXT_2, REG_EXT_3), internal registers (REG_1, REG_2, REG_3), and logic blocks (input logic, combo logic, and output logic). The design operates at a clock frequency of 500 MHz, meaning the clock period (Tclk) is 2 ns.
+
+**Key Points and Markings:**
+
+**Clock Period (Tclk):**
+
+The clock frequency is 500 MHz, so the clock period is 2 ns. This is the time within which all the signal propagation, register delays, and logic delays must fit to avoid timing violations.
+
+**Setup Time (Tsetup) and Clock-to-Q Delay (Tclk-Q):**
+
+All flip-flops in the design have a setup time (Tsetup) of 0.5 ns.
+The clock-to-Q delay (Tclk-Q) for the registers is also marked as 0.5 ns. This represents the time it takes for the output to change after a clock edge.
+
+**Delays in the Input Logic Path:**
+
+The external delay from REG_EXT_1 to the start of the input logic is 0.7 ns.
+The internal delay from the input logic to REG_1 is marked as 0.5 ns. This means the total delay from REG_EXT_1 to REG_1 is 1.2 ns (0.7 ns + 0.5 ns).
+
+**REG_1 to Combo Logic:**
+
+The delay between REG_1 and the combo logic block is 0.5 ns, as marked.
+The delay within the combo logic is 1 ns, totaling 1.5 ns from REG_1 to the end of the combo logic.
+
+**REG_3 to Output Logic Path:**
+
+The path from REG_3 to the start of the output logic has a Tclk-Q delay of 0.5 ns.
+The delay within the output logic is 1 ns, resulting in a total path delay of 1.5 ns from REG_3 to the output pin.
+
+**External Output Delay to REG_EXT_3:**
+
+The output delay from the end of the output logic to REG_EXT_3 is 0.3 ns.
+This means the total path from REG_3 to REG_EXT_3 is 1.8 ns (0.5 ns + 1 ns + 0.3 ns).
+
+**Constraints and Timing Analysis:**
+The total delay from REG_3 to REG_EXT_3 must fit within the clock period minus the setup time of REG_EXT_3.
+The setup time at REG_EXT_3 is 0.5 ns, so the available time for the signal to propagate is 1.5 ns (2 ns - 0.5 ns).
+The actual total delay in the output path (1.8 ns) exceeds the available time (1.5 ns), indicating a timing violation. This highlights the need to constrain the output logic and reduce delays to meet timing requirements.
+
+**How the Tool Uses These Constraints to Optimize the Design:**
+
+**Timing Analysis and Optimization:** The tool uses the constraints provided (e.g., clock period, setup time, external delays) to perform detailed timing analysis on the paths. It identifies paths that do not meet the required timing and flags them as potential violations.
+
+**Logic Squeezing:** When the tool detects that the total path delay exceeds the available timing window (as seen in the path from REG_3 to REG_EXT_3), it attempts to optimize the logic. This process, known as logic squeezing, involves:
+
+Reducing Path Delays: The tool may restructure or optimize the output logic to reduce delays. This can involve simplifying the logic or using faster gates.
+
+Buffer Insertion: The tool might insert buffers or adjust the existing circuit to balance delays and improve the signal propagation time.
+
+Gate Sizing: Adjusting the size of gates to ensure they drive the load more efficiently, thus reducing transition delays.
+
+**How the Tool Figures Out and Adjusts:**
+
+Static Timing Analysis (STA): The tool performs STA by calculating the timing for each path and comparing it against the constraints. If the total delay in a path (like the 1.8 ns in the path from REG_3 to REG_EXT_3) exceeds the available time (1.5 ns), the tool marks it as a critical path.
+
+Iterative Optimization: The tool iteratively optimizes the paths by adjusting logic and checking if the updated path now meets the timing constraints.
+
+Feedback and Reporting: After squeezing the logic and making necessary adjustments, the tool reports the new timing characteristics, showing whether the timing requirements are now met.
+
+This is how tools like synthesis engines and place-and-route (PnR) tools analyze, adjust, and squeeze the logic to ensure that the design meets the required timing constraints, ultimately leading to a reliable and efficient circuit design.
+
+![image](https://github.com/user-attachments/assets/8b182c47-03d8-48ad-b92b-556f4050dff6)
+
+##**IO Modelleing**
+
+![image](https://github.com/user-attachments/assets/73457746-6043-4ae4-81f3-60fe79ab0ebc)
+
+This diagram discusses the importance of I/O delay modeling and highlights potential issues related to input transitions in timing analysis.
+
+The note **“Cell delay is a function of input transition”** emphasizes that the delay of a cell depends on the transition time of the input signal. Faster transitions result in lower delays, while slower transitions increase delay.
+
+Practical vs. Ideal Transitions:
+Ideal (Green): Represents an ideal scenario where the input signal has zero rise or fall time, leading to minimal delay.
+Practical (Red): Represents the real-world scenario where the input signal has a non-zero rise or fall time, which increases the delay in the input logic.
+
+The note **“Non-zero rise time will cause the ‘Input Logic’ delay to increase!! Potential Setup Problem?”** points out that if the input transition is not ideal, it will cause the delay in the input logic block to increase. This can result in a setup timing issue, where data does not reach the subsequent register within the clock period.
+
+The blue box asks, **“External Delay is accounted, but are the signals ideal here? Will the transition play a role?”**, indicating that while external delays might be considered, it’s essential to account for practical signal transitions. Non-ideal transitions can impact the input logic delay, potentially causing setup timing violations.
+
+**Setup Violation seen with practical transition”:** This indicates that in real scenarios, where transitions are non-zero, the increased delay in the input logic can lead to a setup violation.
+
+![image](https://github.com/user-attachments/assets/91093f57-1a9a-44cd-9f3b-7e55832092f7)
+
+This diagram emphasizes the importance of I/O delay and input transition modeling for ensuring timing correctness in paths that include external and internal components.
+
+The note **“Cell delay is a function of output load!”** highlights that the delay experienced in the output logic depends on the load connected to it. If the load (e.g., REG_EXT_3) is significant, it can increase the delay of the output path.
+
+This can cause potential setup timing failures at the receiving register (REG_EXT_3) due to increased propagation delay through the output logic.
+
+The note **“The Output Load increased the delay of output logic, thereby potentially causing setup failure at the receiving flop”** indicates that if the delay caused by the output load is too high, it can result in the data not reaching REG_EXT_3 within the required timing window. This would cause a setup timing violation and could lead to functional failures in the design.
+
+The blue box **“External Delay is accounted, Will the load play a role?”** asks whether the output load’s impact on delay is considered in the analysis. If not, the timing analysis may underestimate the actual delay and miss potential setup violations.
+
+modeling the output load accurately is crucial for eliminating setup violations. The amount to model comes from specifications and library data, which outline the expected loading conditions.
+
+**Note**As a general rule of thumb, 70% of clock period is set aside for external delay and 30% of clock period is set aside for internal delays. (Note : This is not applicable for all scenarios and for all designs).
+
+![image](https://github.com/user-attachments/assets/d9664ee9-b283-4e84-97c9-1aa8d925f3ba)
+
+</details>
+
+<details>
+
+<summary>Lab Sessions on STA</summary>
+
+#### Lab 1 - Timing .libs :
+
+* Timing libraries (.lib) are ASCII representations of the timing, power, and area associated with standard cells in VLSI physical design. 
+* They are generated by characterizing cells under different PVT (process, voltage, and temperature) conditions, which results in delay calculations based on input transition (slew) and output capacitance 
+ (load).
+
+* A .lib file typically contains three major parts: global definition, cell definition, and pin definition.
+* The global definition includes information about the library, technology, delay model, and library features.
+* The cell definition includes details about each cell, such as its area.
+* The pin definition includes details about each pin, including its direction and capacitance.
+
+As we can see in the screenshot below, the various information like the name of the library,technolgy used (CMOS or others), PVT info, default values of max_transition,capacitance,fanout_load,units of time,capacitance,resistance,voltage etc. can be observed :
+
+![image](https://github.com/user-attachments/assets/62537224-63d5-4f37-823c-13930b3c29bd)
+
+If the output of a cell drives a load that exceeds the maximum capacitance limit defined in the .lib file, the tool flags it as a timing violation.
+
+**Delay model lookup table**
+
+A delay value lookup table is a data structure used in .lib (Liberty format) files to provide pre-characterized delay information for standard cells. This table defines how the propagation delay of a cell changes based on different combinations of input transition times (slew rates) and output load capacitances.
+
+**Purpose:**
+
+The lookup table helps Electronic Design Automation (EDA) tools calculate the delay for a cell under various conditions during Static Timing Analysis (STA).
+It provides a more accurate delay estimation for cells by considering real-world factors like input slew and output load, rather than using a single, fixed delay value.
+Structure:
+
+**The table typically has two axes:**
+
+Input Transition Time (Slew Rate): Represents the time it takes for the input signal to transition from a low to a high value or vice versa.
+
+Output Load Capacitance: Represents the load that the cell is driving.
+The cell delay for each combination of input slew and output capacitance is stored as a value in the table.
+
+STA tools use these tables to interpolate and find the delay value based on the actual input transition time and output load of a specific cell in the design.
+If the exact conditions do not match the entries in the table, the tool interpolates between values to estimate the delay.
+
+![image](https://github.com/user-attachments/assets/816b8043-ed60-4251-b6ed-e619d642a045)
+
+This diagram illustrates how delay model lookup tables in .lib files are used to determine delays for standard cells based on input transition time and output load capacitance. The tables contain pre-characterized data, and when exact matches aren't found, interpolation helps estimate the delay accurately. This process is crucial for conducting precise timing analysis and ensuring that digital circuits meet their timing requirements.
+
+**Interpolation**
+
+Interpolation is a mathematical technique used to estimate unknown values that fall between known data points. In the context of delay value lookup tables used in .lib files for VLSI timing analysis, interpolation helps estimate delay values when the exact input transition time or output load capacitance isn't explicitly listed in the table.
+
+In the example shown below of and2_1 & and2_2 cells,we can see as the drive strength of and2_2 cell is more(wider transistor) ,it has lower delay for same input transition and output load.
+
+![image](https://github.com/user-attachments/assets/4692b3d2-0e1c-4b05-943a-d9f532144db6)
+
+In the below figure, if clock pin attribute is true it is clock pin , else it is a signal pin
+
+![image](https://github.com/user-attachments/assets/b78163a7-d162-4ed0-b118-ac2d9b834a38)
+
+In the below figure, clock attribute is true. This is the way library will know that the pin is a clock pin
+
+![image](https://github.com/user-attachments/assets/aad9e41a-132d-482b-90ad-f3126be63a4a)
+
+For delay lookup table, index 1 is used to form rows and index 2 is used to form columns and delays are shown below
+
+![image](https://github.com/user-attachments/assets/c4068261-6683-44ce-8100-7bc286c32e06)
+
+![image](https://github.com/user-attachments/assets/729714d1-d377-43b6-afd7-8df742114300)
+
+**Unateness**
+
+![image](https://github.com/user-attachments/assets/1a96a0e3-e84d-4ee6-9dc4-246ecca0b06c)
+
+This diagram is an explanation of unateness in logic gates, which describes how the output of a gate responds to changes in its inputs. Here’s a detailed breakdown of the diagram and the types of unateness shown:
+
+**1. Positive Unateness:**
+Definition: A logic gate is said to be positively unate if a rising input always causes the output to either rise or remain unchanged. Similarly, a falling input causes the output to fall or remain unchanged.
+
+Examples:
+**AND Gate:**
+When both inputs (A and B) rise, the output (Y) rises.
+A low-to-high transition in one of the inputs, while the other input is high, results in a high output.
+The truth table in the diagram shows that for the AND gate, a rise in inputs leads to a consistent behavior in the output (highlighted in red).
+
+**OR Gate:**
+A rise in any input leads to a rise in the output. The truth table for the OR gate shows that a low-to-high transition in any input results in a high output.
+
+**2. Negative Unateness:**
+Definition: A logic gate is negatively unate if a rising input causes the output to fall or remain unchanged, and a falling input causes the output to rise or remain unchanged.
+
+Examples:
+**NOT Gate:**
+A rise in the input (A) results in a fall in the output (Y), and vice versa.
+The truth table shows that the NOT gate consistently has an inverse relationship between input and output transitions.
+
+**NAND Gate:**
+When one of the inputs rises, the output falls, showing negative unateness.
+NOR Gate:
+A rise in any input causes the output to fall, as shown in the truth table.
+
+**3. Non-Unate:**
+Definition: A gate is non-unate if a change in an input can result in either a rise or a fall in the output, depending on the state of the other inputs. The output behavior cannot be categorized strictly as positive or negative unate.
+
+Example:
+**XOR Gate:**
+The truth table for the XOR gate shows that an input rise can cause either a rise or a fall in the output, depending on the other input's state.
+The output behavior is inconsistent when one input transitions from low to high or high to low, resulting in non-unate behavior.
+
+The concept of unateness is crucial in timing analysis for determining how signal transitions affect timing paths and delays in digital circuits.
+Practical Significance:
+Positive and Negative Unate Gates are easier to predict in terms of timing behavior.
+Non-Unate Gates introduce complexity in timing analysis as their output transition depends on the state of multiple inputs.
+
+#### Lab 2 - .lib from dc_shell :
+
+![image](https://github.com/user-attachments/assets/2c7678d9-7424-470a-81e4-197e5001589e)
+
+In .lib file, for cells with **non_unate** timing sense (such as xor,xnor etc.), the pin information will have information for both postive unate and negative unate timing sense.
+
+For Sequential cells like DFFs etc, 
+
+* `CLK_N` is the clock pin of negedge flop.
+* Clock-to-Q delay of flip-flop is mentioned as `timing_type : "falling_edge"`(sequential timing arc) , informing that this is a negative edge flip-flop.
+* Timing sense/unateness of Output Q is `non-unate` as `output Q` rises or falls according to rising or falling of `input D`.
+
+![image](https://github.com/user-attachments/assets/acb2d81b-9b1c-4914-85a7-f877926485f7)
+
+* Similarly,for a positive edge flip-flop, `CLK` is the clock pin of posedge flop.
+* Clock-to-Q delay of flip-flop is mentioned as `timing_type : "rising_edge"` , informing that this is a positive edge flip-flop.
+
+![image](https://github.com/user-attachments/assets/07d58c2e-20fa-4e89-ac81-536045630269)
+
+For setup check,the clock edge to be used is also mentioned as, timing_type : "setup_falling"; or timing_type : "setup_rising"; for negedge and posedge flop respectively.
+
+![image](https://github.com/user-attachments/assets/88b47049-5246-48d9-ac8f-a227bd97cc95)
+
+For Latches,
+* For Negative Latch, setup check is done at sampling point which is **posedge of clock signal**,and this is mentioned in .lib as `timing_type : "setup_rising";`
+* For Positive Latch, setup check is done at sampling point which is **negedge of clock signal**,and this is mentioned in .lib as `timing_type : "setup_falling";`
+
+  ![image](https://github.com/user-attachments/assets/0bba54b1-544c-4a7a-b81e-673bef2a58dd)
+
+![image](https://github.com/user-attachments/assets/57829d17-609e-40c5-b8e0-7eb547f78443)
+
+</details>
+
+<details>
+
+<summary>Advanced Constraints</summary>
+
+Specifying Constraints Through SDC
+
+To define a clock, we need to provide the following information:
+
+**Clock source:** It can be a port of the design, or be a pin of a cell inside the design (typically that is part of a clock generation logic).
+Period: the time period of the clock.
+**Duty cycle:** the high duration (positive phase) and the low duration (negative phase).
+**Edge times:** the times for the rising edge and the falling edge.
+By defining the clocks, all the internal timing paths (all flip-flop to flip-flop paths) are constrained; this implies that all internal paths can be analyzed with just the clock specifications.
+The clock specification specifies that a flip-flop to flip-flop path must take one cycle.
+But is the above information enough?
+
+In a real practical design, clock signal does not reach all the flops at the same time.
+
+Clock Network is built during Clock Tree Synthesis phase of Physical Implementation of a design.
+
+Before CTS,clock network is an ideal network and synthesis performs Logic Optimization based on the characteristics of this ideal network.
+
+To take into account the effects of Clock Jitter and Clock Skew , Clock uncertainty has to be defined through SDC before Synthesis is performed in design,so that no. of iterations to meet our timing is reduced.
+
+![image](https://github.com/user-attachments/assets/2cde5f73-f6b2-4460-a73a-39802dd03cfe)
+
+**Clock Generation and Sources of JItter :**
+
+![image](https://github.com/user-attachments/assets/71b214e6-944d-48d0-a03b-42ecca58f60f)
+
+Clock jitter refers to the deviation of a clock edge from its ideal position in time, which can be caused by factors like noise, power supply variations, or interference from nearby circuits.
+
+**Clock Distribution and Clock Skew :**
+
+Clock skew refers to the difference in the arrival time of a clock signal at different components in a synchronous digital circuit system. It can occur due to various factors such as differences in interconnect lengths, temperature variations, capacitive coupling, and material imperfections.
+
+Clock skew can be positive, where the receiving register gets the clock signal later than the transmitting register, or negative, where the transmitting register receives the clock signal later than the receiving register.
+
+In digital circuit design, minimizing clock skew is crucial to ensure proper system operation, especially as clock rates increase, making timing more critical.
+
+Clock skew can impact the synchronization of digital circuits and is a key consideration in designing reliable and efficient systems.
+
+A clock distribution network is a crucial component in digital electronics responsible for distributing clock signals from a central source to various elements within a system that require synchronization.
+
+To minimize clock skew, complex synchronous circuits utilize clock distribution networks, also known as clock trees, which amplify and distribute the clock signal to ensure simultaneous arrival at all register inputs. These networks are often automatically generated by electronic design automation (EDA) software based on key parameters like target frequency, register setup and hold time limits, and maximum clock skew.
+
+![image](https://github.com/user-attachments/assets/8301d171-3147-48b5-8586-7bb4237dd91c)
+
+![image](https://github.com/user-attachments/assets/9340e630-374b-453b-94f5-44308b4d6ce5)
+
+**Clock Modelling :**
+
+![image](https://github.com/user-attachments/assets/7dbbe95b-ede8-4c99-9264-547dec90c2f1)
+
+**Constraints-Summary so far :**
+
+![image](https://github.com/user-attachments/assets/761404a0-a92b-4534-ad26-8a2faa93a8c7)
+
+**How to constrain design in DC :**
+
+![image](https://github.com/user-attachments/assets/f2bea6f6-e0fe-4789-888a-e0ebd265dc83)
+
+**Querying ports or Pins in the design :**
+
+Note : ports,pins,clock,etc. all names are case-sensitive in SDC format.
+
+![image](https://github.com/user-attachments/assets/c998774a-e4b2-4081-86b2-867f525b496f)
+
+**Querying clocks in the design :**
+
+![image](https://github.com/user-attachments/assets/6e1d20e2-3530-4dde-b70d-b859da7e4d2a)
+
+**Querying Cells present in our design :**
+
+![image](https://github.com/user-attachments/assets/480d67e5-2fe8-4cb8-9bdb-71dfa94992e2)
+
+**Defining Clocks :**
+
+![image](https://github.com/user-attachments/assets/7ff4ecae-010b-4dc4-89ed-a680fa286414)
+
+**Definiing Clock Latency and Clock Skew :**
+
+![image](https://github.com/user-attachments/assets/92b75413-ce7b-499c-86dc-dde7686cc4d2)
+
+**Clock Waveform representation defined by create_clock constraint :**
+
+![image](https://github.com/user-attachments/assets/02b775ee-e91a-4ad2-ab06-7ff75e215479)
+
+**Constraining IO Paths :**
+
+**For Input Paths :**
+
+![image](https://github.com/user-attachments/assets/68c934db-a8c3-4b1f-b6aa-c78c588bd916)
+
+**For Output Paths :**
+
+![image](https://github.com/user-attachments/assets/d2eed9bd-f387-4758-b779-a578847af0ec)
+
+</details>
+
+<details>
+
+<summary>Labs on Advanced Constraints</summary>
+
+#### Lab 1 - Loading design get_cells, get_ports, get_nets :
+
+Synthesis of lab8_circuit.v :
+
+RTL code of lab8_circuit.v :
+
+![image](https://github.com/user-attachments/assets/294f7d41-7c1b-4d75-95a5-a7d2fabaaa2d)
+
+**read the verilog file**
+
+Command used - read_verilog lab8_circuit.v
+
+![image](https://github.com/user-attachments/assets/cdd0f73f-95bc-4c00-ab30-d2ac1af3f5dd)
+
+Presto compilation successfully means RTL is not having any errors and is loaded successfully.
+
+**link the design**
+
+command used - link
+
+![image](https://github.com/user-attachments/assets/0d3cc45b-1a3a-4baf-8815-4966aa39ed03)
+
+**Compile** 
+
+command used - compile_ultra
+
+As we can see from screenshot below, 3 1-bit wide Flip-flops with Asyncronous reset have been inferred :
+
+![image](https://github.com/user-attachments/assets/9e533777-720d-4f25-84b6-2659f3dddd1f)
+
+Screenshot of execution of get_ports command :
+
+![image](https://github.com/user-attachments/assets/7652567d-a6d2-4434-8033-95133bfc1fec)
+
+![image](https://github.com/user-attachments/assets/3f6ea76d-4705-4b21-9013-50e5fdabb6cd)
+
+![image](https://github.com/user-attachments/assets/50905431-083e-4e12-90db-37047b10b630)
+
+**To know the direction of the ports**
+
+command used - get_attribute [get_ports rst] direction
+
+![image](https://github.com/user-attachments/assets/e7e54e1d-9e43-4cb6-a37d-777d593ab218)
+
+**To print all ports and direction of each port**
+
+foreach_in_collection my_port [get_ports *] {                                                                                                             set my_port_name [get_object_name $my_port];                                                                                                set dir [get_attribute [get_ports $my_port_name] direction];                                                                                echo $my_port_name $dir;                                                                                                                    }
+
+![image](https://github.com/user-attachments/assets/db5cc287-92dd-47a9-8003-d6dad45cb5bf)
+
+Screenshot of execution of get_cells command :
+
+![image](https://github.com/user-attachments/assets/a5dac5b7-6f49-4645-a281-7443395f0949)
+
+![image](https://github.com/user-attachments/assets/ceb76a70-7ee7-49cb-b120-7ddadc21ef36)
+
+![image](https://github.com/user-attachments/assets/37d14811-89da-4186-b0a5-0f82d6ffe020)
+
+foreach_in_collection my_cell [get_cells * -hier] {                                                                                               set my_cell_name [get_object_name $my_cell];                                                                                                set rname [get_attribute [get_cells $my_cell_name] ref_name];                                                                               echo $my_cell_name $rname;
+}
+
+get_attribute [get_cells REGA_reg] ref_name - To show the reference name (actual name of cell in .lib) on the screen
+
+We can see REGA_reg cell instance has a reference name of sky130_fd_sc_hd__dfrtp_1. sky130_fd_sc_hd__dfrtp_1 is a DFF with asyncronous reset,positive edge triggered with Q (true) as output.
+
+![image](https://github.com/user-attachments/assets/5faa2066-b03d-47de-a33f-a322395a9d8a)
+
+write -f ddc -out lab8_circuit.ddc - write .ddc file to open in design vision tool.
+
+![image](https://github.com/user-attachments/assets/3fd8c963-e639-4f93-b55e-2693badbf451)
+
+Schematic of design as seen in design vision tool :
+
+command used - read_ddc lab8_circuit.ddc
+
+![image](https://github.com/user-attachments/assets/1e874a90-f830-4469-be17-428e89af24b4)
+
+![image](https://github.com/user-attachments/assets/d68c4f0f-a8fc-4657-b33e-f5e97033f2eb)
+
+In digital design, Each and every net must have only one driver only.
+
+![image](https://github.com/user-attachments/assets/594165ae-9329-42b6-b403-8709da26f9f1)
+
+![image](https://github.com/user-attachments/assets/3eac786d-3a7d-430e-bfe2-9df6bddbb1df)
+
+</details>
+
+<details>
+
+<summary>What is System On Chip(SOC) </summary>
+
+**System on a Chip: How Smaller, Faster Devices are Made**
+In electronics, the name of the game is “more performance, less power, and less space.” Especially in portable devices such as tablets and smartphones, massively complex technology must fit within the smallest possible footprint and use the least amount of power. To create devices that are both fast and small, engineers eliminate the need for multiple integrated circuits by consolidating all the necessary components into a single package, called a system on a chip (SoC).
+
+**What is a System on a Chip?**
+
+At their core, SoCs are microchips that contain all the necessary electronic circuits for a fully functional system on a single integrated circuit (IC). In other words, the CPU, internal memory, I/O ports, analog inputs and output, as well as additional application-specific circuit blocks, are all designed to be integrated on the same chip. SoCs differentiate themselves from traditional devices and PC architectures, where a separate chip is used for the CPU, GPU, RAM, and other essential functional components. 
+
+Various SoCs are developed depending on their intended device. For example, SoCs on smartphones or other IoT devices may also incorporate Wi-Fi and cellular network modems. In the traditional approach, SoCs use shorter wiring between circuit blocks to reduce power expenditure and increase efficiencies.
+
+**Understanding the Components and Construction of SoCs**
+System-on-chips, as their name implies, contain nearly all the necessary functional circuit blocks for a full system on a single chip. Generally, you will find the following components on any SoC:
+
+A processor with multiple cores in the form of a microcontroller, microprocessor, digital signal processor, or application-specific instruction set processor.
+
+Memory capabilities such as RAM, ROM, FLASH, EEPROM, and/or cache memory.
+
+External interfaces for wired communication protocols such as HDMI, USB, FireWire, USART, SPI,  I²C, or Ethernet.
+
+Wireless capabilities such as WiFi or Bluetooth and other radio frequency capabilities.
+
+A Graphical Processing Unit (GPU) for accelerating specific tasks.
+
+Voltage regulators, phase lock loop (PLL) control systems, built-in oscillators, timers, and analog-to-digital (ADC) converters.
+Intrachip communication subsystems for connecting individual circuit blocks, such as Interface busses or newer intercommunication networks known as networks-on-chip (NoC).
+
+Digital, analog, and mixed-signal processing circuit blocks for any sensors, actuators, data collection, and data analysis.
+SoC capabilities powering the next generation.
+
+Generally, engineers want to reduce energy waste, save on spending, and further miniaturize devices. With system-on-chip technology, this is possible through advanced integration methods on a single IC. 
+
+These compact and versatile chips have powered the rise of smartphones, allowing for incredible power in a small form factor. Similarly, due to their compact and power-efficient qualities, manufacturers are incorporating SoCs into new IoT devices, embedded systems, and even automobiles. 
+
+Furthermore, we’ve also seen a shift in SoC technology used in personal computers and laptops to further reduce power consumption and improve performance. Less circuit real estate generally results in less heat generation, less power consumption, and a lower cost of production. This has allowed more efficient device design for heat distribution, minimal latency, and accelerated data transmission. 
+
+Because SoCs are highly specialized, they are often applied in individualized tasks. Custom SoCs are now being developed for specific applications such as enhancing machine learning, advanced AI capabilities, and high-performance computing with faster data processing. SoCs can perform multiple calculations as a distributed operation (rather than the limited parallelism offered by traditional CPUs) to further accelerate calculations. For this reason, many companies are now investing in their own development of custom SoCs to support their advanced data and signal processing needs. 
+
+**The History of SoCs**
+With smaller devices so common in our everyday lives, it’s hard to imagine a time when SoCs weren’t in everything. But it wasn’t until the 1970s that the concept of fitting an entire system onto a single microchip first became a reality.
+
+1970s: According to the Computer History Museum, the first system on a chip appeared in an LCD watch in 1974. Until then, microprocessors had only been standalone chips that required the support of external chips.
+
+1980s-90s: Advancements in semiconductor manufacturing technology made it possible to integrate more components on a single chip. Mixed-signal integration allowed chips to process both analog and digital signals.
+
+2000-2010s: SoCs began integrating Wi-Fi, Bluetooth, and cellular modems, bringing wireless communications to our mobile devices. The addition of powerful processors and graphics capabilities helped make smartphones a new way of life. 
+
+Present: SoCs are becoming increasingly specialized and are expanding beyond mobile to include automotive systems, wearable devices, industrial automation, and more. New features include artificial intelligence (AI), machine learning (ML), and edge computing.
+
+**System on a Chip Applications**
+Thanks to their ability to be customized for highly specialized requirements, SoCs can be used in a variety of applications, from children’s toys and doorbell cameras to industrial engines. Some SoC uses include:
+
+Mobile devices: SoCs integrate wireless connectivity and multimedia capabilities in smartphones and tablets.
+
+Automotive systems: Vehicles of all types use SoCs to power navigation systems, sensor interfaces, infotainment systems, and danger avoidance systems.
+
+Internet of Things (IoT): Highly efficient in low-power use cases, SoCs are widely used in IoT devices such as wearables and smart home monitors.
+
+Networking equipment: In routers, switches, and network appliances, SoCs integrate packet processing capabilities, security features, and specialized components for efficient data routing.
+
+Consumer electronics: SoCs provide graphics processing power and connectivity to a wide range of common multimedia devices, such as gaming consoles and digital media players.
+
+Industrial applications: SoCs enable real-time processing, connectivity, and interfacing capabilities, contributing to efficient and intelligent industrial solutions.
+
+Medical devices: SoCs assist in improving patient care by improving the processing power and connectivity of patient monitoring systems, diagnostic equipment, and implantable devices.
+
+**SoC Design: Pros and Cons**
+The integration of multiple components onto a single chip offers numerous benefits. But when determining if an SoC is the right solution for a device, these benefits must be weighed against the challenges of such a complex design.
+
+**Advantages of System on a Chip**
+
+Space optimization: SoCs take up less space than multiple discreet components, making smaller device designs possible.
+
+Power efficiency: Replacement of large components and circuits with SOCs leads to a significant reduction in power consumption and the required PPA (power, performance, and area) metrics can be achieved.
+
+Cheaper: A single SoC chip is cheaper than the set of multiple, separate chips that would otherwise be needed.
+
+Reliability: A single SoC has fewer connections and is thus significantly more reliable than a multipart system connected through a substrate.
+
+Performance: Because the signals can stay on chip, an SoC can achieve higher performance and speed than a multipart solution.
+
+**Disadvantages of System on a Chip**
+
+Single point of failure: With all components in a single chip, a failure in one component affects the entire system (which limits upgrades, too).
+
+Time to market: When compared to off-the-shelf components, designing custom SoCs requires more expertise and specialized tools with increased development time and costs. These higher costs can only be recouped if the market for the SoC is big enough to absorb them.
+
+Mixed analog/digital: As all the components on an SoC are manufactured with a single process technology, there is no option to use optimal technology for the analog sections. This leads to reduced analog performance and makes SoCs better suited for digital applications.
+
+Flexibility: An SoC is ideally suited to its intended task but has limited scope to be applied for any other task.
+
+**System on a Chip Design Flow**
+Similar to an integrated circuit, the design workflow for a system on a chip involves several stages to plan, refine, and produce. Each stage requires the collaboration of experts including system architects, design engineers, and manufacturers. The major milestones of the SoC design flow include:
+
+Specification: Clearly define the desired function of the SoC. What are the applications, performance goals, power limitations, etc.?
+
+Logical design: Describe the desired behavior in a hardware description language (HDL) and simulate the functional behavior to verify it is correct.
+
+Logic synthesis: Automatically translate HDL behavioral description into a list of transistor elements and their interconnections, called the “netlist.”
+
+Physical design: Choose the appropriate transistor components, determine their physical locations on the silicon, and the trajectories of the interconnection wires between them.
+
+Signoff: Use verification software like Ansys RedHawk-SC to analyze and validate the design to ensure proper functionality and performance. Verify that the layout meets all manufacturability requirements. Chips cannot be repaired, so if there is any mistake in the design, all the manufactured chips must be thrown away and the design has to be revised. This is why it’s so important to check and verify before proceeding to manufacturing.
+
+Tapeout: Generate the final graphic files for creating the photomasks of the layout and send to the manufacturer for production.
+
+Testing and packaging: Test to confirm the SoC delivers on the specifications and is ready for use. The silicon chip is then encapsulated in a protective package.
+
+**Examples of Popular SoCs :**
+
+Apple A-Series: Used in iPhones and iPads.
+Qualcomm Snapdragon: Found in many Android smartphones.
+Samsung Exynos: Used in Samsung devices.
+NVIDIA Tegra: Used in devices like the Nintendo Switch.
+
+</details>
+
+<details>
+
+<summary>Introduction to VSDBabySOC</summary>
+
+## Overview
+
+VSDBabySoC is a compact and robust RISCV-based System on Chip. The primary goal of designing this small SoC is to integrate and test three open-source IP cores together for the first time and to calibrate its analog components. VSDBabySoC includes an RVMYTH microprocessor, an 8x Phase-Locked Loop (PLL) for generating a stable clock, and a 10-bit Digital-to-Analog Converter (DAC) for communication with other analog devices.
+
+![image](https://github.com/user-attachments/assets/0f52a108-2cf7-461d-813e-67e30fb23432)
+
+## BabySoC Components
+
+### RVMYTH
+- **RVMYTH**: The RVMYTH core is a simple RISC V-based CPU designed for educational purposes and small-scale applications. It provides a practical example of a RISC-V processor implementation.
+
+### PLL
+- **Phase-Locked Loop (PLL)**: A phase-locked loop or PLL is a control system that generates an output signal whose phase is related to the phase of an input signal. PLLs are widely used for synchronization purposes, including clock generation and distribution.
+
+### DAC
+- **Digital-to-Analog Converter (DAC)**: A DAC is a system that converts a digital signal into an analog signal. DACs are widely used in modern communication systems, enabling the generation of digitally-defined transmission signals.
+
+## What is a PLL?
+
+A phase-locked loop (also phase lock loop or PLL) is a system that generates an output signal whose phase is related to its input. The two signals will have the same frequency and either no phase difference or a constant phase difference between them.
+
+A PLL typically consists of the following components:
+- **Phase Detector**: Compares the reference signal with the oscillator frequency and outputs an error signal.
+- **Loop Filter**: Usually a low-pass filter that generates an error voltage from the error signal.
+- **Voltage-Controlled Oscillator (VCO)**: Adjusts the oscillator frequency to lock to the input frequency, producing an output frequency equal to the input frequency with a constant phase shift.
+
+A PLL may also include a frequency divider in its feedback loop to create an output that is a multiple of the reference frequency instead of one that is exactly equal to it.
+
+![image](https://github.com/user-attachments/assets/a15364b3-d264-4716-985e-4e68db720cd8)
+
+## Why Off-Chip Clocks Can't Be Used All the Time?
+
+Using off-chip clocks for all on-chip operations in VLSI design is often impractical due to several key factors:
+
+### Clock Distribution Delays
+The clock signal needs to be distributed to a multitude of blocks on the chip. If a single off-chip clock source is used, the long wires required for distribution can introduce significant delays.
+
+### Clock Jitter
+Off-chip clocks are more susceptible to clock jitter, which can degrade the performance and reliability of the system.
+
+### Different Frequency Requirements
+Various blocks on the chip may require different clock frequencies. For example, one block might need 200 MHz while another needs 100 MHz. It is challenging to accommodate these varying frequency requirements with a single off-chip clock source.
+
+### Clock Accuracy (ppm)
+Quartz crystals used for clock generation have a specified accuracy in parts per million (ppm). A higher ppm error implies greater deviation from the desired frequency, impacting timing precision in electronic systems.
+
+### Frequency Stability
+Frequency stability denotes the maximum frequency variation over the operating temperature range. Crystals with higher ppm errors may exhibit significant frequency variations with temperature changes, affecting the reliability of timing references, especially in extreme temperature conditions.
+
+### Total Frequency Error
+The total frequency error of a crystal is the sum of errors from frequency tolerance, frequency stability, and aging. A higher ppm error in any of these components can lead to a larger total frequency error, affecting the crystal's overall accuracy in maintaining precise timing references.
+
+## Digital-to-Analog Converter (DAC)
+
+A Digital-to-Analog Converter (DAC) converts a digital input signal into an analog output signal. The digital signal is represented by a binary code, a combination of bits 0 and 1.
+
+### Components of a DAC
+- **Binary Inputs**: The number of binary inputs of a DAC is generally a power of two.
+- **Analog Output**: A single output representing the analog signal.
+
+In our VSDBabySoC design, we are using a 10-bit DAC.
+
+</details>
+
+<details>
+	<summary>VSDBabySoC Modelling</summary>
+
+ #### What is Modelling?
+
+* Modelling and simulation (M&S) is the use of a physical/logical representation of a given system to generate data and help determine decisions/make predictions about the system.
+* M&S is widely used in the VLSI domain.
+
+#### Purpose of modelling :
+
+System models are specifically developed to support analysis, specification, design, verification and validation of a system, as well as to communicate certain information.
+
+#### **What are we modelling? (VSDBabySoC)**
+
+* Some initial input signals will be fed into `vsdbabysoc` module.
+* PLL will start generating the proper `CLK` for the circuit.
+* Clock signal `CLK` will make the `rvmyth` to execute instructions and some values are generated, these values are used by `DAC` core to provide the final output signal named `OUT`
+* There are 3 main elements (IP cores) and a wrapper as SoC and also a testbench module.
+
+####**Follow these steps to model the IP cores separately**
+
+**For modelling RVMYTH(RISC-V)**
+
+git clone https://github.com/kunalg123/rvmyth/
+cd rvmyth
+csh
+iverilog mythcore_test.v tb_mythcore_test.v
+./a.out
+gtkwave <file_name>.vcd &
+Add the required waveforms.
+
+![image](https://github.com/user-attachments/assets/b0240d10-7dc9-4710-98eb-dc863467f3fa)
+
+#### Step-by-Step process of modelling :
+
+1) Install These Required Packages:
+   
+        $ pip3 install pyyaml click sandpiper-saas
+
+2) `git clone https://github.com/manili/VSDBabySoC.git` - clone this repo containing VSDBabySoC design files and testbench.
+   
+3) cd `/home/chetana/VSDBabySoC`
+   
+4) `sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/` - to translate `.tlv` definition of `rvmyth` into `.v` definition.
+
+![image](https://github.com/user-attachments/assets/10beeae2-99b9-46ac-a6aa-db81d319b467)
+
+5) `iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module` - to compile and simulate vsdbabysoc design.
+   
+6) cd `output`
+   
+7) `./pre_synth_sim.out` - To generate pre_synth_sim.vcd file,which is our simulation waveform file.
+    
+8) gtkwave `pre_synth_sim.out` - to open simulation waveform in gtkwave tool.
+
+   ![image](https://github.com/user-attachments/assets/ce19976d-6862-4d73-b90c-2f26e4181934)
+
+   ![image](https://github.com/user-attachments/assets/6086cc9e-f603-4a8d-93d5-e7b0ede1d2e6)
+
+ </details>
+
+<details>
+
+<summary> Post-Synthesis Simulation (GLS) of BabySoC</summary>
+
+#### Why do pre-synthesis Simulation? Why not just do post-synthesis Simulation? : 
+
+* Pre-synthesis simulation is done according to the logic we have designed for and written -> only functionality.
+* Post synthesis simulation / ‘gate level simulation’ is done after synthesis considering each and every gate delays into account. It reports the violations in both functionality and timing.
+
+  #### GLS: a brief introduction :
+
+* The term "gate level" refers to the netlist view of a circuit, usually produced by logic synthesis.
+* So while RTL simulation is pre-synthesis, GLS is post-synthesis.
+* The netlist view is a complete connection list consisting of gates and IP models with full functional
+   and timing behavior.
+* RTL simulation is a zero delay environment and events generally occur on the active clock edge.
+* GLS can be zero delay also, but is more often used in unit delay or full timing mode.
+
+* Gate level simulation is used to boost the confidence regarding implementation of a design and can help verify dynamic circuit behaviour, which cannot be verified accurately by static methods. It is a
+  significant step in the verification process.
+
+  ### **To synthesize the VSDBabySoC design,**
+  
+**Setting Up the Environment**
+
+Ensure Synopsys Library Compiler (lc_shell) is installed: Needed for .lib to .db conversions
+
+Download Required Libraries:
+
+Use wget to download sky130_fd_sc_hd__tt_025C_1v80.lib from the Skywater GitHub repository.
+
+1. **Ensure Synopsys Library Compiler (lc_shell) is installed**: Needed for .lib to .db conversions.
+2. **Download Required Libraries**: 
+   - Use `wget` to download `sky130_fd_sc_hd__tt_025C_1v80.lib` from the [Skywater GitHub repository](https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/tree/master/timing).
+
+## Steps for Conversion of .lib to .db Files
+
+We need `.db` files for `avsddac`, `avsdpll`, and `sky130_fd_sc_hd__tt_025C_1v80` libraries. Follow these steps:
+
+### Converting `avsddac.lib` to `avsddac.db`
+
+/home/chetana/VSDBabySoC/src/lib
+
+![image](https://github.com/user-attachments/assets/1e223215-f485-46ed-a3a8-0dbd88737ec1)
+
+Launch lc_shell
+
+![image](https://github.com/user-attachments/assets/a09f21c9-4c18-4e35-8c4f-0a65b2257f42)
+
+Reading avsddac library `read_lib avsddac.lib`
+
+![image](https://github.com/user-attachments/assets/e0f9a711-5473-4b99-ae3a-22d7808ec24d)
+
+writing  .db file `write_lib avsddac -format db -output avsddac.db`
+
+![image](https://github.com/user-attachments/assets/aea85921-8a19-4c96-ac54-4e7254ea463f)
+
+### Converting `avsdpll.lib` to `avsdpll.db`
+
+/home/chetana/VSDBabySoC/src/lib
+
+![image](https://github.com/user-attachments/assets/bb839640-4cf1-40e7-9acf-b2551cf3fd45)
+
+Launch lc_shell
+
+![image](https://github.com/user-attachments/assets/9a365481-ae95-4bba-8ca7-38360b37e2f0)
+
+Reading avsdpll library `read_lib avsdpll.lib`
+
+![image](https://github.com/user-attachments/assets/54502a36-a962-431b-8e84-24a041f80948)
+
+Writing .db file `write_lib avsdpll -format db -output avsdpll.db`
+
+![image](https://github.com/user-attachments/assets/040fc14d-d327-4e0e-be68-79251c50369f)
+
+### Converting sky130_fd_sc_hd__tt_025C_1v80.lib to sky130_fd_sc_hd__tt_025C_1v80.db
+
+First, download the .lib file
+
+`wget https://raw.githubusercontent.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/master/timing/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+/home/chetana/VSDBabySoC/src/lib
+
+![image](https://github.com/user-attachments/assets/5507c8c0-af2a-4ecf-9274-93a6ec0ec824)
+
+Launch lc_shell
+
+![image](https://github.com/user-attachments/assets/1a6e79c2-2853-4777-87bf-a6463b1c7ef8)
+
+Reading sky130_fd_sc_hd__tt_025C_1v80 library `read_lib sky130_fd_sc_hd__tt_025C_1v80.lib.1`
+
+![image](https://github.com/user-attachments/assets/7ce69755-cb86-4a52-9858-3034169ce444)
+
+Writing .db file `write_lib sky130_fd_sc_hd__tt_025C_1v80 -format db -output sky130_fd_sc_hd__tt_025C_1v80.db.1`
+
+![image](https://github.com/user-attachments/assets/afbbe049-6305-423e-b37e-0880ca58bf49)
+
+## Running Synthesis and GLS
+
+After setting up the libraries, proceed with synthesis and GLS.
+
+### Synthesis
+
+/home/chetana/VSDBabySoC/src/lib
+
+![image](https://github.com/user-attachments/assets/3f68a694-94df-4a45-8e6b-922cebed1a5c)
+
+Launch dc_shell
+
+![image](https://github.com/user-attachments/assets/4b4e8a4d-67f8-413a-b1c3-b54a5571a92b)
+
+set target_library /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1
+
+set link_library {* /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1 /home/chetana/VSDBabySoC/src/lib/avsddac.db /home/chetana/VSDBabySoC/src/lib/avsdpll.db}
+
+![image](https://github.com/user-attachments/assets/6efdf4d7-5d07-4b96-a622-1e40fc72eb93)
+
+set search_path { /home/chetana/VSDBabySoC/src/include/ /home/chetana/VSDBabySoC/src/module/}
+
+![image](https://github.com/user-attachments/assets/c706bac5-007a-4b14-a572-1eba318687b2)
+
+read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc
+
+![image](https://github.com/user-attachments/assets/8480cccd-59ff-4699-b7cc-546acc28bdec)
+
+link
+
+![image](https://github.com/user-attachments/assets/4a1ec015-3c05-41dd-b943-9cf1093549bb)
+
+Compile_ultra
+
+![image](https://github.com/user-attachments/assets/c73f96ae-219b-4ff5-a26e-bdf911cf72e2)
+
+write_file -format verilog -hierarchy -output /home/chetana/VSDBabySoC/output/vsdbabysoc_net.v
+
+![image](https://github.com/user-attachments/assets/c8c09a38-ae7e-4c25-8cbf-c8c5f6b6d95e)
+
+report_qor
+
+![image](https://github.com/user-attachments/assets/e6742622-42b1-4880-9907-a3bb18d2adf8)
+
+![image](https://github.com/user-attachments/assets/d15c116e-9468-4b1e-9183-d4308593c072)
+
+![image](https://github.com/user-attachments/assets/cc0e26bc-f73d-444e-aabe-b286989a4e88)
+
+![image](https://github.com/user-attachments/assets/bd8f70b2-d1dd-4d87-865e-d74e9ea4cc10)
+
+---
+
+## Post-Synthesis Simulation
+
+---
+
+`iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 -o ./output/post_synth_sim.out ./src/gls_model/primitives.v ./src/gls_model/sky130_fd_sc_hd.v ./output/vsdbabysoc_net.v ./src/module/avsdpll.v ./src/module/avsddac.v ./src/module/testbench.v`
+
+![image](https://github.com/user-attachments/assets/7a68cfcc-c2a1-4a0e-b18d-f23bc5721551)
+
+ebug the errors
+
+`./post_synth_sim.out`
+
+![image](https://github.com/user-attachments/assets/4bca2bac-9def-4478-8175-8b88ea0bbd8d)
+
+gtkwave dump.vcd
+
+![image](https://github.com/user-attachments/assets/1c36e456-9ea9-4a61-9586-0ea0d7e4c691)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
