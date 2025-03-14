@@ -2211,7 +2211,8 @@ Add the required waveforms.
 
    ![image](https://github.com/user-attachments/assets/ce19976d-6862-4d73-b90c-2f26e4181934)
 
-   ![image](https://github.com/user-attachments/assets/6086cc9e-f603-4a8d-93d5-e7b0ede1d2e6)
+   ![image](https://github.com/user-attachments/assets/200a12dd-53f6-4f08-a9a6-bd9e25d7efa4)
+
 
  </details>
 
@@ -2372,15 +2373,17 @@ report_qor
 
 ![image](https://github.com/user-attachments/assets/7a68cfcc-c2a1-4a0e-b18d-f23bc5721551)
 
-ebug the errors
+debug the errors
 
 `./post_synth_sim.out`
 
-![image](https://github.com/user-attachments/assets/4bca2bac-9def-4478-8175-8b88ea0bbd8d)
+/home/chetana/VSDBabySoC/output
+
+![image](https://github.com/user-attachments/assets/a7901c34-c954-45f6-862b-d4901abcc914)
 
 gtkwave dump.vcd
 
-![image](https://github.com/user-attachments/assets/1c36e456-9ea9-4a61-9586-0ea0d7e4c691)
+
 
 
 
