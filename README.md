@@ -2379,9 +2379,100 @@ debug the errors
 
 /home/chetana/VSDBabySoC/output
 
-![image](https://github.com/user-attachments/assets/a7901c34-c954-45f6-862b-d4901abcc914)
+![image](https://github.com/user-attachments/assets/eb5ec24d-5f5b-4272-9934-ce7825a9ab29)
 
 gtkwave dump.vcd
+
+![image](https://github.com/user-attachments/assets/14a6d1d1-db51-4654-8c5b-245acc1d0162)
+
+### Common Errors and Debugging Tips
+
+  - Error: Port Not Defined (GND, VDD, VSSA, VDDA)
+    - Ensure all necessary power and ground ports are defined in each module.
+    - Add GND/VDD in avsdpll and VSSA/VDDA in avsddac, or set them as global nets if supported.
+  - Syntax Errors in Library Files
+    - Errors in .lib files (e.g., avsdpll.lib) can prevent .db conversion. Open the file and fix any issues (e.g., mismatched braces, missing parameters).
+  - Warnings About Unresolved References
+    - This often indicates missing or incorrectly linked files. Double-check file paths in dc_shell commands and the link_library and search_path settings.
+  - Mismatched Waveforms Post-Synthesis
+    - If waveform outputs differ between pre- and post-synthesis simulations, check for latch inferences or unintentional asynchronous behavior caused by synthesis.
+   
+**Now,our next task is to develop constraints for our design and optimize it further.**
+
+</details>
+
+<details>
+
+<summary>Synthesis & PVT Corner Timing Analysis of BabySoC</summary>
+
+## Overview
+
+This project involves performing synthesis and timing analysis on the VSDBabySoC design with Synopsys DC using SDC constraints across multiple PVT (Process, Voltage, Temperature) corners. The goal is to validate the design across various operating conditions to ensure it meets timing requirements for robust operation.
+
+### Key Terms
+- **PVT Corners**: Different conditions under which a semiconductor device is tested to ensure it performs reliably. PVT stands for:
+  - **Process**: Accounts for variations in manufacturing.
+  - **Voltage**: Represents the different voltage levels the design might encounter.
+  - **Temperature**: Represents the range of temperatures the design might experience.
+
+By analyzing PVT corners, we can simulate the behavior of the SoC under various real-world conditions.
+
+---
+
+## Steps for Synthesis with SDC Constraints
+
+### 1. Setting Up SDC Constraints
+The constraints file, `vsdbabysoc_synthesis.sdc`, defines the design requirements for synthesis. Key constraints included:
+- **Timing and Area**: Constraints to manage maximum area usage and ensure signal timings within a 10ns clock period.
+- **Clock Specifications**: Configurations for clock latency, uncertainty, and input delays.
+- **Input/Output Loads**: Defines acceptable input/output transition and load values.
+
+### 2. Synthesis Commands
+
+---
+
+`dc_shell`
+
+![image](https://github.com/user-attachments/assets/7fa78d97-87a9-4d00-bb95-84234853da99)
+
+---
+
+set target_library /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1
+
+![image](https://github.com/user-attachments/assets/b9c54993-80eb-48bd-9202-0286597706f3)
+
+---
+
+set link_library {* /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1 /home/chetana/VSDBabySoC/src/lib/avsddac.db /home/chetana/VSDBabySoC/src/lib/avsdpll.db}
+
+![image](https://github.com/user-attachments/assets/43fd94d3-ac17-4987-8f41-68b7ef3e465e)
+
+---
+
+set search_path {/home/chetana/VSDBabySoC/src/include /home/chetana/VSDBabySoC/src/module}
+
+![image](https://github.com/user-attachments/assets/c2bde7a8-efda-41c5-8b6c-782fada6d297)
+
+---
+
+`read_file {sandpiper_gen.vh sandpiper.vh sp_default.vh sp_verilog.vh clk_gate.v avsdpll.v avsddac.v vsdbabysoc.v} -autoread -top vsdbabysoc`
+
+![image](https://github.com/user-attachments/assets/12a3f5ab-91cf-4e5b-8be6-f2bdc38f5250)
+
+---
+
+`link`
+
+
+
+
+
+
+
+
+
+
+
 
 
 
