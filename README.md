@@ -2481,6 +2481,7 @@ The constraints file, `vsdbabysoc_synthesis.sdc`, defines the design requirement
 
 **report_qor > report_qor_sdc.txt**
 
+```
 Information: Updating design information... (UID-85)
 Warning: Design 'vsdbabysoc' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
  
@@ -2566,12 +2567,12 @@ Date   : Fri May  2 22:20:22 2025
 
 
 1
-
+```
 ---
 
 **report_timing -nets -attributes -input_pins -transition_time -delay_type max > report_setup_sdc.txt**
 
- 
+ ```
 ****************************************
 Report : timing
         -path full
@@ -2786,13 +2787,12 @@ Attributes:
 
 
 1
-
+```
 ---
 
 **report_timing -nets -attributes -input_pins -transition_time -delay_type min > report_hold_sdc.txt**
 
-
- 
+``` 
 ****************************************
 Report : timing
         -path full
@@ -2853,7 +2853,7 @@ Attributes:
 
 
 1
-
+```
 ---
 
 ## What are PVT Corners?
