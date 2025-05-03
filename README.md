@@ -2437,31 +2437,842 @@ The constraints file, `vsdbabysoc_synthesis.sdc`, defines the design requirement
 
 ---
 
-set target_library /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1
+**set target_library /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1**
 
 ![image](https://github.com/user-attachments/assets/b9c54993-80eb-48bd-9202-0286597706f3)
 
 ---
 
-set link_library {* /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1 /home/chetana/VSDBabySoC/src/lib/avsddac.db /home/chetana/VSDBabySoC/src/lib/avsdpll.db}
+**set link_library [list * $target_library]**
 
-![image](https://github.com/user-attachments/assets/43fd94d3-ac17-4987-8f41-68b7ef3e465e)
+![image](https://github.com/user-attachments/assets/ebbdb05c-0dfa-4d13-b59b-fb48cfdb5da9)
 
 ---
 
-set search_path {/home/chetana/VSDBabySoC/src/include /home/chetana/VSDBabySoC/src/module}
+**set search_path {/home/chetana/VSDBabySoC/src/include /home/chetana/VSDBabySoC/src/module}**
 
 ![image](https://github.com/user-attachments/assets/c2bde7a8-efda-41c5-8b6c-782fada6d297)
 
 ---
 
-`read_file {sandpiper_gen.vh sandpiper.vh sp_default.vh sp_verilog.vh clk_gate.v avsdpll.v avsddac.v vsdbabysoc.v} -autoread -top vsdbabysoc`
+**read_file {sandpiper_gen.vh sandpiper.vh sp_default.vh sp_verilog.vh clk_gate.v avsdpll.v avsddac.v vsdbabysoc.v} -autoread -top vsdbabysoc**
 
 ![image](https://github.com/user-attachments/assets/12a3f5ab-91cf-4e5b-8be6-f2bdc38f5250)
 
 ---
 
-`link`
+**link**
+
+![image](https://github.com/user-attachments/assets/7539016c-7f8e-40ca-a7f9-80cb30a84cf4)
+
+---
+
+**read_sdc /home/chetana/VSDBabySoC/src/sdc/vsdbabysoc_synthesis.sdc**
+
+![image](https://github.com/user-attachments/assets/8e7a3b14-9c08-4939-885b-deb4a45131f9)
+
+---
+
+**compile**
+
+![image](https://github.com/user-attachments/assets/0e2bea0d-3e46-4a76-b4d4-87b05d4e7fdd)
+
+---
+
+**report_qor > report_qor_sdc.txt**
+
+Information: Updating design information... (UID-85)
+Warning: Design 'vsdbabysoc' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : qor
+Design : vsdbabysoc
+Version: T-2022.03-SP5-6
+Date   : Fri May  2 22:20:22 2025
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              50.00
+  Critical Path Length:         10.92
+  Critical Path Slack:           0.01
+  Critical Path Clk Period:     11.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:         19
+  Hierarchical Port Count:        793
+  Leaf Cell Count:               5548
+  Buf/Inv Cell Count:            1031
+  Buf Cell Count:                  34
+  Inv Cell Count:                 997
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:      4111
+  Sequential Cell Count:         1437
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:    36496.253075
+  Noncombinational Area: 34206.557430
+  Buf/Inv Area:           5117.407839
+  Total Buffer Area:           127.62
+  Total Inverter Area:        4989.79
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:             70702.810505
+  Design Area:           70702.810505
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:          5758
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: sfalvsd
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    5.57
+  Logic Optimization:                  7.74
+  Mapping Optimization:                9.65
+  -----------------------------------------
+  Overall Compile Time:               26.25
+  Overall Compile Wall Clock Time:    26.63
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+  --------------------------------------------------------------------
+
+
+1
+
+---
+
+**report_timing -nets -attributes -input_pins -transition_time -delay_type max > report_setup_sdc.txt**
+
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -input_pins
+        -nets
+        -max_paths 1
+        -transition_time
+Design : vsdbabysoc
+Version: T-2022.03-SP5-6
+Date   : Fri May  2 22:20:43 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
+Wire Load Model Mode: top
+
+  Startpoint: core/CPU_src1_value_a3_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: core/CPU_Xreg_value_a4_reg[27][31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  vsdbabysoc         Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+Attributes:
+    d - dont_touch
+    u - dont_use
+   mo - map_only
+   so - size_only
+    i - ideal_net or ideal_network
+  inf - infeasible path
+
+  Point                                                    Fanout     Trans      Incr       Path      Attributes
+  ----------------------------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                          0.00       0.00
+  clock network delay (ideal)                                                    0.00       0.00
+  core/CPU_src1_value_a3_reg[0]/CLK (sky130_fd_sc_hd__dfxtp_4)         0.00      0.00 #     0.00 r
+  core/CPU_src1_value_a3_reg[0]/Q (sky130_fd_sc_hd__dfxtp_4)           0.08      0.37       0.37 f
+  core/CPU_src1_value_a3[0] (net)                            8                   0.00       0.37 f
+  core/r499/A[0] (rvmyth_DW01_add_3_DW01_add_4)                                  0.00       0.37 f
+  core/r499/A[0] (net)                                                           0.00       0.37 f
+  core/r499/U2/B (sky130_fd_sc_hd__and2_2)                             0.08      0.00       0.37 f
+  core/r499/U2/X (sky130_fd_sc_hd__and2_2)                             0.05      0.21       0.58 f
+  core/r499/n31 (net)                                        2                   0.00       0.58 f
+  core/r499/U50/A (sky130_fd_sc_hd__nand2_2)                           0.05      0.01       0.59 f
+  core/r499/U50/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.07       0.66 r
+  core/r499/n32 (net)                                        1                   0.00       0.66 r
+  core/r499/U53/B (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       0.67 r
+  core/r499/U53/Y (sky130_fd_sc_hd__nand3_4)                           0.08      0.09       0.77 f
+  core/r499/carry[2] (net)                                   2                   0.00       0.77 f
+  core/r499/U3/B (sky130_fd_sc_hd__and2_2)                             0.08      0.00       0.77 f
+  core/r499/U3/X (sky130_fd_sc_hd__and2_2)                             0.04      0.21       0.97 f
+  core/r499/n44 (net)                                        1                   0.00       0.97 f
+  core/r499/U1_3/CIN (sky130_fd_sc_hd__fa_2)                           0.04      0.01       0.98 f    mo 
+  core/r499/U1_3/COUT (sky130_fd_sc_hd__fa_2)                          0.07      0.33       1.32 f    mo 
+  core/r499/carry[4] (net)                                   1                   0.00       1.32 f
+  core/r499/U1_4/CIN (sky130_fd_sc_hd__fa_2)                           0.07      0.01       1.33 f    mo 
+  core/r499/U1_4/COUT (sky130_fd_sc_hd__fa_2)                          0.07      0.34       1.67 f    mo 
+  core/r499/carry[5] (net)                                   1                   0.00       1.67 f
+  core/r499/U1_5/CIN (sky130_fd_sc_hd__fa_2)                           0.07      0.01       1.68 f    mo 
+  core/r499/U1_5/COUT (sky130_fd_sc_hd__fa_2)                          0.07      0.34       2.02 f    mo 
+  core/r499/carry[6] (net)                                   1                   0.00       2.02 f
+  core/r499/U1_6/CIN (sky130_fd_sc_hd__fa_2)                           0.07      0.01       2.03 f    mo 
+  core/r499/U1_6/COUT (sky130_fd_sc_hd__fa_2)                          0.07      0.34       2.37 f    mo 
+  core/r499/carry[7] (net)                                   1                   0.00       2.37 f
+  core/r499/U1_7/CIN (sky130_fd_sc_hd__fa_2)                           0.07      0.01       2.38 f    mo 
+  core/r499/U1_7/COUT (sky130_fd_sc_hd__fa_2)                          0.07      0.34       2.72 f    mo 
+  core/r499/carry[8] (net)                                   1                   0.00       2.72 f
+  core/r499/U1_8/CIN (sky130_fd_sc_hd__fa_2)                           0.07      0.01       2.73 f    mo 
+  core/r499/U1_8/COUT (sky130_fd_sc_hd__fa_2)                          0.07      0.34       3.07 f    mo 
+  core/r499/carry[9] (net)                                   1                   0.00       3.07 f
+  core/r499/U1_9/CIN (sky130_fd_sc_hd__fa_2)                           0.07      0.01       3.08 f    mo 
+  core/r499/U1_9/COUT (sky130_fd_sc_hd__fa_2)                          0.07      0.34       3.42 f    mo 
+  core/r499/carry[10] (net)                                  1                   0.00       3.42 f
+  core/r499/U1_10/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       3.43 f    mo 
+  core/r499/U1_10/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.34       3.77 f    mo 
+  core/r499/carry[11] (net)                                  1                   0.00       3.77 f
+  core/r499/U1_11/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       3.78 f    mo 
+  core/r499/U1_11/COUT (sky130_fd_sc_hd__fa_2)                         0.09      0.38       4.16 f    mo 
+  core/r499/carry[12] (net)                                  3                   0.00       4.16 f
+  core/r499/U35/B (sky130_fd_sc_hd__nand2_2)                           0.09      0.01       4.16 f
+  core/r499/U35/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.10       4.26 r
+  core/r499/n22 (net)                                        1                   0.00       4.26 r
+  core/r499/U36/C (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       4.28 r
+  core/r499/U36/Y (sky130_fd_sc_hd__nand3_4)                           0.10      0.11       4.39 f
+  core/r499/carry[13] (net)                                  3                   0.00       4.39 f
+  core/r499/U40/B (sky130_fd_sc_hd__nand2_2)                           0.10      0.01       4.40 f
+  core/r499/U40/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.10       4.50 r
+  core/r499/n25 (net)                                        1                   0.00       4.50 r
+  core/r499/U42/B (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       4.52 r
+  core/r499/U42/Y (sky130_fd_sc_hd__nand3_4)                           0.05      0.07       4.58 f
+  core/r499/carry[14] (net)                                  1                   0.00       4.58 f
+  core/r499/U1_14/CIN (sky130_fd_sc_hd__fa_2)                          0.05      0.01       4.59 f    mo 
+  core/r499/U1_14/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.33       4.93 f    mo 
+  core/r499/carry[15] (net)                                  1                   0.00       4.93 f
+  core/r499/U1_15/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       4.94 f    mo 
+  core/r499/U1_15/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.34       5.28 f    mo 
+  core/r499/carry[16] (net)                                  1                   0.00       5.28 f
+  core/r499/U1_16/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       5.29 f    mo 
+  core/r499/U1_16/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.34       5.63 f    mo 
+  core/r499/carry[17] (net)                                  1                   0.00       5.63 f
+  core/r499/U1_17/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       5.64 f    mo 
+  core/r499/U1_17/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.34       5.98 f    mo 
+  core/r499/carry[18] (net)                                  1                   0.00       5.98 f
+  core/r499/U1_18/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       5.99 f    mo 
+  core/r499/U1_18/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.34       6.33 f    mo 
+  core/r499/carry[19] (net)                                  1                   0.00       6.33 f
+  core/r499/U1_19/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       6.34 f    mo 
+  core/r499/U1_19/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.34       6.68 f    mo 
+  core/r499/carry[20] (net)                                  1                   0.00       6.68 f
+  core/r499/U1_20/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       6.69 f    mo 
+  core/r499/U1_20/COUT (sky130_fd_sc_hd__fa_2)                         0.12      0.41       7.10 f    mo 
+  core/r499/carry[21] (net)                                  3                   0.00       7.10 f
+  core/r499/U12/B (sky130_fd_sc_hd__nand2_2)                           0.12      0.01       7.11 f
+  core/r499/U12/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.11       7.22 r
+  core/r499/n6 (net)                                         1                   0.00       7.22 r
+  core/r499/U15/B (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       7.23 r
+  core/r499/U15/Y (sky130_fd_sc_hd__nand3_4)                           0.07      0.08       7.32 f
+  core/r499/carry[22] (net)                                  3                   0.00       7.32 f
+  core/r499/U23/B (sky130_fd_sc_hd__nand2_2)                           0.07      0.01       7.32 f
+  core/r499/U23/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.09       7.41 r
+  core/r499/n14 (net)                                        1                   0.00       7.41 r
+  core/r499/U25/B (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       7.43 r
+  core/r499/U25/Y (sky130_fd_sc_hd__nand3_4)                           0.10      0.11       7.54 f
+  core/r499/carry[23] (net)                                  3                   0.00       7.54 f
+  core/r499/U30/B (sky130_fd_sc_hd__nand2_2)                           0.10      0.01       7.54 f
+  core/r499/U30/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.11       7.65 r
+  core/r499/n19 (net)                                        1                   0.00       7.65 r
+  core/r499/U31/C (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       7.66 r
+  core/r499/U31/Y (sky130_fd_sc_hd__nand3_4)                           0.05      0.07       7.73 f
+  core/r499/carry[24] (net)                                  1                   0.00       7.73 f
+  core/r499/U1_24/CIN (sky130_fd_sc_hd__fa_2)                          0.05      0.01       7.74 f    mo 
+  core/r499/U1_24/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.33       8.08 f    mo 
+  core/r499/carry[25] (net)                                  1                   0.00       8.08 f
+  core/r499/U1_25/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       8.09 f    mo 
+  core/r499/U1_25/COUT (sky130_fd_sc_hd__fa_2)                         0.07      0.34       8.43 f    mo 
+  core/r499/carry[26] (net)                                  1                   0.00       8.43 f
+  core/r499/U1_26/CIN (sky130_fd_sc_hd__fa_2)                          0.07      0.01       8.44 f    mo 
+  core/r499/U1_26/COUT (sky130_fd_sc_hd__fa_2)                         0.12      0.41       8.85 f    mo 
+  core/r499/carry[27] (net)                                  3                   0.00       8.85 f
+  core/r499/U6/B (sky130_fd_sc_hd__nand2_2)                            0.12      0.01       8.85 f
+  core/r499/U6/Y (sky130_fd_sc_hd__nand2_2)                            0.07      0.11       8.96 r
+  core/r499/n2 (net)                                         1                   0.00       8.96 r
+  core/r499/U9/B (sky130_fd_sc_hd__nand3_4)                            0.07      0.02       8.98 r
+  core/r499/U9/Y (sky130_fd_sc_hd__nand3_4)                            0.07      0.08       9.06 f
+  core/r499/carry[28] (net)                                  3                   0.00       9.06 f
+  core/r499/U57/B (sky130_fd_sc_hd__nand2_2)                           0.07      0.01       9.07 f
+  core/r499/U57/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.09       9.16 r
+  core/r499/n37 (net)                                        1                   0.00       9.16 r
+  core/r499/U58/C (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       9.18 r
+  core/r499/U58/Y (sky130_fd_sc_hd__nand3_4)                           0.10      0.11       9.29 f
+  core/r499/carry[29] (net)                                  3                   0.00       9.29 f
+  core/r499/U63/B (sky130_fd_sc_hd__nand2_2)                           0.10      0.01       9.29 f
+  core/r499/U63/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.11       9.40 r
+  core/r499/n41 (net)                                        1                   0.00       9.40 r
+  core/r499/U64/C (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       9.42 r
+  core/r499/U64/Y (sky130_fd_sc_hd__nand3_4)                           0.10      0.11       9.53 f
+  core/r499/carry[30] (net)                                  3                   0.00       9.53 f
+  core/r499/U45/B (sky130_fd_sc_hd__nand2_2)                           0.10      0.01       9.53 f
+  core/r499/U45/Y (sky130_fd_sc_hd__nand2_2)                           0.07      0.10       9.64 r
+  core/r499/n28 (net)                                        1                   0.00       9.64 r
+  core/r499/U48/B (sky130_fd_sc_hd__nand3_4)                           0.07      0.02       9.66 r
+  core/r499/U48/Y (sky130_fd_sc_hd__nand3_4)                           0.06      0.08       9.73 f
+  core/r499/carry[31] (net)                                  2                   0.00       9.73 f
+  core/r499/U20/A (sky130_fd_sc_hd__clkinvlp_2)                        0.06      0.01       9.74 f
+  core/r499/U20/Y (sky130_fd_sc_hd__clkinvlp_2)                        0.05      0.08       9.81 r
+  core/r499/n10 (net)                                        1                   0.00       9.81 r
+  core/r499/U16/B (sky130_fd_sc_hd__nand2_2)                           0.05      0.01       9.82 r
+  core/r499/U16/Y (sky130_fd_sc_hd__nand2_2)                           0.05      0.05       9.87 f
+  core/r499/n11 (net)                                        1                   0.00       9.87 f
+  core/r499/U18/A (sky130_fd_sc_hd__nand2_2)                           0.05      0.01       9.88 f
+  core/r499/U18/Y (sky130_fd_sc_hd__nand2_2)                           0.08      0.08       9.96 r
+  core/r499/SUM[31] (net)                                    3                   0.00       9.96 r
+  core/r499/SUM[31] (rvmyth_DW01_add_3_DW01_add_4)                               0.00       9.96 r
+  core/N144 (net)                                                                0.00       9.96 r
+  core/U3177/A (sky130_fd_sc_hd__nand2_2)                              0.08      0.01       9.96 r
+  core/U3177/Y (sky130_fd_sc_hd__nand2_2)                              0.14      0.05      10.02 f
+  core/n1675 (net)                                           1                   0.00      10.02 f
+  core/U3137/B (sky130_fd_sc_hd__nand2_2)                              0.14      0.01      10.02 f
+  core/U3137/Y (sky130_fd_sc_hd__nand2_2)                              0.07      0.12      10.14 r
+  core/n1671 (net)                                           2                   0.00      10.14 r
+  core/U19/A (sky130_fd_sc_hd__nand2_2)                                0.07      0.01      10.14 r
+  core/U19/Y (sky130_fd_sc_hd__nand2_2)                                0.07      0.04      10.19 f
+  core/n8 (net)                                              1                   0.00      10.19 f
+  core/U21/B (sky130_fd_sc_hd__and3_4)                                 0.07      0.00      10.19 f
+  core/U21/X (sky130_fd_sc_hd__and3_4)                                 0.03      0.17      10.36 f
+  core/n1370 (net)                                           1                   0.00      10.36 f
+  core/U9/B2 (sky130_fd_sc_hd__o2bb2a_2)                               0.03      0.00      10.36 f
+  core/U9/X (sky130_fd_sc_hd__o2bb2a_2)                                0.10      0.31      10.67 f
+  core/n1498 (net)                                          15                   0.00      10.67 f
+  core/U216/A1_N (sky130_fd_sc_hd__a2bb2o_2)                           0.10      0.00      10.67 f
+  core/U216/X (sky130_fd_sc_hd__a2bb2o_2)                              0.04      0.25      10.92 r
+  core/CPU_Xreg_value_a3[27][31] (net)                       1                   0.00      10.92 r
+  core/CPU_Xreg_value_a4_reg[27][31]/D (sky130_fd_sc_hd__dfxtp_4)      0.04      0.00      10.92 r
+  data arrival time                                                                        10.92
+
+  clock clk (rise edge)                                                         11.00      11.00
+  clock network delay (ideal)                                                    0.00      11.00
+  core/CPU_Xreg_value_a4_reg[27][31]/CLK (sky130_fd_sc_hd__dfxtp_4)              0.00      11.00 r
+  library setup time                                                            -0.06      10.94
+  data required time                                                                       10.94
+  ----------------------------------------------------------------------------------------------------------------------
+  data required time                                                                       10.94
+  data arrival time                                                                       -10.92
+  ----------------------------------------------------------------------------------------------------------------------
+  slack (MET)                                                                               0.01
+
+
+1
+
+---
+
+**report_timing -nets -attributes -input_pins -transition_time -delay_type min > report_hold_sdc.txt**
+
+
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -input_pins
+        -nets
+        -max_paths 1
+        -transition_time
+Design : vsdbabysoc
+Version: T-2022.03-SP5-6
+Date   : Fri May  2 22:21:02 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
+Wire Load Model Mode: top
+
+  Startpoint: core/CPU_inc_pc_a2_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: core/CPU_inc_pc_a3_reg[0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  vsdbabysoc         Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+Attributes:
+    d - dont_touch
+    u - dont_use
+   mo - map_only
+   so - size_only
+    i - ideal_net or ideal_network
+  inf - infeasible path
+
+  Point                                             Fanout     Trans      Incr       Path      Attributes
+  ---------------------------------------------------------------------------------------------------------------
+  clock clk (rise edge)                                                   0.00       0.00
+  clock network delay (ideal)                                             0.00       0.00
+  core/CPU_inc_pc_a2_reg[0]/CLK (sky130_fd_sc_hd__dfxtp_4)      0.00      0.00 #     0.00 r
+  core/CPU_inc_pc_a2_reg[0]/Q (sky130_fd_sc_hd__dfxtp_4)        0.03      0.31       0.31 r
+  core/CPU_inc_pc_a2[0] (net)                         1                   0.00       0.31 r
+  core/CPU_inc_pc_a3_reg[0]/D (sky130_fd_sc_hd__dfxtp_4)        0.03      0.00       0.31 r
+  data arrival time                                                                  0.31
+
+  clock clk (rise edge)                                                   0.00       0.00
+  clock network delay (ideal)                                             0.00       0.00
+  core/CPU_inc_pc_a3_reg[0]/CLK (sky130_fd_sc_hd__dfxtp_4)                0.00       0.00 r
+  library hold time                                                      -0.03      -0.03
+  data required time                                                                -0.03
+  ---------------------------------------------------------------------------------------------------------------
+  data required time                                                                -0.03
+  data arrival time                                                                 -0.31
+  ---------------------------------------------------------------------------------------------------------------
+  slack (MET)                                                                        0.34
+
+
+1
+
+---
+
+## What are PVT Corners?
+
+PVT Corners represent the extremes of Process, Voltage, and Temperature conditions:
+
+  - Process Corners: Variations in manufacturing can lead to Fast (F), Typical (T), or Slow (S) transistor speeds.
+  - Voltage Corners: The design’s voltage can vary, with nominal (N), high (H), and low (L) values.
+  - Temperature Corners: Temperature affects semiconductor performance, with testing at low, typical, and high extremes.
+
+By analyzing these corners, we ensure the design is robust under diverse conditions.
+
+## Generating PVT Timing Libraries
+
+  - **Download Libraries:** Obtain .lib files for different corners from [Skywater PDK timing libraries](https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/tree/master/timing).
+  - **Convert .lib to .db:** Using Synopsys LC Shell, convert the .lib files to .db format for use in synthesis.
+
+    ---
+
+## Script to convert .lib files to .db
+
+Create a bash file `nano conversion.sh`.
+
+```bash
+#!/bin/sh
+
+LC_SHELL_PATH="/usr/synopsys/lc/T-2022.03-SP5/bin/lc_shell"
+TCL_SCRIPT="lib2db.tcl"
+
+#Execute the lc_shell with the specified TCL script
+$LC_SHELL_PATH -f $TCL_SCRIPT
+```
+<img width="737" alt="Screenshot 2024-11-11 at 5 28 29 PM" src="https://github.com/user-attachments/assets/80664bb4-aa98-4991-9a11-74701176c76f">
+
+---
+
+Make diretory `mkdir db_files`
+Create TCL file `nano lib2db.tcl`.
+
+```tcl
+# convert_lib_to_db.tcl
+set lib_files_dir "/home/chetana/VSDBabySoc/src/db_files";
+set db_output_dir "/home/chetana/VSDBabySoc/src/db_files";
+foreach lib_file [glob -nocomplain $lib_files_dir/*.lib] {
+set base_name [file rootname [file tail $lib_file]]
+set db_file "$db_output_dir/${base_name}.db"
+
+if {[llength [list_libs]] > 0} {
+remove_lib [lindex [list_libs] 0]
+}
+
+read_lib $lib_file
+
+write_lib $base_name -format db -output $db_file
+
+if {[llength [list_libs]] > 0} {
+    remove_lib [lindex [list_libs] 0]
+}
+}
+exit
+```
+---
+
+run `./conversion.sh
+
+--- 
+
+## Output in db_files
+
+![image](https://github.com/user-attachments/assets/1f9e3972-394c-4154-992d-52f5ca1d06a0)
+
+✅ Step-by-Step Debugging
+
+✅ 1. Confirm .lib files exist
+Run:
+
+ls /home/chetana/VSDBabySoC/src/db_files/*.lib
+
+If this shows no files, you are in the wrong folder or the .lib files are missing.
+
+✅ 2. Make sure lib2db.tcl path is correct
+
+Run:
+
+cat lib2db.tcl
+
+Ensure your paths look like this:
+
+set lib_files_dir "/home/chetana/VSDBabySoC/src/db_files"
+
+set db_output_dir "/home/chetana/VSDBabySoC/src/db_files"
+
+✅ 3. Check if conversion.sh has execute permission
+
+Run:
+
+chmod +x conversion.sh
+
+✅ 4. Run with debug mode to see errors
+
+Run:
+
+bash -x ./conversion.sh
+
+Check if:
+
+lc_shell opens
+
+TCL script is executed
+
+Errors are printed
+
+✅ 5. Try running lc_shell manually
+
+Instead of conversion.sh, try this directly:
+
+/usr/synopsys/lc/T-2022.03-SP5/bin/lc_shell
+
+Inside lc_shell:
+
+source lib2db.tcl
+
+Then observe if .db files are getting created or any error shows up.
+
+## Multi-PVT Corner Synthesis Script
+
+---
+
+Create bash file `nano pvt_corners.sh`
+
+```bash
+#!/bin/bash
+TCL_SCRIPT_PATH="/home/hemanth/Desktop/VLSI/VSDBabySoc/src/script/pvt_corners.tcl"
+LOG_FILE="/home/hemanth/Desktop/VLSI/VSDBabySoc/src/dc_shell.log"
+
+# Run the TCL script within dc_shell
+dc_shell -f $TCL_SCRIPT_PATH | tee $LOG_FILE
+```
+<img width="659" alt="Screenshot 2024-11-11 at 5 33 20 PM" src="https://github.com/user-attachments/assets/ac9ffe7f-9e05-4fde-a6c4-2db541e49879">
+
+---
+
+To perform synthesis across multiple PVT corners.
+
+`cd script`
+Create TCL file `pvt_corners.tcl`
+
+```tcl
+# timing_multi_pvt_corners.tcl
+set file_handle [open report_timing.rpt w]
+puts $file_handle "PVT_Corner\tWNS\tWHS"
+
+set lib_files [glob -directory /home/chetana/VSDBabySoc/src/db_files/ -type f *.db]
+
+foreach lib_file_paths $lib_files {
+
+regexp {.*\/sky130_fd_sc_hd__(.*)\.db$} $lib_file_paths full_match pvt_corners
+
+set timing_report_fast_mode true
+
+set target_library $lib_file_paths
+set link_library {* /home/chetana/VSDBabySoc/src/lib/avsdpll.db /home/chetana/VSDBabySoc/src/lib/avsddac.db}
+lappend link_library $target_library
+set search_path {/home/chetana/VSDBabySoc/src/include /home/chetana/VSDBabySoc/src/module}
+read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc
+read_sdc /home/chetana/VSDBabySoc/src/sdc/vsdbabysoc_synthesis.sdc
+link
+compile_ultra
+
+set wns [get_attribute [get_timing_paths -delay_type max -max_paths 1] slack]
+set whs [get_attribute [get_timing_paths -delay_type min -max_paths 1] slack]
+
+puts $file_handle "$pvt_corners\t$wns\t$whs"
+
+reset_design
+}
+
+close $file_handle
+exit
+```
+
+<img width="1103" alt="Screenshot 2024-11-11 at 5 35 54 PM" src="https://github.com/user-attachments/assets/fb98f8a6-0e53-43e7-ab22-907bf73baed8">
+
+---
+
+run `pvt_corners.sh`
+
+---
+
+`nano report_timing.rpt`
+
+<img width="708" alt="Screenshot 2024-11-11 at 5 42 18 PM" src="https://github.com/user-attachments/assets/c941623c-634d-41dd-96ff-907d2fb9264a">
+
+---
+
+</details>
+
+<details>
+
+<summary>Floorplanning & Power Planning of BabySoC</summary>
+
+
+#### Physical Design Flow :
+
+![image](https://github.com/user-attachments/assets/11640331-5ada-490b-9129-9696d36c7b00)
+
+Physical Design is the process of translating the gate level netlist into a physical layout. This physical layout consists of various metal shapesand sizes which can be drawn onto masks and manufactured on the 
+silicon wafer.
+
+The Physical Design process can be broken down into multiple stages as illustrated below. It is often an iterative process where a number of optimizations are performed at each step to meet the design performance, area & power requirements.
+
+**Floorplanning** :
+
+Floorplanning is the first step of physical design. The design is first partitioned into various smaller subsystems based on the system architecture and design requirements.  Floorplanning determines the aspect 
+ratio and area of the layout. Here we create the placement rows for standard cells and fix the placement of I/Os around the boundary. Any macros in the design are also placed during the floorplan stage.
+
+**Power planning** is also typically done during floorplanning. The power grid network is created to distribute power to all the std cells rows, macros and all other components of the design. If there are any 
+special IPs being used in the design then all the IP integration guidelines are also considered in floorplanning.
+
+A good floorplan is very critical to the overall quality of your design.
+
+![image](https://github.com/user-attachments/assets/48f75cd6-fa36-47b9-bf95-f1cc9bd1d445)
+
+**Logic Placement** :
+
+In this stage all the standard cells in the design are placed and assigned a legal location. After the placement EDA tools performs a number of optimizations to improve placement and congestion. A bad placement 
+might lead to larger area utilization and timing issues.
+
+EDA tools also use timing driven placement algorithms to optimize the placement while considering the timing requirements of the design.
+
+**Clock Tree Synthesis** :
+
+During the Floorplanning & placement stage, the clock is considered as an ideal network. The optimizations in the placement stage are performed based on the assumption of an ideal clock reaching to all flops at 
+the same time. In CTS, a clock network is created to distribute the clock to all flops. This clock tree is built using buffers or inverters along the clock paths of design in order to achieve zero/minimum skew 
+based on design requirement. A good quality clock network is very crucial to meet the timing requirements of the design.
+
+**Routing** :
+
+Once all the standard cells are legally placed and the clock network is synthesized, all the connecting data nets need to be laid out on the metal layers. This is done during the routing stage. After routing all the nets, a number of optimizations are performed based on the design timing requirements and analysis.
+
+**Timing Analysis & Signoff** :
+
+After the design Routing, static timing analysis is performed on the design. This step is critical to analyze the 
+performance of the design. During STA, we break down the design into timing paths and calculate 
+the signal propagation delay along each path. Then each path is checked for violations of timing constraints. If any path is violated then these violations need to be addressed before signing off on the design.
+
+The timing signoff ensures that all the design elements are meeting the specified timing requirements and the design is working at the desired frequency. 
+
+**Physical Verification & Signoff** :
+
+After the routing is completed, the layout must be completely verified to ensure its correct electrical and logical functionality. The physical verification signoff ensures that the design meets all the 
+fabrication specified rules and can be easily manufactured. Various checks that are performed at this stage includes :
+
+* DRC (Design Rule Check)
+* LVS (Layout Vs Schematic)* ERC (Electrical Rule Check)
+* Antenna check
+* EM (Electromigration Analysis)
+
+Once the physical verification is done, the layout is streamed out in the form of a GDSII or OASIS file for fabrication which is called **design tapeout**.
+
+
+#### What is Floorplanning? :
+
+In VLSI design, **Floorplanning** is a crucial step in physical design that involves placing blocks and macros in the chip or core area.
+
+The primary objectives of floorplanning are to minimize area, timing, wire length, and power consumption while ensuring easy routing and reliability.
+
+Here are the key aspects of floorplanning:
+
+#### Inputs for Floorplanning :
+
+* Gate level netlist (.v)
+* Physical & Logical Libraries. (.lefs & .libs for all standard cell,macros,IO Pads etc.)
+* Synopsys design constraints (.sdc).
+* RC Tech File (TLU+ file) - to determine RC values of interconnect layers/metal layers of technology node used in our design, and hence provide RC values for computation of wire delays.
+* Technology File (.tf).
+* Physical Partitioning information of the design.
+* Floorplanning Parameters like height,width,aspect ratio etc.
+
+
+### Outputs of Floorplanning
+1. **Die/Core Area**: The physical description of the ASIC design.
+2. **IO Pad Information**: The placement of I/O pins.
+3. **Placed Macros Information**: The placement of macros.
+4. **Standard Cell Placement Areas**: The areas where standard cells are placed.5. **Power Grid Design**: The power distribution plan.
+6. **Blockages**: The defined regions where cells cannot be placed.
+
+Sources:
+
+1) https://www.vlsisystemdesign.com/floorplanning/
+2) https://www.vlsi4freshers.com/2020/01/floorplanning.html
+3) https://www.physicaldesign4u.com/2019/12/floorplanning-floor-planning-is-art-of.html
+4) http://vlsibegin.blogspot.com/p/floorplanning_7.html
+5) https://vlsitutor.com/nots/introduction-to-floorplan/
+
+#### Types of floorplan techniques used in Full Chip plan :
+
+1. **Abutted Floorplan**: This technique involves channel-less placement of blocks, where there is no gap between the blocks.
+2. **Non-Abutted Floorplan**: In this technique, blocks are placed with a gap between them, and connections are made through routing nets.
+   3. **Mix of Both**: This approach combines abutted and non-abutted techniques, using both channels and direct connections.
+
+![image](https://github.com/user-attachments/assets/2162184e-914f-42bd-b489-4e375daada85)
+
+### Floorplan Control Parameters
+1. **Aspect Ratio**: The ratio of the height to the width of the chip, which affects routing resources and congestion.
+2. **Core Utilization**: The percentage of the core area occupied by standard cells, macros, and blockages.
+
+### Floorplan Steps
+1. **Define Width and Height**: Determine the size of the core and die.
+2. **IO Pin Placement**: Place I/O pins at the boundary of the chip.
+3. **Power Planning**: Plan the power grid and power distribution.
+4. **Macro Placement**: Place macros manually using flylines.
+5. **Standard Cell Row Creation**: Create areas for standard cell placement.
+6. **Blockages**: Define blockages to ensure proper placement and routing.
+
+![image](https://github.com/user-attachments/assets/a6dde094-aef6-443e-9810-88831a77e5b3)
+
+### Key Terms
+1. **Standard Cell Row**: The area where standard cells are placed, divided into rows with varying heights.
+2. **Flylines**: Virtual connections between macros and IO pads, helping in logical placement and reducing routing resources.
+3. **Halo (Keep Out Margin)**: The region around fixed macros where other macros and standard cells cannot be placed.
+
+
+### Issues with Bad Floorplanning
+1. **Area and Power Consumption**: A bad floorplan can increase the area and power consumption of the chip.
+2. **Reliability**: It can affect the reliability of the chip.
+3. **Timing Closure**: A bad floorplan can make timing closure difficult.
+
+### Qualifying a Good Floorplan
+1. **Meet Timing and Congestion Constraints**: Ensure that the floorplan meets timing and congestion constraints.
+2. **Optimize Area and Power**: Optimize the area and power consumption of the chip.
+3. **Ensure Routing and Placement**: Ensure that the floorplan allows for easy routing and placement.
+
+### Automatic Floorplan Options
+1. **Automatic Macro Placement**: Most PnR tools provide automatic floorplan options, but these may not always produce optimal results.
+
+### Macro Placement Tips
+1. **Understand Pins and Orientation**: Understand the pin requirements and orientation of macros.
+2. **Follow Data Flow**: Place macros following the data flow and hierarchy.
+3. **Ensure Proper Orientation**: Ensure that all macro pins point towards the core logic.
+4. **Channel Size**: Ensure that channels between macros are large enough for routing and power grids.
+
+### Blockages
+1. **Soft Blockages**: Partial blockages that can be removed during placement.2. **Hard Blockages**: Permanent blockages that cannot be removed.
+3. **Partial Blockages**: Blockages that can be removed during placement but are used to prevent congestion.
+
+#### What is Power Planning ?
+
+Power planning in VLSI design is the process of creating a power distribution network (PDN) to provide power to all the components of the chip, including macros, standard cells, and other cells. The main objectives of power planning are:
+
+1. **Maintain a stable voltage** across the chip with minimal noise.
+2. **Avoid electromigration** and self-heating issues.
+3. **Consume minimal chip area and wiring resources**
+4. **Meet IR drop budget targets** for reliable operation.
+
+The key steps in power planning are:
+
+1. **Calculating the number of power pins required**, based on the total power consumption of the chip.
+2. **Determining the number of power rings, stripes, and rails** needed to distribute power uniformly.3. **Sizing the width of power rings and stripes** to handle the required current.
+4. **Analyzing IR drop** and taking measures to keep it within acceptable limits.
+
+The power distribution hierarchy consists of:
+
+1. **Power pads** that bring power from outside the chip.
+2. **Power rings** around the core area.
+3. **Power stripes** that distribute power horizontally and vertically across the core.
+4. **Power rails** that connect the power stripes to the standard cells.
+
+Power planning is typically done during the floorplanning stage, before signal routing. It involves creating a power mesh using the top metal layers, which have lower resistance compared to lower metal layers. 
+
+The power mesh is connected to the standard cells through power rails.
+
+Proper power planning is critical in modern VLSI designs to ensure reliable operation and meet power budget constraints, especially in deep sub-micron technologies where power has become a primary concern over area and performance.
+
+
+#### Lab - Floorplanning of VSDBabySoC :
+
+* **Downloading Physical design Collaterals :**
+
+    * `git clone https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/tree/master` - to download all Technology file (`.techlef`) for skywater130nm pdk and all the `.lef` files for all standard cells.
+    * `git clone https://github.com/bharath19-gs/synopsys_ICC2flow_130nm` - to download Technology file (`.tf`) for skywater130nm pdk and RC Tech file (parasitics file) in `.itf` format for the PDK.
+    * `git clone https://github.com/kunalg123/icc2_workshop_collaterals` - to download all the scripts to setup and run Physical Design flow in ICC2 Compiler tool.
+
+      * The Interconnect Technology Format (ITF) file is a critical component in the physical design of integrated circuits (ICs). Here is a concise summary of what the ITF file contains and how it is used:
+
+The ITF file provides a detailed description of the process technology, including the physical attributes of the conductor and dielectric layers. Specifically, it specifies:
+
+* The thickness, minimum width, and minimum spacing of each conductor layer.
+* The sheet resistance (RPSQ) of each conductor layer.
+* The thickness and dielectric constant (ER) of each dielectric layer.
+* The resistivity (RHO) and area (AREA) of each via layer.
+
+This information is used to accurately model the parasitic resistance and capacitance (RC) of the interconnect in the design. 
+
+The ITF file is a critical input for parasitic extraction tools to generate the RC parasitics needed for timing, signal integrity, power, and reliability analysis.
+
+Additionally, the ITF file can be used to generate TLU+ files, which are another important technology file used in physical design.
+
+To convert `.itf` file to `.tluplus` format,perform the following steps :
+
+    1) cd `/home/chetana/VSDBabySoC/synopsys_ICC2flow_130nm/synopsys_skywater_flow_nominal/itf_files`
+    2) In Linux Terminal,
+        grdgenxo -itf2TLUPlus -i skywater130.nominal.itf -o skywater130.nominal.tluplus # to generate TLUplus RC Tech file from .itf file format using StarRC tool.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
