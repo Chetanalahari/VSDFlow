@@ -3258,6 +3258,244 @@ To convert `.itf` file to `.tluplus` format,perform the following steps :
     2) In Linux Terminal,
         grdgenxo -itf2TLUPlus -i skywater130.nominal.itf -o skywater130.nominal.tluplus # to generate TLUplus RC Tech file from .itf file format using StarRC tool.
 
+ ![image](https://github.com/user-attachments/assets/98c0a68a-9b29-4741-9891-5e1d98523333)
+
+ ![image](https://github.com/user-attachments/assets/dc337d2a-bd19-4fe0-adaa-e9fda300fd5d)
+
+ ---
+
+ set target_library /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1
+
+ ![image](https://github.com/user-attachments/assets/85b59bd9-d044-4ff5-b6a9-3a4a86fd693d)
+
+ ---
+
+ set link_library [list * $target_library]
+
+ ![image](https://github.com/user-attachments/assets/04444f0f-2cac-466a-a4b7-0eb3b8eab943)
+
+ ---
+
+ set search_path {/home/chetana/VSDBabySoC/src/include /home/chetana/VSDBabySoC/src/module}
+
+ ![image](https://github.com/user-attachments/assets/b0868152-0236-464d-a696-52b5fff6f601)
+
+ ---
+
+ read_file {sandpiper_gen.vh sandpiper.vh sp_default.vh sp_verilog.vh clk_gate.v avsdpll.v avsddac.v vsdbabysoc.v} -autoread -top vsdbabysoc
+
+ ![image](https://github.com/user-attachments/assets/96a52b27-b8ce-4996-909a-01cc8ac484d6)
+
+ ---
+
+ compile
+
+ ![image](https://github.com/user-attachments/assets/7b512884-06a5-456f-b933-135e1f5f6249)
+
+ ![image](https://github.com/user-attachments/assets/ddf87ffa-3750-4609-a18e-9749bae2c421)
+
+ ---
+
+ report_qor > /home/chetana/VSDBabySoc/output/reports/qor_post_synth.rpt
+
+
+ Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : qor
+Design : vsdbabysoc
+Version: T-2022.03-SP5-6
+Date   : Sat May  3 21:57:28 2025
+****************************************
+
+
+  Timing Path Group (none)
+  -----------------------------------
+  Levels of Logic:              20.00
+  Critical Path Length:          6.19
+  Critical Path Slack:         uninit
+  Critical Path Clk Period:       n/a
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:         19
+  Hierarchical Port Count:        794
+  Leaf Cell Count:               4633
+  Buf/Inv Cell Count:             262
+  Buf Cell Count:                  58
+  Inv Cell Count:                 204
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:      3204
+  Sequential Cell Count:         1429
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:    24674.914858
+  Noncombinational Area: 28652.479109
+  Buf/Inv Area:           1002.211169
+  Total Buffer Area:           218.96
+  Total Inverter Area:         783.25
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:             53327.393967
+  Design Area:           53327.393967
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:          4861
+  Nets With Violations:             1
+  Max Trans Violations:             1
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: sfalvsd
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                   15.25
+  Logic Optimization:                  8.66
+  Mapping Optimization:                6.36
+  -----------------------------------------
+  Overall Compile Time:               35.03
+  Overall Compile Wall Clock Time:    35.78
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+  --------------------------------------------------------------------
+
+
+1
+
+---
+
+report_area > /home/chetana/VSDBabySoc/output/reports/area_post_synth.rpt
+
+****************************************
+Report : area
+Design : vsdbabysoc
+Version: T-2022.03-SP5-6
+Date   : Sat May  3 21:58:16 2025
+****************************************
+
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1)
+
+Number of ports:                          841
+Number of nets:                          5556
+Number of cells:                         4652
+Number of combinational cells:           3204
+Number of sequential cells:              1429
+Number of macros/black boxes:               0
+Number of buf/inv:                        262
+Number of references:                       4
+
+Combinational area:              24674.914858
+Buf/Inv area:                     1002.211169
+Noncombinational area:           28652.479109
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 53327.393967
+Total area:                 undefined
+1
+
+---
+
+report_power > /home/chetana/VSDBabySoc/output/reports/power_post_synth.rpt
+
+Loading db file '/home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : vsdbabysoc
+Version: T-2022.03-SP5-6
+Date   : Sat May  3 21:58:50 2025
+****************************************
+
+
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1)
+
+
+Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+vsdbabysoc             Small             sky130_fd_sc_hd__tt_025C_1v80
+
+
+Global Operating Voltage = 1.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   1.5051 mW   (73%)
+  Net Switching Power  = 546.4460 uW   (27%)
+                         ---------
+Total Dynamic Power    =   2.0516 mW  (100%)
+
+Cell Leakage Power     =  21.3361 nW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential         1.2451        9.7754e-03           11.5984            1.2549  (  61.17%)
+combinational      0.2600            0.5367            9.7377            0.7966  (  38.83%)
+--------------------------------------------------------------------------------------------------
+Total              1.5051 mW         0.5464 mW        21.3361 nW         2.0516 mW
+1
+
+---
+
+
+
+
+ 
+
+
+
 
 
 
