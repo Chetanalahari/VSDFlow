@@ -3296,8 +3296,8 @@ To convert `.itf` file to `.tluplus` format,perform the following steps :
 
  ---
 
- report_qor > /home/chetana/VSDBabySoc/output/reports/qor_post_synth.rp
- 
+report_qor
+
 ****************************************
 Report : qor
 Design : vsdbabysoc
@@ -3358,6 +3358,8 @@ Date   : Sat May  3 21:57:28 2025
   -----------------------------------
 
 
+
+
   Compile CPU Statistics
   -----------------------------------------
   Resource Sharing:                   15.25
@@ -3378,105 +3380,6 @@ Date   : Sat May  3 21:57:28 2025
 
 
 1
-
----
-
-report_area > /home/chetana/VSDBabySoc/output/reports/area_post_synth.rpt
-
-****************************************
-Report : area
-Design : vsdbabysoc
-Version: T-2022.03-SP5-6
-Date   : Sat May  3 21:58:16 2025
-****************************************
-
-Library(s) Used:
-
-    sky130_fd_sc_hd__tt_025C_1v80 (File: /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1)
-
-Number of ports:                          841
-Number of nets:                          5556
-Number of cells:                         4652
-Number of combinational cells:           3204
-Number of sequential cells:              1429
-Number of macros/black boxes:               0
-Number of buf/inv:                        262
-Number of references:                       4
-
-Combinational area:              24674.914858
-Buf/Inv area:                     1002.211169
-Noncombinational area:           28652.479109
-Macro/Black Box area:                0.000000
-Net Interconnect area:      undefined  (Wire load has zero net area)
-
-Total cell area:                 53327.393967
-Total area:                 undefined
-1
-
----
-
-report_power > /home/chetana/VSDBabySoc/output/reports/power_post_synth.rpt
- 
-****************************************
-Report : power
-        -analysis_effort low
-Design : vsdbabysoc
-Version: T-2022.03-SP5-6
-Date   : Sat May  3 21:58:50 2025
-****************************************
-
-
-Library(s) Used:
-
-    sky130_fd_sc_hd__tt_025C_1v80 (File: /home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1)
-
-
-Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
-Wire Load Model Mode: top
-
-Design        Wire Load Model            Library
-------------------------------------------------
-vsdbabysoc             Small             sky130_fd_sc_hd__tt_025C_1v80
-
-
-Global Operating Voltage = 1.8  
-Power-specific unit information :
-    Voltage Units = 1V
-    Capacitance Units = 1.000000pf
-    Time Units = 1ns
-    Dynamic Power Units = 1mW    (derived from V,C,T units)
-    Leakage Power Units = 1nW
-
-
-Attributes
-----------
-i - Including register clock pin internal power
-
-
-  Cell Internal Power  =   1.5051 mW   (73%)
-  Net Switching Power  = 546.4460 uW   (27%)
-                         ---------
-Total Dynamic Power    =   2.0516 mW  (100%)
-
-Cell Leakage Power     =  21.3361 nW
-
-Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
-
-                 Internal         Switching           Leakage            Total
-Power Group      Power            Power               Power              Power   (   %    )  Attrs
---------------------------------------------------------------------------------------------------
-io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
-memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
-black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
-register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential         1.2451        9.7754e-03           11.5984            1.2549  (  61.17%)
-combinational      0.2600            0.5367            9.7377            0.7966  (  38.83%)
---------------------------------------------------------------------------------------------------
-Total              1.5051 mW         0.5464 mW        21.3361 nW         2.0516 mW
-1
-
----
 
 
 
