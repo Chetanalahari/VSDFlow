@@ -3296,10 +3296,7 @@ To convert `.itf` file to `.tluplus` format,perform the following steps :
 
  ---
 
- report_qor > /home/chetana/VSDBabySoc/output/reports/qor_post_synth.rpt
-
-
- Information: Updating design information... (UID-85)
+ report_qor > /home/chetana/VSDBabySoc/output/reports/qor_post_synth.rp
  
 ****************************************
 Report : qor
@@ -3361,8 +3358,6 @@ Date   : Sat May  3 21:57:28 2025
   -----------------------------------
 
 
-  Hostname: sfalvsd
-
   Compile CPU Statistics
   -----------------------------------------
   Resource Sharing:                   15.25
@@ -3421,12 +3416,6 @@ Total area:                 undefined
 ---
 
 report_power > /home/chetana/VSDBabySoc/output/reports/power_post_synth.rpt
-
-Loading db file '/home/chetana/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db.1'
-Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
-Warning: There is no defined clock in the design. (PWR-80)
-Warning: Design has unannotated primary inputs. (PWR-414)
-Warning: Design has unannotated sequential cell outputs. (PWR-415)
  
 ****************************************
 Report : power
